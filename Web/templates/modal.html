@@ -3,20 +3,33 @@
    <h3 class="modal-title"> New {{Type.type}} </h3>    
 </div>
 <div class="modal-body">
-    <form name="mainForm">
+    <form name="mainForm" novalidate>
         <div ng-form="newItemForm">
 
-            <div class="form-group" ng-repeat="field in Type.fields">
+            <div class="form-group" ng-repeat="field in Type.fields" ng-class="{'has-error':newItemForm.newItem{{$index}}.$invalid && newItemForm.newItem{{$index}}.$dirty}">
                 <label>{{field.label}}</label>
-                <input type="text" class="form-control" ng-model="newItem[field.name]">
-            </div>
+                <input ng-if="field.type=='text'"type="text" class="form-control" required name="newItem{{$index}}"ng-model="newItem[field.name]">
+
+				<div class="input-group" ng-if="field.type=='date'">
+					<input  type="text" class="form-control" required name="newItem{{$index}}" ng-model="newItem[field.name]"
+							  datepicker-popup="{{format}}" is-open="field.startopened" datepicker-options="dateOptions" close-text="Close">
+							  <span class="input-group-btn">
+									  <button type="button"class="btn btn-default" ng-click="startopencal(newItem[field.name],$event)">
+												 <i class="glyphicon glyphicon-calendar"></i>
+									  </button>
+							   </span>
+           	  </div>
+           	    <alert type="danger" ng-show="newItemForm.newItem{{$index}}.$dirty && newItemForm.newItem{{$index}}.$invalid">
+                Please enter valid information.
+                </alert>
+			</div>
 
         </div>  
     </form>
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success" ng-click="add()">Add </button>
+    <button class="btn btn-success" ng-disabled="mainForm.$invalid" ng-click="add()">Add </button>
     <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
 
 </div>

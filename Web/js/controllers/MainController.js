@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$scope','$modal', function ($scope,$modal) {
+app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
     
     $scope.name = "Dane";
         
@@ -98,46 +98,47 @@ app.controller('MainCtrl', ['$scope','$modal', function ($scope,$modal) {
         Course : $scope.courseFields,
         Assignment : $scope.assignmentFields
         
-    }
+    };
     
     $scope.courses = [];
     
     $scope.assignments = [];
     $scope.selectedTab;
     $scope.selectedTable;
-    $scope.buttonPress = function(){
-      console.log($scope.selectedTab);
+    $scope.buttonPress = function () {
+		console.log($scope.selectedTab);
         var modalInstance = $modal.open({
-            animation:true,
+            animation: true,
             templateUrl: 'templates/modal.html',
-            controller:'ModalInstanceCtrl',
-            resolve:{
-                Type:function(){
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+                Type: function () {
                     return {
-                             type : $scope.selectedTab.types,
-                             fields : $scope.selectedTable
-                            }
+						type : $scope.selectedTab.types,
+						fields : $scope.selectedTable
+					};
                 }
             }
         });
         modalInstance.result.then(function (selectedItem) {
-                addItem(selectedItem);
-            }, function () {
+			addItem(selectedItem);
+		},
+								  function () {
                 console.log('Modal dismissed at: ' + new Date());
             });
-        };
+	};
 
-    $scope.setSelected = function(tab){
+    $scope.setSelected = function (tab) {
         $scope.selectedTab = tab;
         $scope.selectedTable = tables[$scope.selectedTab.types];
     };
     
-    var addItem = function(Item){
-        if(Item.type == 'Course'){
-            $scope.courses.push(Item.data);   
-        } else if(Item.type == 'Assignment'){
-            $scope.assignments.push(Item.data);   
-        } 
+    var addItem = function (Item) {
+        if (Item.type == 'Course') {
+            $scope.courses.push(Item.data);
+        } else if (Item.type == 'Assignment') {
+            $scope.assignments.push(Item.data);
+        }
     };
     
     
@@ -147,18 +148,81 @@ app.controller('MainCtrl', ['$scope','$modal', function ($scope,$modal) {
 
 
 
-app.controller('ModalInstanceCtrl',function($scope, $modalInstance, Type){
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
     $scope.Type = Type;
     $scope.newItem = {};
+	
+	$scope.starttoday = function () {
+		if ($scope.Type == 'Course') {
+			$scope.newItem.courseStartDate = new Date();
+		} else {
+			$scope.newItem.assignmentGivenDate = new Date();
+		}
+	};
+	$scope.starttoday();
+
+	$scope.startclear = function () {
+		if ($scope.Type == 'Course') {
+			$scope.newItem.courseStartDate = null;
+		} else {
+			$scope.newItem.assignmentGivenDate = null;
+		}
+	};
+
+	$scope.startopencal = function (newItem, $event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		if ($scope.Type == 'Course') {
+			if (newItem.courseStartDate == undefined) {
+				newItem.courseStartDate = false;
+			}
+			newItem.courseStartDate = true;
+			console.log("did it ");
+		}
+	};
+
+	$scope.dateOptions = {
+		formatYear: 'yy',
+		startingDay: 1
+	};
+
+	$scope.format = 'dd-MMMM-yyyy';
+
+	var tomorrow = new Date();
+	tomorrow.setDate(tomorrow.getDate() + 1);
+	var afterTomorrow = new Date();
+	afterTomorrow.setDate(tomorrow.getDate() + 2);
+	$scope.startevents = [{
+		date: tomorrow,
+		status: 'full'
+	}, {
+		date: afterTomorrow,
+		status: 'partially'
+	}];
+
+	$scope.startgetDayClass = function (date, mode) {
+        if (mode === 'day') {
+			var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+			for (var i = 0;  i < $scope.startevents.length;  i++)  {
+				var currentDay = new Date($scope.startevents[i].date).setHours(0, 0, 0, 0);
+
+				if (dayToCheck === currentDay) {
+					return $scope.startevents[i].status;
+				}
+			}
+	}
+	return '';
+};
     
-    $scope.add = function(){
+    $scope.add = function () {
         console.log($scope.newItem);
         $modalInstance.close({ data: $scope.newItem, type : $scope.Type.type
             });
         
     };
     
-    $scope.cancel = function(){
+    $scope.cancel = function () {
         $modalInstance.dismiss();
     };
     
