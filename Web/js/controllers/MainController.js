@@ -151,33 +151,38 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
     $scope.Type = Type;
     $scope.newItem = {};
-	
-	$scope.starttoday = function () {
-		if ($scope.Type == 'Course') {
-			$scope.newItem.courseStartDate = new Date();
-		} else {
-			$scope.newItem.assignmentGivenDate = new Date();
-		}
+	var minDate = { 
+		value : new Date(),
+		startopened : false
 	};
+	$scope.maxDate = {
+		 
+		value : new Date(),
+		startopened : false
+	};
+	
+	//Date Start
+	$scope.starttoday = function () {
+		if ($scope.Type.type == 'Course') {
+			$scope.newItem.courseStartDate = minDate;
+		} else {
+			$scope.newItem.assignmentGivenDate = minDate;
+		}
+		
+	};
+	
 	$scope.starttoday();
 
 	$scope.startclear = function () {
-		if ($scope.Type == 'Course') {
-			$scope.newItem.courseStartDate = null;
-		} else {
-			$scope.newItem.assignmentGivenDate = null;
-		}
+		minDate.value = null;
 	};
 
 	$scope.startopencal = function (newItem, $event) {
 		$event.preventDefault();
 		$event.stopPropagation();
-		if ($scope.Type == 'Course') {
-			if (newItem.courseStartDate == undefined) {
-				newItem.courseStartDate = false;
-			}
-			newItem.courseStartDate = true;
-			console.log("did it ");
+		if ($scope.Type.type == 'Course') {
+			minDate.startopened = true;
+			console.log(newItem);
 		}
 	};
 
@@ -188,32 +193,8 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 
 	$scope.format = 'dd-MMMM-yyyy';
 
-	var tomorrow = new Date();
-	tomorrow.setDate(tomorrow.getDate() + 1);
-	var afterTomorrow = new Date();
-	afterTomorrow.setDate(tomorrow.getDate() + 2);
-	$scope.startevents = [{
-		date: tomorrow,
-		status: 'full'
-	}, {
-		date: afterTomorrow,
-		status: 'partially'
-	}];
-
-	$scope.startgetDayClass = function (date, mode) {
-        if (mode === 'day') {
-			var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-
-			for (var i = 0;  i < $scope.startevents.length;  i++)  {
-				var currentDay = new Date($scope.startevents[i].date).setHours(0, 0, 0, 0);
-
-				if (dayToCheck === currentDay) {
-					return $scope.startevents[i].status;
-				}
-			}
-	}
-	return '';
-};
+		
+	//date end
     
     $scope.add = function () {
         console.log($scope.newItem);

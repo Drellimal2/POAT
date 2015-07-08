@@ -11,17 +11,24 @@
                 <input ng-if="field.type=='text'"type="text" class="form-control" required name="newItem{{$index}}"ng-model="newItem[field.name]">
 
 				<div class="input-group" ng-if="field.type=='date'">
-					<input  type="text" class="form-control" required name="newItem{{$index}}" ng-model="newItem[field.name]"
-							  datepicker-popup="{{format}}" is-open="field.startopened" datepicker-options="dateOptions" close-text="Close">
-							  <span class="input-group-btn">
-									  <button type="button"class="btn btn-default" ng-click="startopencal(newItem[field.name],$event)">
-												 <i class="glyphicon glyphicon-calendar"></i>
-									  </button>
-							   </span>
-           	  </div>
-           	    <alert type="danger" ng-show="newItemForm.newItem{{$index}}.$dirty && newItemForm.newItem{{$index}}.$invalid">
-                Please enter valid information.
-                </alert>
+					<input  type="text" class="form-control" 
+						   required 
+						   name="newItem{{$index}}" 
+						   ng-model="newItem[field.name].value"
+						   datepicker-popup="{{format}}" 
+						   is-open="newItem[field.name].startopened" 
+						   datepicker-options="dateOptions" 
+						   close-text="Close">
+					<span class="input-group-btn">
+						<button class="btn btn-default" 
+								ng-click="startopencal(newItem[field.name],$event)">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+			  	</div>
+				<alert type="danger" ng-show="newItemForm.newItem{{$index}}.$dirty && newItemForm.newItem{{$index}}.$invalid">
+				Please enter valid information.
+				</alert>
 			</div>
 
         </div>  
