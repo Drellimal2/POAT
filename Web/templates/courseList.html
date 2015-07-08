@@ -1,0 +1,14 @@
+<table class='table text-left table-hover'>
+    <thead>
+        <tr>
+            <td ng-repeat="heading in courseFields">{{heading.label}}</td>
+        </tr>
+    </thead>
+    <tbody style="min-height= 50px;">
+        <tr ng-repeat="course in courses">
+            <td ng-repeat= "field in courseFields">
+                {{ course[field.name] }}
+            </td>
+        </tr>
+    </tbody>
+</table>
