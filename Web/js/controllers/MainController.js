@@ -42,13 +42,15 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
         {
             label : 'Start Date',
             name : 'courseStartDate',
-            type : 'date'
+            type : 'date',
+			dateType: 'start'
 
         },
         {
             label : 'End Date',
             name : 'courseEndDate',
-            type : 'date'
+            type : 'date',
+			dateType: 'end'
 
         }
         
@@ -76,13 +78,15 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
         {
             label : 'Date Given',
             name : 'assignmentStartDate',
-            type : 'date'
+            type : 'date',
+			dateType: 'start'
 
         },
         {
             label : 'Due Date',
             name : 'assignmentDueDate',
-            type : 'date'
+            type : 'date',
+			dateType: 'end'
 
         },
         {
@@ -155,7 +159,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 		value : new Date(),
 		startopened : false
 	};
-	$scope.maxDate = {
+	var maxDate = {
 		 
 		value : new Date(),
 		startopened : false
@@ -165,25 +169,36 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 	$scope.starttoday = function () {
 		if ($scope.Type.type == 'Course') {
 			$scope.newItem.courseStartDate = minDate;
+			$scope.newItem.courseEndDate = maxDate;
 		} else {
 			$scope.newItem.assignmentGivenDate = minDate;
+			$scope.newItem.assignmentDueDate = maxDate;
 		}
 		
 	};
 	
 	$scope.starttoday();
+	
+	var isStart = function(datetype){
+		return (datetype == 'start');	
+	};
 
 	$scope.startclear = function () {
 		minDate.value = null;
+		maxDate.value = null;
 	};
 
-	$scope.startopencal = function (newItem, $event) {
+	$scope.startopencal = function (datetype, newItem, $event) {
 		$event.preventDefault();
 		$event.stopPropagation();
-		if ($scope.Type.type == 'Course') {
+		if(isStart(datetype)){
 			minDate.startopened = true;
-			console.log(newItem);
+			console.log("start");
+		} else {
+			maxDate.startopened = true;	
 		}
+		console.log(newItem);
+		
 	};
 
 	$scope.dateOptions = {
