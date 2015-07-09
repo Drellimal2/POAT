@@ -17,7 +17,35 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
         }
 
     ];
-    
+	
+	$scope.accordionGroups= [
+		{
+			heading: 'Courses',
+			content:[{		
+									name: 'All'
+							},
+					 		{
+									name: 'Open'
+							},
+					 		{
+									name: 'Archived'
+							}
+					]
+		},
+		{
+			heading: 'Assignments',
+			content: [{
+										name: 'All'
+								},
+					  			{		
+										name:'Due'
+								},
+					  			{
+										name:'Completed'
+								}
+					  ]
+			}
+	];
     
     
     $scope.courseFields = [

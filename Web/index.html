@@ -41,6 +41,15 @@
     <body ng-controller='MainCtrl' style="list-style-type:none;">
         
         <poatheader></poatheader>
+        <div class="col-md-2">
+        <div class="nav-left accordionStyle">
+       <accordion close-others="true">
+       	<accordion-group ng-repeat="accordion in accordionGroups"><accordion-heading>{{accordion.heading}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></accordion-heading><div ng-repeat="content in accordion.content">{{content.name}}</div>
+       	</accordion-group>
+       </accordion>
+		</div>
+		</div>
+        <div class="col-md-10">
         <tabset>
             <tab ng-repeat="tab in tabs"
                  ng-model="selectedTab"
@@ -52,7 +61,8 @@
             </tab>
                <button class= "btn btn-success pull-right" ng-click="buttonPress()"> Add {{selectedTab.types}}</button>
         </tabset>
-     
+		</div>
+       
         
         
     </body>
