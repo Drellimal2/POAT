@@ -10,6 +10,7 @@ body{
  padding-top: 0px;   
     
 }
+
 div.accordionStyle .panel-default >.panel-heading {
     background-color: white;
 
@@ -17,4 +18,21 @@ div.accordionStyle .panel-default >.panel-heading {
 }
 .panel{
 		border:0;
+}
+
+#navigation_drawer {
+	border :1px solid #cfcfcf;
+	border-radius: 10px;
+}
+
+div ul li {
+	font-size: 20px;
+}
+
+img#logo{
+	
+	padding-right: 50px;
+	min-height: 200%;
+	min-width: 200%;
+	
 }
