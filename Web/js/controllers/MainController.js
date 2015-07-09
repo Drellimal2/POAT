@@ -172,7 +172,18 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
             $scope.assignments.push(Item.data);
         }
     };
-    
+	
+	$scope.notifs = function() {
+			if (window.webkitNotifications.checkPermission() == 0) {
+		var myNotification = window.webkitNotifications.createNotification( null, 'New Content Available', 'Click to view');
+		myNotification.onclick = function() {
+			window.location = 'http://teamtreehouse.com/new/content';
+		}
+		myNotification.show();
+		} else {
+			window.webkitNotifications.requestPermission(function(){});
+		}
+	};
     
 }]);
 
@@ -193,6 +204,9 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 		startopened : false
 	};
 	
+	$scope.sgte = true;
+	
+	
 	//Date Start
 	$scope.starttoday = function () {
 		if ($scope.Type.type == 'Course') {
@@ -210,6 +224,18 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 	var isStart = function(datetype){
 		return (datetype == 'start');	
 	};
+	
+	var startGTend = function(){
+		if(maxDate.value != null){
+			if (minDate.value > maxDate.value){
+				maxDate.value = null;
+				console.log(true);
+				$scope.sgte = true;
+			}
+			console.log(false);
+			$scope.sgte = false;
+		}
+	};
 
 	$scope.startclear = function () {
 		minDate.value = null;
@@ -221,12 +247,10 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 		$event.stopPropagation();
 		if(isStart(datetype)){
 			minDate.startopened = true;
-			console.log("start");
 		} else {
 			maxDate.startopened = true;	
 		}
-		console.log(newItem);
-		
+
 	};
 
 	$scope.dateOptions = {
@@ -240,7 +264,6 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 	//date end
     
     $scope.add = function () {
-        console.log($scope.newItem);
         $modalInstance.close({ data: $scope.newItem, type : $scope.Type.type
             });
         
