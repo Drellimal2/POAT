@@ -38,7 +38,7 @@ img#logo{
 
 #navigation_drawer .main_filter{
 	
-	font-size: 20px;
+	font-size: 15px;
 	
 }
 
@@ -51,20 +51,24 @@ body {
 #main_body{
 	
 	background-color: #ffffff;
-	min-height : 200px;
+	min-height : 75%;
 	
 }
 
 .sub_filter{
-	font-size: 15px;
+	font-size: 12px;
 	padding: 5px;
 	cursor: pointer;
+	margin: 2px;
+	background-color: #efefef;
+	margin-left: 10px;
 	
 }
 
-.sub_filter> a:hover{
+.sub_filter:hover{
 	strong;
 	text-decoration: none;
+	background-color : #ffffff;
 	
 }
 
@@ -83,5 +87,12 @@ body {
 #main_table_title{
 	strong;
 	font-size: 20px;
+	margin-top: 20px;
 	
 }
+
+.fulterbodt>hr{
+	padding=0px;
+	margin: 0px;
+}
+

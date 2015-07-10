@@ -44,23 +44,20 @@
         <poatheader></poatheader>
 		
         <div class="col-md-2" id="navigation_drawer">
-			<tabset vertical= "true"
-						type="pills"
-					 >
 			<div ng-repeat="list in lists">
-				
-				<div class="main_filter">{{list.label}}</div>
-				
-				<tab style="margin-right:2px;margin-bottom:2px;font-size=20px;"
-					ng-repeat="filter in list.filters"
-					ng-model="filter"
-					 heading="{{filter.name}}" 
-					class="sub_filter"
-					select = "setSelected(list)">
-				</tab>
+				<div class="filter_body">
+					<div class="main_filter">{{list.label}}</div>
+					<div style="margin-right:2px;margin-bottom:2px;font-size=20px;"
+						ng-repeat="filter in list.filters"
+						ng-model="filter"
+						class="sub_filter"
+						 ng-class="{active: checkSelected($parent.$index, $index)}"
+						ng-click = "setSelected(list, $parent.$index, $index)">
+						{{filter.name}}
+					</div>
+				</div>
 				
 			</div>
-			</tabset>
 		</div>
         <div class="col-md-10" id="main_body">
 			<div id= "main_table_title">{{selectedTab.heading}}
@@ -68,6 +65,7 @@
 					Add {{selectedTab.types}}
 				</button>
 			</div>
+			<hr>
 			<div ng-include="selectedTab.template"></div>
             
 		</div>

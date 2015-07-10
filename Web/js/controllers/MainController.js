@@ -137,7 +137,7 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
     $scope.assignments = [];
     $scope.selectedTab = {types: 'Courses'};
     $scope.selectedTable = {};
-	
+	var selectedNav = { parent:0 , child: 0};
     $scope.buttonPress = function () {
 		console.log($scope.selectedTab);
         var modalInstance = $modal.open({
@@ -160,9 +160,17 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
                 console.log('Modal dismissed at: ' + new Date());
             });
 	};
+	
+	$scope.checkSelected = function(index1, index2){
+		return selectedNav.parent == index1 &&
+		selectedNav.child == index2;
+	}
 
-    $scope.setSelected = function (types) {
+    $scope.setSelected = function (types, index1, index2) {
 		var x;
+		console.log(index1 + " " + index2);
+		selectedNav.parent = index1;
+		selectedNav.child = index2;
 		for (x=0; x< $scope.tabs.length ; x++){
 			if($scope.tabs[x].heading == types.label){
 				$scope.selectedTab = $scope.tabs[x];
