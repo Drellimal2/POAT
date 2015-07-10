@@ -4,7 +4,7 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
         
     $scope.tabs = [
         {
-            heading: 'Course',
+            heading: 'Courses',
             template: 'templates/courseList.html',
             types : 'Course'
 
@@ -18,10 +18,10 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 
     ];
 	
-	$scope.accordionGroups= [
+	$scope.lists= [
 		{
-			heading: 'Courses',
-			content:[{		
+			label: 'Courses',
+			filters:[{		
 									name: 'All'
 							},
 					 		{
@@ -33,8 +33,8 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 					]
 		},
 		{
-			heading: 'Assignments',
-			content: [{
+			label: 'Assignments',
+			filters: [{
 										name: 'All'
 								},
 					  			{		
@@ -135,8 +135,9 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
     $scope.courses = [];
     
     $scope.assignments = [];
-    $scope.selectedTab;
-    $scope.selectedTable;
+    $scope.selectedTab = {types: 'Courses'};
+    $scope.selectedTable = {};
+	
     $scope.buttonPress = function () {
 		console.log($scope.selectedTab);
         var modalInstance = $modal.open({
@@ -160,9 +161,17 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
             });
 	};
 
-    $scope.setSelected = function (tab) {
-        $scope.selectedTab = tab;
+    $scope.setSelected = function (types) {
+		var x;
+		for (x=0; x< $scope.tabs.length ; x++){
+			if($scope.tabs[x].heading == types.label){
+				$scope.selectedTab = $scope.tabs[x];
+				
+				break;
+			}
+		}
         $scope.selectedTable = tables[$scope.selectedTab.types];
+		console.log($scope.selectedTable);
     };
     
     var addItem = function (Item) {

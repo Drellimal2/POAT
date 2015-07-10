@@ -31,7 +31,7 @@
         
         <!-- Custom -->
         <link href="css/home.css" rel="stylesheet" type="text/css" />
-		<link href="css/flaticon.css" rel="stylesheet" type="text/css" />
+		<link href="images/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
         <script src="js/app.js"></script>
         <script src='js/controllers/MainController.js'></script>
         <script src="js/directives/poat-header.js"></script>
@@ -42,43 +42,38 @@
     <body ng-controller='MainCtrl' style="list-style-type:none;">
         
         <poatheader></poatheader>
+		
         <div class="col-md-2" id="navigation_drawer">
-			<div class="nav-left accordionStyle">
-			   <accordion close-others="false">
-					<accordion-group ng-repeat="accordion in accordionGroups" >
-					
-						<accordion-heading ng-click="status.open=!status.open" class="clickable">{{accordion.heading}}
-							<i class="pull-right glyphicon" ng-click="status.open=!status.open"
-							   ng-class="{'glyphicon-chevron-down': status.open,
-										 'glyphicon-chevron-right': !status.open}">
-										 	
-							</i>
-										 	
-						</accordion-heading>
-					
-						<div ng-repeat="content in accordion.content">{{content.name}}
-						</div>
-					</accordion-group>
-			   </accordion>
+			<tabset vertical= "true"
+						type="pills"
+					 >
+			<div ng-repeat="list in lists">
+				
+				<div class="main_filter">{{list.label}}</div>
+				
+				<tab style="margin-right:2px;margin-bottom:2px;font-size=20px;"
+					ng-repeat="filter in list.filters"
+					ng-model="filter"
+					 heading="{{filter.name}}" 
+					class="sub_filter"
+					select = "setSelected(list)">
+				</tab>
+				
 			</div>
+			</tabset>
 		</div>
-        <div class="col-md-10">
-        <tabset>
-            <tab ng-repeat="tab in tabs"
-                 ng-model="selectedTab"
-                 select = "setSelected(tab)">
-                <tab-heading>
-                    {{ tab.heading }}
-                </tab-heading>
-                <div ng-include="tab.template"></div>
-            </tab>
-               <button class= "btn btn-success pull-right" ng-click="buttonPress()"> Add {{selectedTab.types}}</button>
-        </tabset>
+        <div class="col-md-10" id="main_body">
+			<div id= "main_table_title">{{selectedTab.heading}}
+				<button class= "btn btn-success pull-right" ng-click="buttonPress()" > 
+					Add {{selectedTab.types}}
+				</button>
+			</div>
+			<div ng-include="selectedTab.template"></div>
+            
 		</div>
        
-		    <button class="btn btn-danger" onClick="notifyMe()">notify</button>
+		<button class="btn btn-danger" onClick="notifyMe()">notify</button>
 
-     	<a href="http://www.freepik.com/free-vector/busy-businessman_797047.htm">Designed by Freepik</a>
         
         
     </body>

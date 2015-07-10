@@ -21,8 +21,7 @@ div.accordionStyle .panel-default >.panel-heading {
 }
 
 #navigation_drawer {
-	border :1px solid #cfcfcf;
-	border-radius: 10px;
+	margin-top: 40px;
 }
 
 div ul li {
@@ -34,5 +33,55 @@ img#logo{
 	padding-right: 50px;
 	min-height: 200%;
 	min-width: 200%;
+	
+}
+
+#navigation_drawer .main_filter{
+	
+	font-size: 20px;
+	
+}
+
+body {
+	
+	background-color: #dfdfff;
+	
+}
+
+#main_body{
+	
+	background-color: #ffffff;
+	min-height : 200px;
+	
+}
+
+.sub_filter{
+	font-size: 15px;
+	padding: 5px;
+	cursor: pointer;
+	
+}
+
+.sub_filter> a:hover{
+	strong;
+	text-decoration: none;
+	
+}
+
+.sub_filter.active{
+	
+	background-color : #d8d8d8;
+	
+}
+
+.nav-pills>li.active{
+	
+		background-color : #d8d8d8;
+
+}
+
+#main_table_title{
+	strong;
+	font-size: 20px;
 	
 }
