@@ -4,12 +4,6 @@
     
 }
 
-body{
-    
- padding : 10px;
- padding-top: 0px;   
-    
-}
 
 div.accordionStyle .panel-default >.panel-heading {
     background-color: white;
@@ -21,7 +15,10 @@ div.accordionStyle .panel-default >.panel-heading {
 }
 
 #navigation_drawer {
-	margin-top: 40px;
+	padding: 10px;
+	border-radius: 3px;
+	min-height : 75%;
+	margin: 10px;
 }
 
 div ul li {
@@ -42,9 +39,34 @@ img#logo{
 	
 }
 
+
+#navigation_drawer .sub_filter{
+	font-size: 12px;
+	padding: 5px;
+	cursor: pointer;
+	margin: 3px;
+	padding-left: 15px;
+	
+}
+
+#navigation_drawer .sub_filter:hover{
+	strong;
+	text-decoration: none;
+	background-color : #ffffff;
+	
+}
+
+.sub_filter.active{
+	
+	background-color : #e8e8e8;
+	
+}
+
+
+
 body {
 	
-	background-color: #dfdfff;
+	background-color: #f0f0f0;
 	
 }
 
@@ -55,35 +77,6 @@ body {
 	
 }
 
-.sub_filter{
-	font-size: 12px;
-	padding: 5px;
-	cursor: pointer;
-	margin: 2px;
-	background-color: #efefef;
-	margin-left: 10px;
-	
-}
-
-.sub_filter:hover{
-	strong;
-	text-decoration: none;
-	background-color : #ffffff;
-	
-}
-
-.sub_filter.active{
-	
-	background-color : #d8d8d8;
-	
-}
-
-.nav-pills>li.active{
-	
-		background-color : #d8d8d8;
-
-}
-
 #main_table_title{
 	strong;
 	font-size: 20px;
@@ -91,8 +84,81 @@ body {
 	
 }
 
-.fulterbodt>hr{
-	padding=0px;
-	margin: 0px;
+#home_container{
+	
+	margin : 20px;
+	background-color: #ffffff;
+	
 }
+
+.homepage_item{
+	margin:10px;
+	background-color: #fdfdfd;
+	
+	
+}
+
+
+
+.large-images{
+
+    width: 100%;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    position: relative;
+
+}
+
+#first_home .large-images{
+
+    height: 528px;
+
+}
+
+.large-images .image{
+
+position:absolute;
+
+top:0;
+
+}
+
+#first_home .large-images .image{
+
+right:-198px;
+
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+.large-images .message{
+
+    position: absolute;
+
+    width: 280px;
+
+    font-family: Blackjack;
+
+    font-size: 40px;
+
+    color: #3a3a3a;
+
+    line-height: 48px;
+
+}
+
+#first_home .large-images .message{
+
+    left: 0px;
+
+    top: 110px;
+
+}
+
 

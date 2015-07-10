@@ -20,33 +20,17 @@
         <link href="css/home.css" rel="stylesheet" type="text/css" />
 		<link href="images/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
         <script src="js/app.js"></script>
-        <script src='js/controllers/HomeController.js'></script>
+        <script src='js/controllers/MainController.js'></script>
         <script src="js/directives/poat-header.js"></script>
         <script src="js/testnotifs.js"></script>
         
         
     </head>
 	
-	<body ng-controller='HomeCtrl'>
+	<body>
 		<poatheader></poatheader>
-		<div id="first_home" >
-			
-			<div class="large-images">
-				<div class="image">
-					<img src="images/header-image-1.jpg"></img>
-				</div>
-				<div class="message">
-					Poat Assignment Tracker
-					
-				</div>
-			</div>
-			
-		</div>
-		<div  class="col-md-12 container" id="home_container" >
-			<div ng-repeat="item in info" class="homepage_item">
-				<h2 class="question">{{item.Question}}</h2>
-				<p class="answer" >{{item.Answer}}</p>
-			</div>
+		
+		<div  class="col-md-12 container" >
 			
 			
 		</div>

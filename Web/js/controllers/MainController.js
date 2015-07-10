@@ -46,8 +46,7 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 					  ]
 			}
 	];
-    
-    
+        
     $scope.courseFields = [
         {
             label : 'Course Code',
@@ -135,10 +134,14 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
     $scope.courses = [];
     
     $scope.assignments = [];
-    $scope.selectedTab = {types: 'Courses'};
-    $scope.selectedTable = {};
+	
+    $scope.selectedTab = {types: 'Course'};
+	
+    $scope.selectedTable = tables[$scope.selectedTab.types];
+	
 	var selectedNav = { parent:0 , child: 0};
-    $scope.buttonPress = function () {
+    
+	$scope.buttonPress = function () {
 		console.log($scope.selectedTab);
         var modalInstance = $modal.open({
             animation: true,
@@ -179,7 +182,6 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 			}
 		}
         $scope.selectedTable = tables[$scope.selectedTab.types];
-		console.log($scope.selectedTable);
     };
     
     var addItem = function (Item) {
