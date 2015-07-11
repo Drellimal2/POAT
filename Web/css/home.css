@@ -67,6 +67,7 @@ img#logo{
 body {
 	
 	background-color: #f0f0f0;
+	font-family: Quicksand;
 	
 }
 
@@ -144,6 +145,7 @@ right:198px;
 img {
   max-width: 100%;
   max-height: 100%;
+
   vertical-align: bottom;
 }
 
@@ -166,9 +168,26 @@ img {
 #first_home .large-images .message{
 
     left: 30px;
-
+	
     top: 110px;
 
+}
+
+
+.contentainer {
+	
+	background-color: #ffffff;
+	margin: 10px;
+	
+	
+}
+
+
+.contentainer .heading{
+	
+	font-size: 40px;
+	color : #00b7e7;
+	
 }
 
 

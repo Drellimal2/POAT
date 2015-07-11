@@ -29,4 +29,7 @@ app.controller('HomeCtrl', function ($scope) {
 	
 	$scope.info = [ what, why, whyname, features];
 	
+	
+	
+	
 });
