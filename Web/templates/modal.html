@@ -4,20 +4,20 @@
 </div>
 <div class="modal-body">
     <form name="mainForm" novalidate>
-        <div ng-form="newItemForm">
+        <div ng-form="newItemForm" ng-repeat="field in Type.fields">
 
-            <div class="form-group" ng-repeat="field in Type.fields" ng-class="{'has-error':newItemForm.newItem{{$index}}.$invalid && newItemForm.newItem{{$index}}.$dirty}">
+            <div class="form-group" ng-class="{'has-error':newItemForm.newItem.$invalid && newItemForm.newItem.$dirty}">
                 <label>{{field.label}}</label>
-                <input ng-if="field.type=='text'"type="text" class="form-control" required name="newItem{{$index}}"ng-model="newItem[field.name]">
+                <input ng-if="field.type=='text'"type="text" class="form-control" required name="newItem"ng-model="newItem[field.name]">
 
 				<div class="input-group" ng-if="field.type=='date'">
 					<input  type="text" class="form-control" 
 						   required 
-						   name="newItem{{$index}}" 
+						   name="newItem" 
 						   ng-model="newItem[field.name].value"
 						   datepicker-popup="{{format}}" 
 						   is-open="newItem[field.name].startopened" 
-						   datepicker-options="dateOptions" 
+						   datepicker-options="dateOptions"
 						   close-text="Close">
 					<span class="input-group-btn">
 						<button class="btn btn-default" 
@@ -26,7 +26,12 @@
 						</button>
 					</span>
 			  	</div>
-				<alert type="danger" ng-show="newItemForm.newItem{{$index}}.$dirty && newItemForm.newItem{{$index}}.$invalid">
+			  	<p class="help-block error" ng-show="newItem.$dirty && newItem.$invalid"> Please enter a correct date</p>
+				<div class="input-group">
+                    	<alert type="danger" style="text-align:center; margin:10px 50px 0px 70px;" ng-if="compareDates() && field.type=='date'" ng-hide="{{dateAlert.hidden}}">{{dateAlert.msg}}
+                        </alert>
+                 </div>
+				<alert type="danger" ng-show="newItemForm.newItem.$dirty && newItemForm.newItem.$invalid">
 				Please enter valid information.
 				</alert>
 			</div>
@@ -36,7 +41,7 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success" ng-disabled="mainForm.$invalid" ng-click="add()">Add </button>
+    <button class="btn btn-success" ng-disabled="mainForm.$invalid || !dateAlert.hidden" ng-click="add()">Add </button>
     <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
 
 </div>

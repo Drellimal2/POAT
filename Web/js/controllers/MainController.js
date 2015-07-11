@@ -137,7 +137,7 @@ app.controller('MainCtrl', ['$scope', '$modal', function ($scope, $modal) {
 	
     $scope.selectedTab = {types: 'Course'};
 	
-    $scope.selectedTable = tables[$scope.selectedTab.types];
+    $scope.selectedTable = null;
 	
 	var selectedNav = { parent:0 , child: 0};
     
@@ -243,18 +243,6 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 	var isStart = function(datetype){
 		return (datetype == 'start');	
 	};
-	
-	var startGTend = function(){
-		if(maxDate.value != null){
-			if (minDate.value > maxDate.value){
-				maxDate.value = null;
-				console.log(true);
-				$scope.sgte = true;
-			}
-			console.log(false);
-			$scope.sgte = false;
-		}
-	};
 
 	$scope.startclear = function () {
 		minDate.value = null;
@@ -278,6 +266,22 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, Type) {
 	};
 
 	$scope.format = 'dd-MMMM-yyyy';
+	
+	$scope.compareDates = function(){
+			$scope.dateAlert = {
+																	hidden:false,
+																	type: "danger",
+																	msg: "Start date cannot be greater than end date."
+			};
+			if (minDate.value > maxDate.value) {
+					$scope.dateAlert.hidden = false;
+					return true;
+			} else {
+					$scope.dateAlert.hidden = true;
+
+					return false;
+			}
+	};
 
 		
 	//date end
