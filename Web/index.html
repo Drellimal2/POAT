@@ -29,11 +29,11 @@
 	
 	<body ng-controller='HomeCtrl'>
 		<poatheader></poatheader>
-		<div id="first_home" >
+		<div id="first_home" class = "col-md-12">
 			
 			<div class="large-images">
 				<div class="image">
-					<img src="images/header-image-1.jpg"></img>
+					<img src="images/workhard.png"></img>
 				</div>
 				<div class="message">
 					Poat Assignment Tracker
@@ -42,7 +42,7 @@
 			</div>
 			
 		</div>
-		<div  class="col-md-12 container" id="home_container" >
+		<div  class="col-md-11 container" id="home_container" >
 			<div ng-repeat="item in info" class="homepage_item">
 				<h2 class="question">{{item.Question}}</h2>
 				<p class="answer" >{{item.Answer}}</p>

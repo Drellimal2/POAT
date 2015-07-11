@@ -100,40 +100,50 @@ body {
 
 
 
+
 .large-images{
 
     width: 100%;
 
-    margin-left: auto;
+    margin-left: 0px;
 
-    margin-right: auto;
+    margin-right: 0px;
+	
+	padding: 5px;
 
     position: relative;
+	
+	background-color: #87CDDE;
 
 }
 
 #first_home .large-images{
 
     height: 528px;
+	max-width: 100%;
+
 
 }
 
 .large-images .image{
 
-position:absolute;
+	position:absolute;
 
-top:0;
+	height: 528px;
+
+	top:0;
 
 }
 
 #first_home .large-images .image{
 
-right:-198px;
+right:198px;
 
 }
 
 img {
   max-width: 100%;
+  max-height: 100%;
   vertical-align: bottom;
 }
 
@@ -143,7 +153,7 @@ img {
 
     width: 280px;
 
-    font-family: Blackjack;
+    font-family: Quicksand;
 
     font-size: 50px;
 
@@ -155,7 +165,7 @@ img {
 
 #first_home .large-images .message{
 
-    left: 0px;
+    left: 30px;
 
     top: 110px;
 
