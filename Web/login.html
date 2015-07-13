@@ -3,7 +3,7 @@
         <title>
             Poat
         </title>
-        
+   		<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
         <script src="js/angular/angular.js"></script>
         <script src="js/angular/ui-bootstrap-tpls-0.11.2.js"></script>
         
@@ -33,9 +33,29 @@
 		<poatheader></poatheader>
 		
 		<div  class="col-md-12 container" >
-			<div>Login</div>
-			<button class="btn btn-success" ng-click="isnew = !isnew" >hi</button>
-					<div>{{isnew}}</div>
+			<div class="col-md-4 col-lg-offset-4 text-center">
+				<tabset justified="true">
+    				<tab heading="Login">
+						<form>
+							<div>
+								<label>Email</label>
+								<input type="email"  ng-model = 'emailAddress'/>
+								
+								<label>Password</label>
+								<input type="password"  ng-model = 'password'/>
+								<div class="btn_dos">
+									<button class="btn btn-success" ng-click="isnew = !isnew" >Login</button>
+									<button class="btn btn-danger" ng-click="isnew = !isnew" >Cancel</button>
+								</div>
+							</div>
+						</form>
+					</tab>
+					<tab heading="Sign Up">
+						Short Labeled Justified content
+					</tab>
+				  </tabset>
+			
+			</div>
 		</div>
 		
 		

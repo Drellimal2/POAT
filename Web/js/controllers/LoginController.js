@@ -3,6 +3,7 @@ app.controller('LoginCtrl', function ($scope) {
 
 	$scope.emailAddress;
 	$scope.password;
+	$scope.conf_password;
 	
 	$scope.isnew = false;
 	
