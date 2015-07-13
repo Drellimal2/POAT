@@ -22,6 +22,7 @@
         <script src="js/app.js"></script>
         <script src='js/controllers/HomeController.js'></script>
         <script src="js/directives/poat-header.js"></script>
+		<script src="js/directives/poat-footer.js"></script>
         <script src="js/testnotifs.js"></script>
         
         
@@ -52,23 +53,22 @@
 				    </div>
 					
 		</div>
-		<div  class="col-md-12 container " id="home_container" >
-			<div ng-repeat="item in info" class="homepage_item">
-				
-				<div class="col-md-6 feature_block">
-					<h2 class="feature_name">{{item.Feature}}</h2>
-					<p class="feature_deats" >{{item.Details}}</p>
-				</div>
-				
-				<div class="col-md-6 feature_img">
-					<img ng-src="{{item.imgUrl}}" />
-					
-				</div>
-				
+	<div class ="contentainer col-md-12">
+		<div  class="col-md-8 col-md-offset-2 container " id="home_container" >
+			 <div >
+				<carousel interval="myInterval">
+				  <slide ng-repeat="slide in info" active="slide.active">
+					<img ng-src="{{slide.imgUrl}}" style="margin:auto;">
+					<div class="carousel-caption">
+					  <h2>{{slide.Feature}}</h2>
+					  <p>{{slide.Details}}</p>
+					</div>
+				  </slide>
+				</carousel>
+			  </div>
 			</div>
-			
-			
-		
+			</div>
+		<poatfooter></poatfooter>
 		
 	</body>
 	
