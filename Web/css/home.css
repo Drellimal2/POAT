@@ -201,5 +201,15 @@ img {
     margin: 0 auto;
 }
 
+.feature_block{
 
+		margin: 0 auto;
+	
+}
+
+.homepage_item . feature_img .img{
+	
+	max-height: 70px;
+	
+}
 

@@ -23,4 +23,8 @@ public class SubTaskEntry implements BaseColumns{
 
     public static final String COLUMN_IS_COMPLETE = "subtask_is_complete";
 
+
+
+
+
 }
