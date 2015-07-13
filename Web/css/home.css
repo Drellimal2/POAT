@@ -87,16 +87,22 @@ body {
 
 #home_container{
 	
-	margin : 20px;
 	background-color: #ffffff;
 	
 }
 
 .homepage_item{
-	margin:10px;
 	background-color: #fdfdfd;
+	margin-top: 50px;
 	
-	
+}
+
+.feature_name{
+	font-size: 20px;
+}
+
+ .feature_deats{
+	font-size: 12px;
 }
 
 
@@ -177,8 +183,8 @@ img {
 .contentainer {
 	
 	background-color: #ffffff;
-	margin: 10px;
-	
+	padding: 10px;
+	margin-top: 40px;
 	
 }
 
@@ -189,5 +195,11 @@ img {
 	color : #00b7e7;
 	
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 
 

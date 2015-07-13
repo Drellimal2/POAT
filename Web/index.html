@@ -43,7 +43,7 @@
 			
 		</div>
 		<hr>
-		<div class = "col-md-12 contentainer text-center">
+		<div class = "col-md-12 contentainer text-center centered">
 					<div class="heading">
 						Poat does more 
 					</div>
@@ -51,18 +51,24 @@
 				    	More than just another ToDo List Poat has special features specially taylored for students which makes it more of a student companion.
 				    </div>
 					
-	
-		<div  class="col-md-11 container" id="home_container" >
+		</div>
+		<div  class="col-md-12 container " id="home_container" >
 			<div ng-repeat="item in info" class="homepage_item">
 				
-				
+				<div class="col-md-6">
+					<h2 class="feature_name">{{item.Feature}}</h2>
+					<p class="feature_deats" >{{item.Details}}</p>
 				</div>
-				<h2 class="question">{{item.Question}}</h2>
-				<p class="answer" >{{item.Answer}}</p>
+				
+				<div class="col-md-6 feature_img">
+					<img src="{{item.imgUrl}}" />
+					
+				</div>
+				
 			</div>
 			
 			
-		</div>
+		
 		
 	</body>
 	
