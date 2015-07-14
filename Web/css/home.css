@@ -217,3 +217,24 @@ img {
 	
 	padding: 20px;
 }
+
+.test_quote{
+	
+	font-size: 20px;
+	font-style: italic;
+	
+}
+
+.test_person{
+	
+	font-size: 15px;
+	
+}
+
+.even_test{
+	
+	background-color: azure;
+	max-height: 100%;
+	min-height: 50%;
+	
+}

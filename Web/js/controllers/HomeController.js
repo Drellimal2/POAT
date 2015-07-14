@@ -37,4 +37,24 @@ app.controller('HomeCtrl', function ($scope) {
 	$scope.myInterval = 4000;
 	
 	
+	$scope.testimonials = 
+		[{
+			quote: "This app really helped me get back on track in school. My parents are finally proud of me.",
+			person: "ThePrevBadStudent"
+			
+		},{
+			quote: "I was able to finish my degree thanks to this app, now i can provide for my babymother and kids.",
+			person: "TheCollegeDad"
+			
+		},{
+			quote: "Aided my research on AIDS now we found a cure.",
+			person: "TheAidsResearcher"
+			 
+		},{
+			 quote: "This app got me so laid, was able of accomplishing my task and being with every girl on the volleyball team. #subtasks",
+			person: "ThePlayer"
+			 
+		 }];
+	
+	
 });

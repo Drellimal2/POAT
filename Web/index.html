@@ -53,21 +53,33 @@
 				    </div>
 					
 		</div>
-	<div class ="contentainer col-md-12">
-		<div  class="col-md-8 col-md-offset-2 container " id="home_container" >
-			 <div >
-				<carousel interval="myInterval">
-				  <slide ng-repeat="slide in info" active="slide.active">
-					<img ng-src="{{slide.imgUrl}}" style="margin:auto;">
-					<div class="carousel-caption">
-					  <h2>{{slide.Feature}}</h2>
-					  <p>{{slide.Details}}</p>
-					</div>
-				  </slide>
-				</carousel>
-			  </div>
+		<div class ="contentainer col-md-12">
+			<div  class="col-md-8 col-md-offset-2 container " id="home_container" >
+				<div >
+					<carousel interval="myInterval">
+					  <slide ng-repeat="slide in info" active="slide.active">
+						<img ng-src="{{slide.imgUrl}}" style="margin:auto;">
+						<div class="carousel-caption">
+						  <h2>{{slide.Feature}}</h2>
+						  <p>{{slide.Details}}</p>
+						</div>
+					  </slide>
+					</carousel>
+				</div>
 			</div>
+		</div>
+		<div class ="contentainer col-md-12">
+			<h2>See what people are saying?</h2>
+			<div class="col-md-3" ng-repeat="test in testimonials" ng-class="{'even_test' : $even}">
+				<div class="test_quote" >
+					"{{test.quote}}"
+				</div>
+				<div class="test_person">
+					-{{test.person}}
+				</div>
+				
 			</div>
+		</div>
 		<poatfooter></poatfooter>
 		
 	</body>
