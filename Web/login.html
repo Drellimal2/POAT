@@ -36,22 +36,51 @@
 			<div class="col-md-4 col-lg-offset-4 text-center">
 				<tabset justified="true">
     				<tab heading="Login">
-						<form>
-							<div>
-								<label>Email</label>
-								<input type="email"  ng-model = 'emailAddress'/>
-								
-								<label>Password</label>
-								<input type="password"  ng-model = 'password'/>
-								<div class="btn_dos">
-									<button class="btn btn-success" ng-click="isnew = !isnew" >Login</button>
-									<button class="btn btn-danger" ng-click="isnew = !isnew" >Cancel</button>
+						<form name="LoginMainForm" action="login.php" method="post">
+							<div ng-form="LoginForm">
+								<div class="form-group" ng-class"{'has-error':LoginForm.email.$invalid &&LoginForm.email.$dirty || LoginForm.password.$invalid && LoginForm.password.$dirty}}">
+									<div class="form-control">
+										<label>Email</label>
+										<input type="email"  name="email" ng-model = 'logemailAddress' required/>
+									</div>
+									<div class="form-control">
+										<label>Password</label>
+										<input type="password"  name="password" ng-model = 'logpassword' required/>
+									</div>
 								</div>
+							</div>
+							<div class="btn_dos">
+								<button class="btn btn-success" ng-click="isnew = !isnew" ng-disabled="LoginMainForm.$invalid">Login</button>
 							</div>
 						</form>
 					</tab>
 					<tab heading="Sign Up">
-						Short Labeled Justified content
+						<form name="SignUpMainForm" action="signup.php" method="post">
+							<div ng-form="SignUpForm">
+								<div class="form-group" ng-class"{'has-error':SignUpForm.username.$invalid && SignUpForm.username.$dirty || SignUpForm.email.$invalid && SignUpForm.email.$dirty || SignUpForm.password.$invalid && SignUpForm.password.$dirty && SignUpForm.confirmPassword.$invalid && SignUpForm.confirmPassword.$dirty}}">
+								<div class="form-control">
+										<label>Username</label>
+										<input type="text"  name="username" ng-model = 'signusername' required/>
+									</div>
+									<div class="form-control">
+										<label>Email</label>
+										<input type="email"  name="email" ng-model = 'signemailAddress' required/>
+									</div>
+									<div class="form-control">
+										<label>Password</label>
+										<input type="password"  name="password" ng-model = 'signpassword' required/>
+									</div>
+									<div class="form-control">
+										<label>Confirm Password</label>
+										<input type="password"  name="confirmPassword" ng-model = 'signconfirmPassword' required/>
+									</div>
+								</div>
+							</div>
+							
+							<div class="btn_dos">
+								<button type="submit" class="btn btn-success"  ng-click="isnew = !isnew" ng-disabled="SignUpMainForm.$invalid">Sign Up</button>
+							</div>
+						</form>
 					</tab>
 				  </tabset>
 			
