@@ -38,42 +38,49 @@
     				<tab heading="Login">
 						<form name="LoginMainForm" action="login.php" method="post">
 							<div ng-form="LoginForm">
-								<div class="form-group" ng-class"{'has-error':LoginForm.email.$invalid &&LoginForm.email.$dirty || LoginForm.password.$invalid && LoginForm.password.$dirty}}">
-									<div class="form-control">
+								<div class="form-group login_form text-left" ng-class"{'has-error':LoginForm.email.$invalid &&LoginForm.email.$dirty || LoginForm.password.$invalid && LoginForm.password.$dirty}}">
+									<div class="form-control ">
 										<label>Email</label>
 										<input type="email"  name="email" ng-model = 'logemailAddress' required/>
 									</div>
+									<br/>
 									<div class="form-control">
 										<label>Password</label>
 										<input type="password"  name="password" ng-model = 'logpassword' required/>
 									</div>
+									<br>
 								</div>
 							</div>
 							<div class="btn_dos">
 								<button class="btn btn-success" ng-click="isnew = !isnew" ng-disabled="LoginMainForm.$invalid">Login</button>
 							</div>
 						</form>
+						
 					</tab>
 					<tab heading="Sign Up">
 						<form name="SignUpMainForm" action="signup.php" method="post">
 							<div ng-form="SignUpForm">
-								<div class="form-group" ng-class"{'has-error':SignUpForm.username.$invalid && SignUpForm.username.$dirty || SignUpForm.email.$invalid && SignUpForm.email.$dirty || SignUpForm.password.$invalid && SignUpForm.password.$dirty && SignUpForm.confirmPassword.$invalid && SignUpForm.confirmPassword.$dirty}}">
-								<div class="form-control">
+								<div class="form-group login_form text-left" ng-class"{'has-error':SignUpForm.username.$invalid && SignUpForm.username.$dirty || SignUpForm.email.$invalid && SignUpForm.email.$dirty || SignUpForm.password.$invalid && SignUpForm.password.$dirty && SignUpForm.confirmPassword.$invalid && SignUpForm.confirmPassword.$dirty}}">
+								<div class="form-control ">
 										<label>Username</label>
 										<input type="text"  name="username" ng-model = 'signusername' required/>
 									</div>
+									<br/>
 									<div class="form-control">
 										<label>Email</label>
 										<input type="email"  name="email" ng-model = 'signemailAddress' required/>
 									</div>
+								    <br/>
 									<div class="form-control">
 										<label>Password</label>
 										<input type="password"  name="password" ng-model = 'signpassword' required/>
 									</div>
+									<br/>
 									<div class="form-control">
 										<label>Confirm Password</label>
 										<input type="password"  name="confirmPassword" ng-model = 'signconfirmPassword' required/>
 									</div>
+									<br/>
 								</div>
 							</div>
 							

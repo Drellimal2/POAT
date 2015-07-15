@@ -68,9 +68,9 @@
 				</div>
 			</div>
 		</div>
-		<div class ="contentainer col-md-12">
-			<h2>See what people are saying?</h2>
-			<div class="col-md-3" ng-repeat="test in testimonials" ng-class="{'even_test' : $even}">
+		<div class ="contentainer">
+			<div class="heading text-center">What are people saying?</div>
+			<div class="col-md-3 testimonial" ng-repeat="test in testimonials" ng-class="{'even_test' : $even}">
 				<div class="test_quote" >
 					"{{test.quote}}"
 				</div>

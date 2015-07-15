@@ -66,7 +66,7 @@ img#logo{
 
 body {
 	
-	background-color: #f0f0f0;
+/*	background-color: #f0f0f0;*/
 	font-family: Quicksand;
 	
 }
@@ -182,9 +182,9 @@ img {
 
 .contentainer {
 	
-	background-color: #ffffff;
 	padding: 10px;
 	margin-top: 5px;
+	padding: 20px;
 	
 }
 
@@ -216,6 +216,9 @@ img {
 .footer{
 	
 	padding: 20px;
+	background-color: #d0d0d0;
+	font-size: 15px;
+	margin: 0px;
 }
 
 .test_quote{
@@ -223,6 +226,11 @@ img {
 	font-size: 20px;
 	font-style: italic;
 	
+}
+.testimonial{
+	min-height: 50%;
+	max-height: 75%;
+	margin: 30px;
 }
 
 .test_person{
@@ -232,9 +240,52 @@ img {
 }
 
 .even_test{
-	
+
 	background-color: azure;
-	max-height: 100%;
-	min-height: 50%;
 	
 }
+
+.login_form .form-control{
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+	border: none;
+  background: none; 
+  background-image: none;
+
+}
+
+.login_form .form-control label{
+  width: 40%;
+  
+}
+
+.login_form .form-control input{
+  width: 100%;
+  
+}
+
+.members{
+	padding:10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+}
+
+.member_img{
+	margin: auto auto;
+	border: 3px;
+	border-color: #ffffff;
+	border-radius: 250px;
+	
+}
+
+.about_intro{
+	
+	font-size: 20px;
+}
+
+
+
+
+	

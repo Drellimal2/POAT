@@ -50,11 +50,7 @@ app.controller('HomeCtrl', function ($scope) {
 			quote: "Aided my research on AIDS now we found a cure.",
 			person: "TheAidsResearcher"
 			 
-		},{
-			 quote: "This app got me so laid, was able of accomplishing my task and being with every girl on the volleyball team. #subtasks",
-			person: "ThePlayer"
-			 
-		 }];
+		}];
 	
 	
 });
