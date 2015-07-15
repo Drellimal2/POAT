@@ -219,6 +219,9 @@ img {
 	background-color: #d0d0d0;
 	font-size: 15px;
 	margin: 0px;
+
+
+	
 }
 
 .test_quote{
@@ -272,12 +275,25 @@ img {
 	
 }
 
+.member_deat {
+	color: #FFFFFF;
+
+}
+
 .member_img{
 	margin: auto auto;
 	border: 3px;
 	border-color: #ffffff;
 	border-radius: 250px;
 	
+}
+
+.member_name{
+	font-size: 20px;
+}
+
+.member_alias{
+	font-size: 15px;
 }
 
 .about_intro{

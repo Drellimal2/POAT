@@ -22,6 +22,7 @@
         <script src="js/app.js"></script>
         <script src='js/controllers/AboutController.js'></script>
         <script src="js/directives/poat-header.js"></script>
+		<script src="js/directives/poat-footer.js"></script>
         <script src="js/testnotifs.js"></script>
         
         
@@ -40,15 +41,20 @@
 				<div class="heading">
 				The Team
 				</div>
-				<div ng-repeat="member in members" class="members col-md-4" style="background-color:{{member.colour}};">
-						<img src="{{member.imgUrl}}" class="member_img"/>
-						<div class="member_name text-center"><strong>{{member.name}}</strong> </div>
-						<div class="member_alias text-center"><em><span ng-repeat="alias in member.alias">{{alias}} </span></em></div>
-						<div class="member_bio"><strong>Bio:</strong> {{member.bio}}</div>
+				<div class="members" style="height:100%;">
+					<div ng-repeat="member in members" 
+						 class="members col-md-4" 
+						 style="background-color:{{member.colour}};height: 650px;">
+							<img src="{{member.imgUrl}}" class="member_img"/>
+							<div class="member_name text-center member_deat"><strong>{{member.name}}</strong> </div>
+							<div class="member_alias text-center member_deat"><em><span ng-repeat="alias in member.alias">{{alias}} </span></em></div>
+							<div class="member_bio member_deat"><strong>Bio:</strong> {{member.bio}}</div>
+					</div>
 				</div>
 			</div>
 			
 		</div>
+		<poatfooter></poatfooter>
 		
 	</body>
 	
