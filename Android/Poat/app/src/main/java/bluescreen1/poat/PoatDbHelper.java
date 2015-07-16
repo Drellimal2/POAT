@@ -50,7 +50,7 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 AssignmentEntry.COLUMN_PRIORITY + " INT); ";
 
         final String SQL_CREATE_SUBTASK_TABLE = "CREATE TABLE " + SubTaskEntry.TABLE_NAME + " (" +
-                SubTaskEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                SubTaskEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SubTaskEntry.COLUMN_ASSIGNMENT_ID + " INT NOT NULL, " +
                 SubTaskEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
                 SubTaskEntry.COLUMN_DESC + " TEXT, " +

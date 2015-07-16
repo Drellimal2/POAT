@@ -1,23 +1,53 @@
 package bluescreen1.poat;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import bluescreen1.poat.Contracts.CourseEntry;
 
 /**
  * Created by Dane on 7/14/2015.
  */
-public class CourseFragment extends Fragment {
+public class CourseFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private SimpleCursorAdapter mCourseAdapter;
+    private static final int COURSE_LOADER = 0;
+    ListView courseList;
+    private String[] COURSE_COLUMNS = new String[]{
+            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
+            CourseEntry.COLUMN_COURSE_CODE,
+            CourseEntry.COLUMN_TITLE,
+            CourseEntry.COLUMN_DESC,
+            CourseEntry.COLUMN_START_DATE,
+            CourseEntry.COLUMN_END_DATE,
+            CourseEntry.COLUMN_IS_ACTIVE,
+            CourseEntry.COLUMN_GPA
+    };
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
+    public static final int COL_ID = 0;
+    public static final int COL_COURSE_CODE = 1;
+    public static final int COL__TITLE = 2;
+    public static final int COL__DESC = 3;
+    public static final int COL_START_DATE =4;
+    public static final int COL__END_DATE = 5;
+    public static final int COL_IS_ACTIVE = 6;
+    public static final int COL_GPA = 7;
+
+
     public static CourseFragment newInstance(int sectionNumber) {
         CourseFragment fragment = new CourseFragment();
         Bundle args = new Bundle();
@@ -26,6 +56,7 @@ public class CourseFragment extends Fragment {
         return fragment;
     }
 
+
     public CourseFragment() {
     }
 
@@ -33,8 +64,77 @@ public class CourseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        mCourseAdapter = new SimpleCursorAdapter(getActivity(),
+                R.layout.list_item_course,
+                null,
+                new String[]{
+                        CourseEntry.COLUMN_COURSE_CODE,
+                        CourseEntry.COLUMN_TITLE,
+                        CourseEntry.COLUMN_START_DATE,
+                        CourseEntry.COLUMN_END_DATE
+
+                },
+                new int[]{
+                        R.id.course_list_item_course_code,
+                        R.id.course_list_item_title,
+                        R.id.course_list_item_start_date,
+                        R.id.course_list_item_end_date
+                },
+                0);
+
+        mCourseAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                switch(columnIndex){
+                    case COL_COURSE_CODE:
+                        ((TextView) view).setText(cursor.getString(COL_COURSE_CODE));
+                        return true;
+                    case COL__TITLE:
+                        ((TextView) view).setText(cursor.getString(columnIndex));
+                        return true;
+                    case COL_START_DATE:
+                        ((TextView) view).setText(cursor.getString(columnIndex));
+                        return true;
+                    case COL__END_DATE:
+                        ((TextView) view).setText(cursor.getString(columnIndex));
+                        return true;
+
+                }
+                return false;
+            }
+        });
+
+//        mCourseAdapter = new CourseAdapter(getActivity(), null, 0);
+
+
+        courseList = (ListView) rootView.findViewById(R.id.main_list);
+
+        courseList.setAdapter(mCourseAdapter);
+        final Intent detailIntent = new Intent(getActivity(), CourseDetailsActivity.class);
+        courseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Cursor cursor = mCourseAdapter.getCursor();
+                if (cursor != null && cursor.moveToPosition(position)) {
+                    detailIntent.putExtra(CourseEntry.COLUMN_COURSE_CODE,cursor.getString(COL_COURSE_CODE) );
+                    detailIntent.putExtra(CourseEntry._ID, cursor.getString(COL_ID));
+                    startActivity(detailIntent);
+                }
+            }
+        });
         Button add = (Button) rootView.findViewById(R.id.add_button);
         add.setText("Add Course");
+        final Intent intent = new Intent(getActivity(), NewCourse.class);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 
@@ -44,5 +144,45 @@ public class CourseFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        CursorLoader CL = new CursorLoader(
+                getActivity(),
+                CourseEntry.CONTENT_URI,
+                COURSE_COLUMNS,
+                null,
+                null,
+                null
+        );
+
+        return CL;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mCourseAdapter.swapCursor(data);
+        courseList.setAdapter(mCourseAdapter);
+
+        //Toast.makeText(getActivity(), "Count " + data.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        getLoaderManager().initLoader(COURSE_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCourseAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+            getLoaderManager().restartLoader(COURSE_LOADER, null, this);
+    }
+
 }
 

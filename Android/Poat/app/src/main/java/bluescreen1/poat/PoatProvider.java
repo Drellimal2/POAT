@@ -1,6 +1,7 @@
 package bluescreen1.poat;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -55,7 +56,68 @@ public class PoatProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+        Cursor retCursor;
+        final int match = uriMatcher.match(uri);
+        switch (match){
+            case ASSIGNMENT:{
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                        AssignmentEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            case ASSIGNMENT_WITH_COURSE: {
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                        AssignmentEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+
+            case COURSE:{
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                        CourseEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            case COURSE_ID:{
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                       CourseEntry.TABLE_NAME,
+                        projection,
+                        CourseEntry._ID + "= '" + ContentUris.parseId(uri) + "'",
+                        null,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            default:
+                throw new UnsupportedOperationException("Unknown URI");
+
+        }
+
+
+        retCursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+        return retCursor;
+
     }
 
     @Override
