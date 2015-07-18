@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
@@ -43,15 +45,15 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             AssignmentEntry.COLUMN_PRIORITY
     };
 
-    public static final int COL_ID = 0;
+    //public static final int COL_ID = 0;
     public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
-    public static final int COL__DESC = 3;
+    //public static final int COL__DESC = 3;
     public static final int COL_GIVEN_DATE =4;
     public static final int COL__DUE_DATE = 5;
-    public static final int COL_IS_COMPLETE = 6;
-    public static final int COL_IS_SUBMITTED = 7;
-    public static final int COL_PRIORITY = 8;
+    //public static final int COL_IS_COMPLETE = 6;
+    //public static final int COL_IS_SUBMITTED = 7;
+    //public static final int COL_PRIORITY = 8;
 
     public static final int ASSIGNMENT_LOADER = 0;
     private ListView assignment_list;
@@ -76,14 +78,41 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         mAssignmentAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.list_item_assignment,
                 null,
-                new String[]{},
-                new int[]{},
+                new String[]{
+                        AssignmentEntry.COLUMN_TITLE,
+                        AssignmentEntry.COLUMN_COURSE_CODE,
+                        AssignmentEntry.COLUMN_GIVEN_DATE,
+                        AssignmentEntry.COLUMN_DUE_DATE
+                },
+                new int[]{
+                        R.id.assignment_list_item_title,
+                        R.id.assignment_list_item_course_code,
+                        R.id.assignment_list_item_due_date,
+                        R.id.assignment_list_item_days_remaining
+                },
                 0);
 
         mAssignmentAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-                return true;
+                switch(columnIndex){
+                    case COL__TITLE:
+                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        return true;
+                    case COL_COURSE_CODE:
+                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        return true;
+                    case COL_GIVEN_DATE:
+                        ((TextView)view).setText("2 days");
+                        return true;
+
+                    case COL__DUE_DATE:
+                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        return true;
+
+                }
+
+                return false;
             }
         });
 
@@ -108,6 +137,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Toast.makeText(getActivity(), ""+id, Toast.LENGTH_LONG).show();
         return new CursorLoader(getActivity(),
                 AssignmentEntry.CONTENT_URI,
                 ASSIGNMENT_COLUMNS,
@@ -119,6 +149,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         getLoaderManager().initLoader(ASSIGNMENT_LOADER, null, this);
+
         super.onActivityCreated(savedInstanceState);
     }
 

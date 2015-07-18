@@ -41,11 +41,11 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
     public static final int COL_ID = 0;
     public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
-    public static final int COL__DESC = 3;
+    //public static final int COL__DESC = 3;
     public static final int COL_START_DATE =4;
     public static final int COL__END_DATE = 5;
-    public static final int COL_IS_ACTIVE = 6;
-    public static final int COL_GPA = 7;
+    //public static final int COL_IS_ACTIVE = 6;
+    //public static final int COL_GPA = 7;
 
 
     public static CourseFragment newInstance(int sectionNumber) {
@@ -147,7 +147,8 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        CursorLoader CL = new CursorLoader(
+
+        return new CursorLoader(
                 getActivity(),
                 CourseEntry.CONTENT_URI,
                 COURSE_COLUMNS,
@@ -155,8 +156,6 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
                 null,
                 null
         );
-
-        return CL;
     }
 
     @Override

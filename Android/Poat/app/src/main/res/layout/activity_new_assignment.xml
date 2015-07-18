@@ -4,66 +4,75 @@
     android:orientation="vertical"
     tools:context="bluescreen1.poat.NewAssignment">
 
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
 
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
-    <TextView android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"/>
-    AssignmentEntry.COLUMN_COURSE_CODE,
-    AssignmentEntry.COLUMN_TITLE,
-    AssignmentEntry.COLUMN_DESC,
-    AssignmentEntry.COLUMN_GIVEN_DATE,
-    AssignmentEntry.COLUMN_DUE_DATE,
-    AssignmentEntry.COLUMN_IS_COMPLETE,
-    AssignmentEntry.COLUMN_IS_SUBMITTED,
 
-    <LinearLayout
+    <TextView android:text="Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/new_assignment_title"/>
+    <TextView android:text="Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:id="@+id/new_assignment_description"
+        android:maxLines="3"/>
+
+    <TextView android:text="Course Code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/new_assignment_couse_code"/>
+    <TextView android:text="Given Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:inputType="text"
+        android:id="@+id/new_assignment_given_date"/>
+    <TextView android:text="Due Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/new_assignment_due_date"
+        />
+    <TextView android:text="Priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:singleLine="true"
+        android:id="@+id/new_assignment_priority"/>
+ <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="Save"
+            android:id="@+id/new_assignment_save_button"/>
         <Button android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:id="@+id/new_assignment_cancel_button"/>
 
     </LinearLayout>
 

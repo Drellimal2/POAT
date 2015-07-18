@@ -67,6 +67,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
+        <activity
+            android:name=".AssignmentDetailsActivity"
+            android:label="@string/title_activity_assignment_details"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bluescreen1.poat.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

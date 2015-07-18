@@ -84,7 +84,10 @@ public class NewCourse extends ActionBarActivity {
                 null);
         if(cursor != null) {
             cursor.moveToFirst();
+            cursor.close();
+
         }
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(CourseEntry.COLUMN_COURSE_CODE, course_code);
         contentValues.put(CourseEntry.COLUMN_TITLE, title);
@@ -92,8 +95,7 @@ public class NewCourse extends ActionBarActivity {
         contentValues.put(CourseEntry.COLUMN_START_DATE, startdate);
         contentValues.put(CourseEntry.COLUMN_END_DATE, end_date);
 
-        Toast.makeText(this,"Inserted: "+ ContentUris.parseId(getContentResolver().insert(CourseEntry.CONTENT_URI, contentValues)),Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this,"Inserted: "+ ContentUris.parseId(getContentResolver().insert(CourseEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
 
 
     }
