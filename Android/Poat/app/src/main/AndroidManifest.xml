@@ -44,14 +44,6 @@
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
         <activity
-            android:name=".CourseDetails"
-            android:label="@string/title_activity_course_details"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="bluescreen1.poat.MainActivity" />
-        </activity>
-        <activity
             android:name=".CourseDetailsActivity"
             android:label="@string/title_activity_course_details"
             android:parentActivityName=".MainActivity" >
