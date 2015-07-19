@@ -96,6 +96,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         Button cancel = (Button) findViewById(R.id.new_assignment_cancel_button);
 
         final Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.ITEM_POS,1);
 
         save.setOnClickListener(new View.OnClickListener() {
 
@@ -252,7 +253,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // Do something with the time chosen by the user
-
+            time.setText(hourOfDay+":"+minute);
         }
     }
 }

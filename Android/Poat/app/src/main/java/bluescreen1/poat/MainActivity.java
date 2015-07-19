@@ -1,5 +1,6 @@
 package bluescreen1.poat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,7 @@ public class MainActivity extends ActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+    public static final String ITEM_POS = "POSITION";
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
@@ -30,6 +32,7 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -38,6 +41,12 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(ITEM_POS)){
+            int position = intent.getIntExtra(ITEM_POS,0);
+            onNavigationDrawerItemSelected(position);
+        }
     }
 
     @Override
