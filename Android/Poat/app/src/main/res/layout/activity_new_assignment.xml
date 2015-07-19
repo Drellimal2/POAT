@@ -27,11 +27,12 @@
     <TextView android:text="Course Code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <EditText
+
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:id="@+id/new_assignment_couse_code"/>
+        android:id="@+id/new_assignment_couse_code_dropdown"/>
+
     <TextView android:text="Given Date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

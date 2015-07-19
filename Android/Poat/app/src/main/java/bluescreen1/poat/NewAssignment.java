@@ -5,41 +5,70 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
+import bluescreen1.poat.Contracts.CourseEntry;
 
 
-public class NewAssignment extends ActionBarActivity {
+public class NewAssignment extends ActionBarActivity  implements LoaderManager.LoaderCallbacks<Cursor>{
 
+    private final int COURSE_CODE_LOADER = 0;
+    private SimpleCursorAdapter mCourseAdapter;
+    Spinner course_code_dropdown;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_new_assignment);
         final EditText title = (EditText) findViewById(R.id.new_assignment_title);
         final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
-        final EditText course_code = (EditText) findViewById(R.id.new_assignment_couse_code);
         final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
         final EditText due_date = (EditText) findViewById(R.id.new_assignment_due_date);
         final EditText priority = (EditText) findViewById(R.id.new_assignment_priority);
+        course_code_dropdown = (Spinner) findViewById(R.id.new_assignment_couse_code_dropdown);
+        mCourseAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                null,
+                new String[]{CourseEntry.COLUMN_COURSE_CODE},
+                new int[]{android.R.id.text1},
+                0);
 
+        mCourseAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                ((TextView) view).setText(cursor.getString(columnIndex));
+                return true;
+            }
+        });
+        getSupportLoaderManager().initLoader(COURSE_CODE_LOADER, null, this);
+
+        course_code_dropdown.setAdapter(mCourseAdapter);
         Button save = (Button) findViewById(R.id.new_assignment_save_button);
         Button cancel = (Button) findViewById(R.id.new_assignment_cancel_button);
 
         final Intent intent = new Intent(this, MainActivity.class);
 
         save.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 saveAssignment( title.getText().toString(),
                                 desc.getText().toString(),
-                                course_code.getText().toString(),
+                        ((Cursor)course_code_dropdown.getSelectedItem()).getString(1),
                                 given_date.getText().toString(),
                                 due_date.getText().toString(),
                                 priority.getText().toString()
@@ -104,4 +133,30 @@ public class NewAssignment extends ActionBarActivity {
         Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
 
     }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                CourseEntry.CONTENT_URI,
+                new String[]{CourseEntry._ID,CourseEntry.COLUMN_COURSE_CODE},
+                null,
+                null,
+                null
+                );
+    }
+
+
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mCourseAdapter.swapCursor(data);
+        course_code_dropdown.setAdapter(mCourseAdapter);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCourseAdapter.swapCursor(null);
+    }
+
+
 }
