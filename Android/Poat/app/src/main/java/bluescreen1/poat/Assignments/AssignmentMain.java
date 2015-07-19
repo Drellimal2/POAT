@@ -1,28 +1,32 @@
 package bluescreen1.poat.Assignments;
 
-import android.database.Cursor;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import bluescreen1.poat.R;
 
-
 /**
- * A placeholder fragment containing a simple view.
+ * A simple {@link Fragment} subclass.
  */
-public class AssignmentDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class AssignmentMain extends Fragment {
+
 
     private FragmentTabHost mTabHost;
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public AssignmentDetailsFragment() {
+
+    public static AssignmentMain newInstance(int sectionNumber) {
+        AssignmentMain fragment = new AssignmentMain();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,15 +39,14 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
 
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.radatabcontent);
-        Bundle bund = new Bundle();
-        bund.putString("hi", "works");
+        Bundle all = new Bundle();
+        all.putString("hi", "works");
         mTabHost.addTab(mTabHost.newTabSpec("all").setIndicator("All"),
-                AssignmentFragment.class,bund);
+                AssignmentFragment.class,all);
         mTabHost.addTab(mTabHost.newTabSpec("due").setIndicator("Due"),
                 AssignmentFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("submit").setIndicator("Submitted"),
                 AssignmentFragment.class, null);
-
 
         return mTabHost;
     }
@@ -52,8 +55,8 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-            mTabHost.setup(getActivity(), getActivity()
-                    .getSupportFragmentManager());
+        mTabHost.setup(getActivity(), getActivity()
+                .getSupportFragmentManager());
 
     }
 
@@ -63,18 +66,14 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         mTabHost = null;
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+
+
+    public AssignmentMain() {
+        // Required empty public constructor
     }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-    }
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
 
-    }
+
 }

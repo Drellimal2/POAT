@@ -15,13 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
-import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
 /**
@@ -123,14 +123,22 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
 
         assignment_list.setAdapter(mAssignmentAdapter);
 
+        final Intent intent = new Intent(getActivity(), AssignmentDetailsActivity.class);
+
+        assignment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(intent);
+
+            }
+        });
         return rootView;
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+
     }
 
     @Override

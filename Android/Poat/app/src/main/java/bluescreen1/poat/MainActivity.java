@@ -9,7 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import bluescreen1.poat.Assignments.AssignmentFragment;
+import bluescreen1.poat.Assignments.AssignmentMain;
 import bluescreen1.poat.Courses.CourseFragment;
 
 
@@ -61,7 +61,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, AssignmentFragment.newInstance(position + 1))
+                        .replace(R.id.container, AssignmentMain.newInstance(position + 1))
                         .commit();
                 break;
 

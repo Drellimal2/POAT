@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import bluescreen1.poat.Contracts.CourseEntry;
-import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
 /**
@@ -137,8 +136,8 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+//        activity.onSectionAttached(
+//                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
     @Override

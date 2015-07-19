@@ -14,6 +14,9 @@ public class AssignmentDetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_details);
+
+        AssignmentDetailsFragment fragmenttab = new AssignmentDetailsFragment();
+
     }
 
 
