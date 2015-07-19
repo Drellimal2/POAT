@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Assignments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,15 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import bluescreen1.poat.R;
+
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class AssignmentDetailsActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class AssignmentDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
 
 
-    public AssignmentDetailsActivityFragment() {
+    public AssignmentDetailsFragment() {
     }
 
     @Override

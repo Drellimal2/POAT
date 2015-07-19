@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Assignments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.MainActivity;
+import bluescreen1.poat.R;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -42,6 +44,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             AssignmentEntry.COLUMN_DESC,
             AssignmentEntry.COLUMN_GIVEN_DATE,
             AssignmentEntry.COLUMN_DUE_DATE,
+            AssignmentEntry.COLUMN_DUE_TIME,
             AssignmentEntry.COLUMN_IS_COMPLETE,
             AssignmentEntry.COLUMN_IS_SUBMITTED,
             AssignmentEntry.COLUMN_PRIORITY
@@ -53,9 +56,10 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     //public static final int COL__DESC = 3;
     public static final int COL_GIVEN_DATE =4;
     public static final int COL__DUE_DATE = 5;
-    //public static final int COL_IS_COMPLETE = 6;
-    //public static final int COL_IS_SUBMITTED = 7;
-    //public static final int COL_PRIORITY = 8;
+    //public static final iny COL_DUE_TIME = 6;
+    //public static final int COL_IS_COMPLETE = 7;
+    //public static final int COL_IS_SUBMITTED = 8;
+    //public static final int COL_PRIORITY = 9;
 
     public static final int ASSIGNMENT_LOADER = 0;
     private ListView assignment_list;

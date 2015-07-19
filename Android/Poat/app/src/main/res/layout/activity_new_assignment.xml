@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="bluescreen1.poat.NewAssignment">
+    tools:context="bluescreen1.poat.Assignments.NewAssignment">
 
 
 
@@ -40,7 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:inputType="text"
+        android:focusable="false"
+        android:inputType="date"
         android:id="@+id/new_assignment_given_date"/>
     <TextView android:text="Due Date"
         android:layout_width="match_parent"
@@ -48,9 +49,22 @@
         />
     <EditText
         android:layout_width="match_parent"
+        android:focusable="false"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:id="@+id/new_assignment_due_date"
+        />
+    <TextView android:text="Due Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:inputType="time"
+        android:singleLine="true"
+        android:id="@+id/new_assignment_due_time"
         />
     <TextView android:text="Priority"
         android:layout_width="match_parent"

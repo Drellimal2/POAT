@@ -1,5 +1,5 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="bluescreen1.poat.CourseDetailsFragment"
+    android:name="bluescreen1.poat.Courses.CourseDetailsFragment"
     tools:layout="@layout/fragment_course_details" android:layout_width="match_parent"
     android:layout_height="match_parent" />

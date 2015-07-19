@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Courses;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import bluescreen1.poat.R;
 
 /**
  * Created by Dane on 7/16/2015.

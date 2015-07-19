@@ -4,8 +4,9 @@
     >
     <item android:id="@+id/add_assignment"
         android:title="@string/add_assignment"
-        android:icon="@drawable/ic_add"
         app:showAsAction="withText|ifRoom"/>
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
+
+    <!--android:icon="@drawable/ic_add"-->

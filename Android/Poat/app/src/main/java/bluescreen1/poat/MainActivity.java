@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import bluescreen1.poat.Assignments.AssignmentFragment;
+import bluescreen1.poat.Courses.CourseFragment;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Courses;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.R;
 
 
 /**
@@ -58,6 +59,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
             AssignmentEntry.COLUMN_DESC,
             AssignmentEntry.COLUMN_GIVEN_DATE,
             AssignmentEntry.COLUMN_DUE_DATE,
+            AssignmentEntry.COLUMN_DUE_TIME,
             AssignmentEntry.COLUMN_IS_COMPLETE,
             AssignmentEntry.COLUMN_IS_SUBMITTED,
             AssignmentEntry.COLUMN_PRIORITY
@@ -68,10 +70,11 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
     public static final int ASSIGNMENT_COL__TITLE = 2;
     //public static final int ASSIGNMENT_COL__DESC = 3;
     public static final int ASSIGNMENT_COL_GIVEN_DATE =4;
-    public static final int ASSIGNMENT_COL__DUE_DATE = 5;
-    //public static final int ASSIGNMENT_COL_IS_COMPLETE = 6;
-    //public static final int ASSIGNMENT_COL_IS_SUBMITTED = 7;
-    //public static final int ASSIGNMENT_COL_PRIORITY = 8;
+    //public static final int ASSIGNMENT_COL__DUE_DATE = 5;
+    public static final int ASSIGNMENT_COL_DUE_TIME = 6;
+    //public static final int ASSIGNMENT_COL_IS_COMPLETE = 7;
+    //public static final int ASSIGNMENT_COL_IS_SUBMITTED = 8;
+    //public static final int ASSIGNMENT_COL_PRIORITY = 9;
     ListView assignment_list;
     public CourseDetailsFragment() {
     }
@@ -89,7 +92,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                         AssignmentEntry.COLUMN_TITLE,
                         AssignmentEntry.COLUMN_COURSE_CODE,
                         AssignmentEntry.COLUMN_GIVEN_DATE,
-                        AssignmentEntry.COLUMN_DUE_DATE
+                        AssignmentEntry.COLUMN_DUE_TIME
                 },
                 new int[]{
                         R.id.assignment_list_item_title,
@@ -110,10 +113,10 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                         ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
                     case ASSIGNMENT_COL_GIVEN_DATE:
-                        ((TextView) view).setText("2 days");
+                        ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
 
-                    case ASSIGNMENT_COL__DUE_DATE:
+                    case ASSIGNMENT_COL_DUE_TIME:
                         ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
 

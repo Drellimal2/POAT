@@ -1,19 +1,27 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Courses;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.MainActivity;
+import bluescreen1.poat.R;
 
 
 public class NewCourse extends ActionBarActivity {
@@ -45,9 +53,25 @@ public class NewCourse extends ActionBarActivity {
 
             }
         });
+        Toast.makeText(this,""+ start_date.getId(), Toast.LENGTH_LONG).show();
 
 
+        start_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DatePickerFragment.DateSet(start_date);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
 
+        });
+
+        end_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DatePickerFragment.DateSet(end_date);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
 
 
     }
@@ -98,6 +122,39 @@ public class NewCourse extends ActionBarActivity {
         Toast.makeText(this,"Inserted: "+ ContentUris.parseId(getContentResolver().insert(CourseEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
 
 
+    }
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        static EditText date;
+
+        public DatePickerFragment(){
+
+        }
+        public static DatePickerFragment DateSet(EditText view){
+
+            date = view;
+            return new DatePickerFragment();
+
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            date.setText(""+day+ "/"+(month+1) + "/" + (year));
+            // Do something with the date chosen by the user
+        }
     }
 
 }

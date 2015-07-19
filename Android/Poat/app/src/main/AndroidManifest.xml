@@ -36,7 +36,7 @@
         </provider>
 
         <activity
-            android:name=".NewCourse"
+            android:name=".Courses.NewCourse"
             android:label="@string/title_activity_new_course"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -44,7 +44,7 @@
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
         <activity
-            android:name=".CourseDetailsActivity"
+            android:name=".Courses.CourseDetailsActivity"
             android:label="@string/title_activity_course_details"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -52,7 +52,7 @@
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
         <activity
-            android:name=".NewAssignment"
+            android:name=".Assignments.NewAssignment"
             android:label="@string/title_activity_new_assignment"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -60,7 +60,7 @@
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
         <activity
-            android:name=".AssignmentDetailsActivity"
+            android:name=".Assignments.AssignmentDetailsActivity"
             android:label="@string/title_activity_assignment_details"
             android:parentActivityName=".MainActivity" >
             <meta-data

@@ -38,13 +38,14 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 CourseEntry.COLUMN_IS_ACTIVE + " TINYINT(1) NOT NULL DEFAULT 0, " +
                 CourseEntry.COLUMN_GPA + " REAL );";
 
-        final String SQL_CREATE_ASSIGNMENT_TABE = "CREATE TABLE " + AssignmentEntry.TABLE_NAME + " (" +
+        final String SQL_CREATE_ASSIGNMENT_TABLE = "CREATE TABLE " + AssignmentEntry.TABLE_NAME + " (" +
                 AssignmentEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AssignmentEntry.COLUMN_COURSE_CODE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_TITLE + " VARCHAR(50) NOT NULL, " +
                 AssignmentEntry.COLUMN_DESC + " TEXT, " +
                 AssignmentEntry.COLUMN_GIVEN_DATE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_DATE + " TEXT NOT NULL, " +
+                AssignmentEntry.COLUMN_DUE_TIME + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_IS_COMPLETE + " TINYINT(1) NOT NULL DEFAULT 0, " +
                 AssignmentEntry.COLUMN_IS_SUBMITTED + " TINYINT(1) NOT NULL DEFAULT 0, " +
                 AssignmentEntry.COLUMN_PRIORITY + " INT); ";
@@ -62,7 +63,7 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 AssignmentEntry.TABLE_NAME + " (" +AssignmentEntry._ID + "));";
 
 
-        db.execSQL(SQL_CREATE_ASSIGNMENT_TABE);
+        db.execSQL(SQL_CREATE_ASSIGNMENT_TABLE);
         db.execSQL(SQL_CREATE_COURSE_TABLE);
         db.execSQL(SQL_CREATE_SUBTASK_TABLE);
 
@@ -73,7 +74,8 @@ public class PoatDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + CourseEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + AssignmentEntry.TABLE_NAME);
         onCreate(db);
 
     }

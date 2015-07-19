@@ -1,9 +1,11 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Assignments;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import bluescreen1.poat.R;
 
 
 public class AssignmentDetailsActivity extends ActionBarActivity {

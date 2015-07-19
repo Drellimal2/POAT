@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Courses;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.MainActivity;
+import bluescreen1.poat.R;
 
 /**
  * Created by Dane on 7/14/2015.

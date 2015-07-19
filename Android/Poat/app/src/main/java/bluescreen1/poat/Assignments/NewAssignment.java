@@ -1,26 +1,37 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Assignments;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.MainActivity;
+import bluescreen1.poat.R;
 
 
 public class NewAssignment extends ActionBarActivity  implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -38,6 +49,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
         final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
         final EditText due_date = (EditText) findViewById(R.id.new_assignment_due_date);
+        final EditText due_time = (EditText) findViewById(R.id.new_assignment_due_time);
         final EditText priority = (EditText) findViewById(R.id.new_assignment_priority);
         course_code_dropdown = (Spinner) findViewById(R.id.new_assignment_couse_code_dropdown);
         mCourseAdapter = new SimpleCursorAdapter(this,
@@ -57,6 +69,29 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         getSupportLoaderManager().initLoader(COURSE_CODE_LOADER, null, this);
 
         course_code_dropdown.setAdapter(mCourseAdapter);
+        given_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DatePickerFragment.DateSet(given_date);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+
+        due_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = DatePickerFragment.DateSet(due_date);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+
+            }
+        });
+        due_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = TimePickerFragment.SetTime(due_time);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
         Button save = (Button) findViewById(R.id.new_assignment_save_button);
         Button cancel = (Button) findViewById(R.id.new_assignment_cancel_button);
 
@@ -71,6 +106,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
                         ((Cursor)course_code_dropdown.getSelectedItem()).getString(1),
                                 given_date.getText().toString(),
                                 due_date.getText().toString(),
+                                due_time.getText().toString(),
                                 priority.getText().toString()
                                 );
                 startActivity(intent);
@@ -111,7 +147,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
     }
 
 
-    private void saveAssignment(String title, String desc, String course_code, String given_date, String due_date, String priority){
+    private void saveAssignment(String title, String desc, String course_code, String given_date, String due_date, String due_time, String priority){
         Cursor cursor = getContentResolver().query(
                 AssignmentEntry.CONTENT_URI,
                 new String[]{AssignmentEntry._ID},
@@ -128,6 +164,7 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         contentValues.put(AssignmentEntry.COLUMN_DESC, desc);
         contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_DATE, due_date);
+        contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
         contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
 
         Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
@@ -158,5 +195,64 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         mCourseAdapter.swapCursor(null);
     }
 
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
 
+        static EditText date;
+
+        public DatePickerFragment(){
+
+        }
+        public static DatePickerFragment DateSet(EditText view){
+
+            date = view;
+            return new DatePickerFragment();
+
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            date.setText(""+day+ "/"+(month+1) + "/" + (year));
+            // Do something with the date chosen by the user
+        }
+    }
+
+    public static class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
+
+        static EditText time;
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity()));
+        }
+
+        public static TimePickerFragment SetTime(EditText view){
+            time = view;
+            return new TimePickerFragment();
+        }
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            // Do something with the time chosen by the user
+
+        }
+    }
 }
