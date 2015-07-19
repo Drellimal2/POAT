@@ -10,9 +10,11 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,7 +75,6 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        Button add = (Button) rootView.findViewById(R.id.add_button);
         assignment_list = (ListView) rootView.findViewById(R.id.main_list);
         mAssignmentAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.list_item_assignment,
@@ -95,19 +96,19 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         mAssignmentAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-                switch(columnIndex){
+                switch (columnIndex) {
                     case COL__TITLE:
-                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
                     case COL_COURSE_CODE:
-                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
                     case COL_GIVEN_DATE:
-                        ((TextView)view).setText("2 days");
+                        ((TextView) view).setText("2 days");
                         return true;
 
                     case COL__DUE_DATE:
-                        ((TextView)view).setText(cursor.getString(columnIndex));
+                        ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
 
                 }
@@ -117,14 +118,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         });
 
         assignment_list.setAdapter(mAssignmentAdapter);
-        add.setText("Add Assignments");
-        final Intent intent = new Intent(getActivity(), NewAssignment.class);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+
         return rootView;
     }
 
@@ -162,5 +156,30 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAssignmentAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.add_assignment:
+                Intent intent = new Intent(getActivity(), NewAssignment.class);
+                startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.add_assignment, menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

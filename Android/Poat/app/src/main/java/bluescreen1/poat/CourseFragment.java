@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -128,15 +127,7 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
                 }
             }
         });
-        Button add = (Button) rootView.findViewById(R.id.add_button);
-        add.setText("Add Course");
-        final Intent intent = new Intent(getActivity(), NewCourse.class);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+
 
         return rootView;
     }

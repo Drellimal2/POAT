@@ -30,4 +30,5 @@
     <string name="title_activity_new_assignment">New Assignment</string>
     <string name="title_activity_assignment_details">Assignment Details</string>
     <string name="add_course">Add Course</string>
+    <string name="add_assignment">Add Assignment</string>
 </resources>
