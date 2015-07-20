@@ -5,6 +5,7 @@
     tools:context="bluescreen1.poat.Assignments.AssignmentDetailsFragment">
 
     <TextView  android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/course"/>
 
 </LinearLayout>

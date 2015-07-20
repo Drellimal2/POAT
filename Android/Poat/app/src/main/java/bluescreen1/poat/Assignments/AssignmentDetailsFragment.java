@@ -33,27 +33,16 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mTabHost = new FragmentTabHost(getActivity());
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.radatabcontent);
-        Bundle bund = new Bundle();
-        bund.putString("hi", "works");
-        mTabHost.addTab(mTabHost.newTabSpec("all").setIndicator("All"),
-                AssignmentFragment.class,bund);
-        mTabHost.addTab(mTabHost.newTabSpec("due").setIndicator("Due"),
-                AssignmentFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("submit").setIndicator("Submitted"),
-                AssignmentFragment.class, null);
+        View view = inflater.inflate(R.layout.fragment_assignment_details, container, false);
 
 
-        return mTabHost;
+        return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-            mTabHost.setup(getActivity(), getActivity()
-                    .getSupportFragmentManager());
 
     }
 
