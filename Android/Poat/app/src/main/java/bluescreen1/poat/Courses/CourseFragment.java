@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.R;
+import bluescreen1.poat.Settings;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -194,11 +195,12 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch(item.getItemId()){
             case R.id.add_course:
-                Intent intent = new Intent(getActivity(), NewCourse.class);
+                intent = new Intent(getActivity(), NewCourse.class);
                 startActivity(intent);
-
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
