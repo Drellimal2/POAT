@@ -56,11 +56,13 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     //public static final int COL__DESC = 3;
     public static final int COL_GIVEN_DATE =4;
     public static final int COL__DUE_DATE = 5;
-    //public static final iny COL_DUE_TIME = 6;
-    //public static final int COL_IS_COMPLETE = 7;
-    //public static final int COL_IS_SUBMITTED = 8;
-    //public static final int COL_PRIORITY = 9;
+    public static final int COL_DUE_TIME = 6;
+    public static final int COL_IS_COMPLETE = 7;
+    public static final int COL_IS_SUBMITTED = 8;
+    public static final int COL_PRIORITY = 9;
 
+
+    private AssignmentAdapter adap;
     public static final int ASSIGNMENT_LOADER = 0;
     private ListView assignment_list;
 
@@ -80,6 +82,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         assignment_list = (ListView) rootView.findViewById(R.id.main_list);
+        adap = new AssignmentAdapter(getActivity(), null, 0);
         mAssignmentAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.list_item_assignment,
                 null,
@@ -121,7 +124,9 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             }
         });
 
-        assignment_list.setAdapter(mAssignmentAdapter);
+//        assignment_list.setAdapter(mAssignmentAdapter);
+        assignment_list.setAdapter(adap);
+
 
         final Intent intent = new Intent(getActivity(), AssignmentDetailsActivity.class);
 
@@ -162,12 +167,16 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mAssignmentAdapter.swapCursor(data);
-        assignment_list.setAdapter(mAssignmentAdapter);
+//        assignment_list.setAdapter(mAssignmentAdapter);
+        adap.swapCursor(data);
+        assignment_list.setAdapter(adap);
+
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAssignmentAdapter.swapCursor(null);
+        adap.swapCursor(null);
     }
 
     @Override
