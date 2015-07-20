@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="match_parent">
-        <TextView
+        <bluescreen1.poat.utils.CustomFont
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:id="@+id/course_list_item_course_code"
             android:text="@string/app_name"/>
 
-        <TextView
+        <bluescreen1.poat.utils.CustomFont
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/course_list_item_title"

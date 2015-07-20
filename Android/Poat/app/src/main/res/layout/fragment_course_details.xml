@@ -10,21 +10,24 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         android:orientation="vertical">
-    <TextView android:text="@string/course_code"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="@string/course_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:id="@+id/course_details_course_code"
         />
 
-    <TextView android:text="@string/course_item_title"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="@string/course_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:id="@+id/course_details_title"
         />
 
-    <TextView android:text="@string/course_new_desc"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="@string/course_new_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/course_details_desc"
@@ -37,7 +40,8 @@
         android:layout_height="0dp"
         android:layout_weight="5"
         android:orientation="vertical">
-        <TextView android:text="@string/outstanding_assignments"
+        <bluescreen1.poat.utils.CustomFont
+            android:text="@string/outstanding_assignments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
