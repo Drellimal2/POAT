@@ -27,6 +27,7 @@
     <string name="new_course_end_date">End Date</string>
     <string name="title_activity_course_details">Course_details</string>
     <string name="outstanding_assignments">Outstanding Assignments</string>
+    <string name="new_assignment">New Assignment</string>
     <string name="title_activity_new_assignment">New Assignment</string>
     <string name="title_activity_assignment_details">Details</string>
     <string name="add_course">Add Course</string>
