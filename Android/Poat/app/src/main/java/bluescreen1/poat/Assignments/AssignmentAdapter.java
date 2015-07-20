@@ -57,9 +57,10 @@ public class AssignmentAdapter extends CursorAdapter{
             String due_time = cursor.getString(AssignmentFragment.COL_DUE_TIME);
 
             if(is_submitted == 1){
-                indicator.setBackgroundColor(Color.parseColor("#dd7777"));
-            } else if (is_complete == 1){
                 indicator.setBackgroundColor(Color.parseColor("#11C300"));
+
+            } else if (is_complete == 1){
+                indicator.setBackgroundColor(Color.parseColor("#F4DE00"));
 
             }else {
                 indicator.setBackgroundColor(Color.parseColor("#dd7777"));

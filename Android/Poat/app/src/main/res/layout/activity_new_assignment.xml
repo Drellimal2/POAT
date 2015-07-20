@@ -6,7 +6,8 @@
 
 
 
-    <TextView android:text="Title"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:id="@+id/new_assignment_title"/>
-    <TextView android:text="Description"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -24,7 +26,8 @@
         android:id="@+id/new_assignment_description"
         android:maxLines="3"/>
 
-    <TextView android:text="Course Code"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Course Code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -43,7 +46,8 @@
         android:focusable="false"
         android:inputType="date"
         android:id="@+id/new_assignment_given_date"/>
-    <TextView android:text="Due Date"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Due Date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -54,7 +58,8 @@
         android:singleLine="true"
         android:id="@+id/new_assignment_due_date"
         />
-    <TextView android:text="Due Time"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Due Time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -66,7 +71,8 @@
         android:singleLine="true"
         android:id="@+id/new_assignment_due_time"
         />
-    <TextView android:text="Priority"
+    <bluescreen1.poat.utils.CustomFont
+        android:text="Priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText

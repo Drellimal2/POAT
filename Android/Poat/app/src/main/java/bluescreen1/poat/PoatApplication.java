@@ -8,7 +8,7 @@ import com.parse.ParseUser;
 /**
  * Created by Dane on 7/14/2015.
  */
-public class PoatApllication extends Application {
+public class PoatApplication extends Application {
 
     @Override
     public void onCreate() {

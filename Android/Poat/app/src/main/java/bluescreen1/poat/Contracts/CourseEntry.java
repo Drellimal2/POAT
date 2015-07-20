@@ -23,7 +23,10 @@ public class CourseEntry implements BaseColumns {
 
     public static final String COLUMN_IS_ACTIVE = "course_is_active";
 
-    public static final String COLUMN_GPA = "course_gpa";
+    public static final String COLUMN_GRADE = "course_grade";
+
+    public static final String COLUMN_CREDITS = "course_credits";
+
 
 
 

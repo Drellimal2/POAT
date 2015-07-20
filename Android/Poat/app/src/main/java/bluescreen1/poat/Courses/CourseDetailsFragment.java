@@ -38,7 +38,8 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
             CourseEntry.COLUMN_START_DATE,
             CourseEntry.COLUMN_END_DATE,
             CourseEntry.COLUMN_IS_ACTIVE,
-            CourseEntry.COLUMN_GPA
+            CourseEntry.COLUMN_GRADE,
+            CourseEntry.COLUMN_CREDITS
     };
 
 
@@ -225,7 +226,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
     public void onResume() {
         super.onResume();
         getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
-        getLoaderManager().initLoader(ASS_DET_LOADER,null, this);
+        getLoaderManager().restartLoader(ASS_DET_LOADER,null, this);
 
 
     }

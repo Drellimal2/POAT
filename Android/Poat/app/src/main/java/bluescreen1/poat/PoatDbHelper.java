@@ -36,7 +36,8 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 CourseEntry.COLUMN_START_DATE + " TEXT, " +
                 CourseEntry.COLUMN_END_DATE + " TEXT, " +
                 CourseEntry.COLUMN_IS_ACTIVE + " TINYINT(1) NOT NULL DEFAULT 0, " +
-                CourseEntry.COLUMN_GPA + " REAL );";
+                CourseEntry.COLUMN_GRADE + " TEXT, " +
+                CourseEntry.COLUMN_CREDITS + " REAL );";
 
         final String SQL_CREATE_ASSIGNMENT_TABLE = "CREATE TABLE " + AssignmentEntry.TABLE_NAME + " (" +
                 AssignmentEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -46,8 +47,8 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 AssignmentEntry.COLUMN_GIVEN_DATE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_DATE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_TIME + " TEXT NOT NULL, " +
-                AssignmentEntry.COLUMN_IS_COMPLETE + " TINYINT(1) NOT NULL DEFAULT 0, " +
-                AssignmentEntry.COLUMN_IS_SUBMITTED + " TINYINT(1) NOT NULL DEFAULT 0, " +
+                AssignmentEntry.COLUMN_IS_COMPLETE + " TINYINT(1) NOT NULL DEFAULT(0), " +
+                AssignmentEntry.COLUMN_IS_SUBMITTED + " TINYINT(1) NOT NULL DEFAULT(0), " +
                 AssignmentEntry.COLUMN_PRIORITY + " INT); ";
 
         final String SQL_CREATE_SUBTASK_TABLE = "CREATE TABLE " + SubTaskEntry.TABLE_NAME + " (" +
@@ -57,7 +58,7 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 SubTaskEntry.COLUMN_DESC + " TEXT, " +
                 SubTaskEntry.COLUMN_GIVEN_DATE + " TEXT, " +
                 SubTaskEntry.COLUMN_DESIRED_END_DATE + " TEXT NOT NULL, " +
-                SubTaskEntry.COLUMN_IS_COMPLETE + " TINYINT NOT NULL DEFAULT 0, " +
+                SubTaskEntry.COLUMN_IS_COMPLETE + " TINYINT NOT NULL DEFAULT \"0\", " +
                 SubTaskEntry.COLUMN_PRIORITY + " INTEGER NOT NULL, " +
                 " FOREIGN KEY (" + SubTaskEntry.COLUMN_ASSIGNMENT_ID + ") REFERENCES " +
                 AssignmentEntry.TABLE_NAME + " (" +AssignmentEntry._ID + "));";

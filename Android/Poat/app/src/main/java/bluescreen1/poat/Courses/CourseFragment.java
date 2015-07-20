@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.R;
-import bluescreen1.poat.Settings;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -40,7 +39,8 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
             CourseEntry.COLUMN_START_DATE,
             CourseEntry.COLUMN_END_DATE,
             CourseEntry.COLUMN_IS_ACTIVE,
-            CourseEntry.COLUMN_GPA
+            CourseEntry.COLUMN_GRADE,
+            CourseEntry.COLUMN_CREDITS
     };
 
     public static final int COL_ID = 0;

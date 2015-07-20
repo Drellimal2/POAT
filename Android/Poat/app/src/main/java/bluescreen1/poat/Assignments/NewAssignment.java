@@ -166,7 +166,9 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_DATE, due_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
+        contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, "0");
         contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
+
 
         Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
 

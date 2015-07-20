@@ -4,8 +4,53 @@
     android:orientation="vertical"
     tools:context="bluescreen1.poat.Assignments.AssignmentDetailsFragment">
 
-    <TextView  android:layout_width="match_parent"
+
+    <bluescreen1.poat.utils.CustomFont
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/course"/>
+        android:textSize="30sp"
+        android:text="@string/app_name"
+        android:id="@+id/assignment_details_title"/>
+    <bluescreen1.poat.utils.CustomFont
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/assignment_details_course_code"/>
+    <bluescreen1.poat.utils.CustomFont
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/assignment_details_days_remaining"/>
+    <bluescreen1.poat.utils.CustomFont
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/app_name"
+    android:id="@+id/assignment_details_due_date"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/course"
+            android:id="@+id/assignment_details_complete"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:id="@+id/assignment_details_submit"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/assignments"
+            android:id="@+id/assignment_details_delete"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

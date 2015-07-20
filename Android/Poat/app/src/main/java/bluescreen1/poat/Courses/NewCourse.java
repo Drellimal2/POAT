@@ -42,14 +42,16 @@ public class NewCourse extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 saveCourse(course_code.getText().toString(), title.getText().toString(), desc.getText().toString(), start_date.getText().toString(), end_date.getText().toString());
-                startActivity(intent);
+                finish();
+                //startActivity(intent);
             }
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                finish();
+                //startActivity(intent);
 
             }
         });
@@ -119,7 +121,7 @@ public class NewCourse extends ActionBarActivity {
         contentValues.put(CourseEntry.COLUMN_START_DATE, startdate);
         contentValues.put(CourseEntry.COLUMN_END_DATE, end_date);
 
-        Toast.makeText(this,"Inserted: "+ ContentUris.parseId(getContentResolver().insert(CourseEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
+        ContentUris.parseId(getContentResolver().insert(CourseEntry.CONTENT_URI, contentValues));
 
 
     }

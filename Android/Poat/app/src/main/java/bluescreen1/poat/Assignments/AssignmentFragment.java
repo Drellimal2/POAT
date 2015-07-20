@@ -37,7 +37,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
      * number.
      */
     private SimpleCursorAdapter mAssignmentAdapter;
-    private String[] ASSIGNMENT_COLUMNS = new String[]{
+    public static String[] ASSIGNMENT_COLUMNS = new String[]{
             AssignmentEntry.TABLE_NAME + '.' + CourseEntry._ID,
             AssignmentEntry.COLUMN_COURSE_CODE,
             AssignmentEntry.COLUMN_TITLE,
@@ -187,13 +187,15 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
         switch(item.getItemId()){
             case R.id.add_assignment:
                 Intent intent = new Intent(getActivity(), NewAssignment.class);
                 startActivity(intent);
+                return true;
 
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override
