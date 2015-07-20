@@ -39,18 +39,11 @@ public class CourseAdapter extends CursorAdapter {
                     course_code.setText("Course");
 
 
-                    //String Title = cursor.getString(CourseFragment.COL__TITLE);
+                    String Title = cursor.getString(CourseFragment.COL__TITLE);
                     TextView title = (TextView) view.findViewById(R.id.course_list_item_title);
-                    //title.setText(Title);
+                    title.setText(Title);
 
 
-                    //String startDate = cursor.getString(CourseFragment.COL_START_DATE);
-                    TextView start_date = (TextView) view.findViewById(R.id.course_list_item_start_date);
-                    //start_date.setText(startDate);
-
-                    //String endDate = cursor.getString(CourseFragment.COL__END_DATE);
-                    TextView end_date = (TextView) view.findViewById(R.id.course_list_item_start_date);
-                    //end_date.setText(endDate);
 
     }
 }

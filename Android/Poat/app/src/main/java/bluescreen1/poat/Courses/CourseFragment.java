@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.R;
@@ -73,16 +74,13 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
                 null,
                 new String[]{
                         CourseEntry.COLUMN_COURSE_CODE,
-                        CourseEntry.COLUMN_TITLE,
-                        CourseEntry.COLUMN_START_DATE,
-                        CourseEntry.COLUMN_END_DATE
+                        CourseEntry.COLUMN_TITLE
 
                 },
                 new int[]{
                         R.id.course_list_item_course_code,
                         R.id.course_list_item_title,
-                        R.id.course_list_item_start_date,
-                        R.id.course_list_item_end_date
+
                 },
                 0);
 
@@ -98,7 +96,7 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
                         ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
                     case COL_START_DATE:
-                        ((TextView) view).setText(cursor.getString(columnIndex));
+                        Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG).show();
                         return true;
                     case COL__END_DATE:
                         ((TextView) view).setText(cursor.getString(columnIndex));
