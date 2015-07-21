@@ -38,7 +38,7 @@
 
         <activity
             android:name=".Courses.NewCourse"
-            android:label="@string/title_activity_new_course"
+            android:label="@string/course"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -54,7 +54,7 @@
         </activity>
         <activity
             android:name=".Assignments.NewAssignment"
-            android:label="@string/title_activity_new_assignment"
+            android:label="@string/assignments"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

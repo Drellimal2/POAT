@@ -97,33 +97,33 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
 
         final Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.ITEM_POS,1);
-
         save.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                saveAssignment( title.getText().toString(),
-                                desc.getText().toString(),
-                        ((Cursor)course_code_dropdown.getSelectedItem()).getString(1),
-                                given_date.getText().toString(),
-                                due_date.getText().toString(),
-                                due_time.getText().toString(),
-                                priority.getText().toString()
-                                );
-                startActivity(intent);
+                saveAssignment(title.getText().toString(),
+                        desc.getText().toString(),
+                        ((Cursor) course_code_dropdown.getSelectedItem()).getString(1),
+                        given_date.getText().toString(),
+                        due_date.getText().toString(),
+                        due_time.getText().toString(),
+                        priority.getText().toString()
+                );
+                finish();
             }
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                finish();
             }
         });
 
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,7 +185,17 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
                 );
     }
 
+    @Override
+    protected void onStop() {
+        finish();
+        super.onStop();
+    }
 
+    @Override
+    protected void onPause(){
+        finish();
+        super.onPause();
+    }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
@@ -221,12 +231,16 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
+
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            date.setText(""+day+ "/"+(month+1) + "/" + (year));
+            String month_text =  String.format("%02d", month+1);
+            String day_text = String.format("%02d", day);
+            date.setText(day_text+ "/"+ month_text + "/" + (year));
+
             // Do something with the date chosen by the user
         }
     }
@@ -255,7 +269,11 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // Do something with the time chosen by the user
-            time.setText(hourOfDay+":"+minute);
+            String min_text = String.format("%02d", minute);
+            String hour_text = String.format("%02d", hourOfDay);
+            time.setText(hour_text + ":" + min_text);
+            //setAlarmTime(hourOfDay, minute);
+
         }
     }
 }

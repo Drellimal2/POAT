@@ -157,8 +157,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         Toast.makeText(getActivity(), ""+id, Toast.LENGTH_LONG).show();
         Bundle filter = getArguments();
         int filte1r = filter.getInt(AssignmentMain.FILTER_KEY, 0);
-        String filter_sel;
-        String[] sel_arg;
+
         switch(filte1r){
             case 0:
                 return new CursorLoader(getActivity(),
@@ -189,9 +188,6 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                         null,
                         null,
                         null);
-
-
-
         }
 
     }
