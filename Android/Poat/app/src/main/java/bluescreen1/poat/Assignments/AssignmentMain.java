@@ -1,22 +1,13 @@
 package bluescreen1.poat.Assignments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.widget.Toast;
 
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.R;
-import bluescreen1.poat.utils.Alarm;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +15,7 @@ import bluescreen1.poat.utils.Alarm;
 public class AssignmentMain extends Fragment {
 
 
+    public static final String FILTER_KEY = "filter";
     private FragmentTabHost mTabHost;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -47,13 +39,17 @@ public class AssignmentMain extends Fragment {
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.radatabcontent);
         Bundle all = new Bundle();
-        all.putString("hi", "works");
+        all.putInt(FILTER_KEY, 0);
         mTabHost.addTab(mTabHost.newTabSpec("all").setIndicator("All"),
-                AssignmentFragment.class,all);
+                AssignmentFragment.class, all);
+        Bundle due = new Bundle();
+        due.putInt(FILTER_KEY, 1);
         mTabHost.addTab(mTabHost.newTabSpec("due").setIndicator("Due"),
-                AssignmentFragment.class, null);
+                AssignmentFragment.class, due);
+        Bundle sub = new Bundle();
+        sub.putInt(FILTER_KEY, 2);
         mTabHost.addTab(mTabHost.newTabSpec("submit").setIndicator("Submitted"),
-                AssignmentFragment.class, null);
+                AssignmentFragment.class, sub);
       //  setAlarm();
 
         return mTabHost;

@@ -50,7 +50,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             AssignmentEntry.COLUMN_PRIORITY
     };
 
-    //public static final int COL_ID = 0;
+    public static final int COL_ID = 0;
     public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
     //public static final int COL__DESC = 3;
@@ -82,6 +82,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         assignment_list = (ListView) rootView.findViewById(R.id.main_list);
+
         adap = new AssignmentAdapter(getActivity(), null, 0);
         mAssignmentAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.list_item_assignment,
@@ -133,7 +134,12 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         assignment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(intent);
+                Cursor cursor = mAssignmentAdapter.getCursor();
+                if (cursor != null && cursor.moveToPosition(position)) {
+                    intent.putExtra(AssignmentEntry._ID,cursor.getString(COL_ID) );
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -149,12 +155,45 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Toast.makeText(getActivity(), ""+id, Toast.LENGTH_LONG).show();
-        return new CursorLoader(getActivity(),
-                AssignmentEntry.CONTENT_URI,
-                ASSIGNMENT_COLUMNS,
-                null,
-                null,
-                null);
+        Bundle filter = getArguments();
+        int filte1r = filter.getInt(AssignmentMain.FILTER_KEY, 0);
+        String filter_sel;
+        String[] sel_arg;
+        switch(filte1r){
+            case 0:
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        ASSIGNMENT_COLUMNS,
+                        null,
+                        null,
+                        null);
+            case 1:
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        ASSIGNMENT_COLUMNS,
+                        AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?",
+                        new String[]{"0"},
+                        null);
+
+            case 2:
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        ASSIGNMENT_COLUMNS,
+                        AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?",
+                        new String[]{"1"},
+                        null);
+            default:
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        ASSIGNMENT_COLUMNS,
+                        null,
+                        null,
+                        null);
+
+
+
+        }
+
     }
 
     @Override

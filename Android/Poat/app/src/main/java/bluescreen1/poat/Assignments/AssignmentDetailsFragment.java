@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import bluescreen1.poat.Contracts.AssignmentEntry;
-import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
 
@@ -40,9 +39,9 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
     public static final int COL_IS_SUBMITTED = 8;
     public static final int COL_PRIORITY = 9;
 
-    public static String submit, complete;
     View view;
     Button sub, comp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +70,17 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
+        Intent intent = getActivity().getIntent();
+        if (intent == null || !intent.hasExtra(AssignmentEntry._ID)) {
+            return null;
+        }
+        String _id = intent.getStringExtra(AssignmentEntry._ID);
         return new CursorLoader(getActivity(),
                 AssignmentEntry.CONTENT_URI,
                 AssignmentFragment.ASSIGNMENT_COLUMNS,
-                null,
-                null,
+                AssignmentEntry._ID + " = ?",
+                new String[]{_id},
                 null);
     }
 
@@ -92,10 +97,9 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         String given_date= data.getString(COL_GIVEN_DATE);
         String due_date= data.getString(COL__DUE_DATE);
         String due_time= data.getString(COL_DUE_TIME);
-        complete = data.getString(COL_IS_COMPLETE);
-        submit = data.getString(COL_IS_SUBMITTED);
+        final int[] complete = {data.getInt(COL_IS_COMPLETE)};
+        final int[] submit = {data.getInt(COL_IS_SUBMITTED)};
         String priority = data.getString(COL_PRIORITY);
-        data.close();
         contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, _id);
         contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, course_code);
         contentValues.put(AssignmentEntry.COLUMN_TITLE, title);
@@ -105,18 +109,18 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
         contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
 
-        final Intent intent = new Intent(getActivity(), MainActivity.class);
+
+        //final Intent intent = new Intent(getActivity(), MainActivity.class);
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submit= "1";
-                complete = "1";
-                contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, submit);
-                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete);
+                submit[0] = 1;
+                complete[0] = 1;
+                contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, submit[0]);
+                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
                 int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
                 Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
-
-                startActivity(intent);
+                getActivity().finish();
 
             }
         });
@@ -124,19 +128,17 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         comp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                complete = "1";
-                contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, submit);
-                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete);
+                complete[0] = 1;
+                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
                 int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
                 Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
-
-                startActivity(intent);
+                getActivity().finish();
 
             }
         });
 
         TextView update = (TextView) view.findViewById(R.id.assignment_details_title);
-        update.setText(submit + "___ " + complete);
+        update.setText(submit[0] + "___ " + _id);
 
     }
 

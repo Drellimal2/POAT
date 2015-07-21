@@ -59,11 +59,12 @@ public class AssignmentAdapter extends CursorAdapter{
             if(is_submitted == 1){
                 indicator.setBackgroundColor(Color.parseColor("#11C300"));
 
-            } else if (is_complete == 1){
-                indicator.setBackgroundColor(Color.parseColor("#F4DE00"));
-
-            }else {
-                indicator.setBackgroundColor(Color.parseColor("#dd7777"));
+            } else {
+                if (is_complete == 1){
+                    indicator.setBackgroundColor(Color.parseColor("#F4DE00"));
+                }else {
+                    indicator.setBackgroundColor(Color.parseColor("#dd7777"));
+                }
             }
 
             TextView due = (TextView) view.findViewById(R.id.assignment_list_item_due_date);
@@ -71,7 +72,6 @@ public class AssignmentAdapter extends CursorAdapter{
 
             TextView rem = (TextView) view.findViewById(R.id.assignment_list_item_days_remaining);
             rem.setText(days_remaining);
-
 
 
 
