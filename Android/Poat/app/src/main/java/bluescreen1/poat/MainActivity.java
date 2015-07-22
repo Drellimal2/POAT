@@ -11,10 +11,13 @@ import android.view.MenuItem;
 
 import bluescreen1.poat.Assignments.AssignmentMain;
 import bluescreen1.poat.Courses.CourseFragment;
+import bluescreen1.poat.utils.AlarmReceiver;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    AlarmReceiver alarmReceiver = new AlarmReceiver();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -41,6 +44,8 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        alarmReceiver.setAlarm(this);
 
         Intent intent = getIntent();
         if(intent.hasExtra(ITEM_POS)){

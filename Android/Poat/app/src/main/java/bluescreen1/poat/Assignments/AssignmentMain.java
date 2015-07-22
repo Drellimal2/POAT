@@ -80,10 +80,10 @@ public class AssignmentMain extends Fragment {
 //    public void setAlarm(){
 //        String date = AssignmentEntry.COLUMN_DUE_DATE;
 //        Toast.makeText(getActivity(),date,Toast.LENGTH_LONG);
-//        Intent alarmIntent = new Intent(this, Alarm.class);
+//        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
 //        AlarmManager alarmManager = (AlarmManager) getSystemService(getActivity().ALARM_SERVICE);
 //        alarmManager.set(AlarmManager.RTC_WAKEUP, date, PendingIntent.getBroadcast(this,1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT));
-//        Toast.makeText(getActivity(),"Alarm set",Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(),"AlarmReceiver set",Toast.LENGTH_LONG).show();
 //
 //    }
 

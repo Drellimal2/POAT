@@ -4,7 +4,8 @@
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Alarm -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- AlarmReceiver -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!--
  To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
      option is required to comply with the Google+ Sign-In developer policies
@@ -68,14 +69,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
+        <receiver android:name=".utils.AlarmReceiver"></receiver>
 
-        <receiver
-            android:name=".utils.Alarm"
-            android:enabled="false" >
+        <receiver android:name=".utils.BootReceiver"
+            android:enabled="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
         </receiver>
+        <service android:name=".utils.SchedulingService" />
+
 
         <activity
             android:name=".Settings"
