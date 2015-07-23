@@ -9,6 +9,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.internal.widget.AdapterViewCompat;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -112,6 +114,7 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
 
 
         courseList = (ListView) rootView.findViewById(R.id.main_list);
+        registerForContextMenu(courseList);
 
         courseList.setAdapter(mCourseAdapter);
         final Intent detailIntent = new Intent(getActivity(), CourseDetailsActivity.class);
@@ -202,5 +205,21 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.add_course, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterViewCompat.AdapterContextMenuInfo info = (AdapterViewCompat.AdapterContextMenuInfo) item.getMenuInfo();
+        Toast.makeText(getActivity(), "WOOOOOOOOOOOOOOOH", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
 }
 

@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class Utility {
 
 
-
+    public static int ASSIGNMENTS_NO = 0;
 
 
 

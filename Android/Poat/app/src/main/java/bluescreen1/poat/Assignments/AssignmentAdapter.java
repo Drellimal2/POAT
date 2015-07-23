@@ -48,7 +48,6 @@ public class AssignmentAdapter extends CursorAdapter{
             TextView course_code = (TextView) view.findViewById(R.id.assignment_list_item_course_code);
             course_code.setText(courseCode);
 
-
             String Title = cursor.getString(AssignmentFragment.COL__TITLE);
             TextView title = (TextView) view.findViewById(R.id.assignment_list_item_title);
             title.setText(Title);

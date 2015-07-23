@@ -45,13 +45,16 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        alarmReceiver.setAlarm(this);
+
+        onNavigationDrawerItemSelected(1);
 
         Intent intent = getIntent();
         if(intent.hasExtra(ITEM_POS)){
-            int position = intent.getIntExtra(ITEM_POS,0);
+            int position = intent.getIntExtra(ITEM_POS,1);
             onNavigationDrawerItemSelected(position);
         }
+        alarmReceiver.setAlarm(this);
+
     }
 
     @Override
@@ -72,7 +75,7 @@ public class MainActivity extends ActionBarActivity
 
             default:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, CourseFragment.newInstance(position + 1))
+                        .replace(R.id.container,  AssignmentMain.newInstance(position + 1))
                         .commit();
         }
 

@@ -50,8 +50,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver{
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         // Set the alarm's trigger time to 8:30 a.m.
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 15);
 
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);

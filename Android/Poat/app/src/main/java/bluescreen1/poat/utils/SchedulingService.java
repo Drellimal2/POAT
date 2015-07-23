@@ -24,7 +24,7 @@ public class SchedulingService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        sendNotification("Wooot");
+        sendNotification("You have " + Utility.ASSIGNMENTS_NO + " Assignments due.");
         AlarmReceiver.completeWakefulIntent(intent);
 
     }
@@ -42,7 +42,7 @@ public class SchedulingService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_logo)
-                        .setContentTitle("Howdy")
+                        .setContentTitle("Poat")
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
                         .setContentText(msg);

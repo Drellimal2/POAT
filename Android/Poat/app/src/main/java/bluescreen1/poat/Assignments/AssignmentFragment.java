@@ -23,6 +23,7 @@ import android.widget.Toast;
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.R;
+import bluescreen1.poat.utils.Utility;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -60,7 +61,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     public static final int COL_IS_COMPLETE = 7;
     public static final int COL_IS_SUBMITTED = 8;
     public static final int COL_PRIORITY = 9;
-
+    private Bundle filter;
 
     private AssignmentAdapter adap;
     public static final int ASSIGNMENT_LOADER = 0;
@@ -155,17 +156,19 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Toast.makeText(getActivity(), ""+id, Toast.LENGTH_LONG).show();
-        Bundle filter = getArguments();
+        filter = getArguments();
         int filte1r = filter.getInt(AssignmentMain.FILTER_KEY, 0);
 
         switch(filte1r){
             case 0:
-                return new CursorLoader(getActivity(),
+                CursorLoader CL = new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
                         ASSIGNMENT_COLUMNS,
                         null,
                         null,
                         null);
+
+                return CL;
             case 1:
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
@@ -205,6 +208,14 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
 //        assignment_list.setAdapter(mAssignmentAdapter);
         adap.swapCursor(data);
         assignment_list.setAdapter(adap);
+        int filte1r = filter.getInt(AssignmentMain.FILTER_KEY, 0);
+
+        switch(filte1r) {
+            case 1:
+                Utility.ASSIGNMENTS_NO = mAssignmentAdapter.getCount();
+                Toast.makeText(getActivity(), "" + Utility.ASSIGNMENTS_NO, Toast.LENGTH_LONG).show();
+                break;
+        }
 
     }
 
