@@ -2,10 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+
     tools:context="bluescreen1.poat.Assignments.NewAssignment">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
     <bluescreen1.poat.utils.CustomFont
         android:layout_width="match_parent"
@@ -109,6 +116,8 @@
             android:layout_weight="1"
             android:text="Cancel"
             android:id="@+id/new_assignment_cancel_button"/>
+
+    </LinearLayout>
 
     </LinearLayout>
 

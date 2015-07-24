@@ -7,13 +7,15 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,10 +36,12 @@ import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
 
-public class NewAssignment extends ActionBarActivity  implements LoaderManager.LoaderCallbacks<Cursor>{
+public class NewAssignment extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private final int COURSE_CODE_LOADER = 0;
     private SimpleCursorAdapter mCourseAdapter;
+    private Toolbar mToolbar;
+
     Spinner course_code_dropdown;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,11 @@ public class NewAssignment extends ActionBarActivity  implements LoaderManager.L
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_new_assignment);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final EditText title = (EditText) findViewById(R.id.new_assignment_title);
         final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
         final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
