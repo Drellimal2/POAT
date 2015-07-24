@@ -8,9 +8,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
+
 import bluescreen1.poat.Contracts.AssignmentEntry;
 import bluescreen1.poat.Contracts.Constants;
 import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.utils.Utility;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -144,6 +149,7 @@ public class PoatProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         final SQLiteDatabase db = poatDbHelper.getWritableDatabase();
+
         Uri returnUri;
         switch(uriMatcher.match(uri)){
 
@@ -151,6 +157,8 @@ public class PoatProvider extends ContentProvider {
                 long _id = db.insert(CourseEntry.TABLE_NAME, null, values);
                 if (_id > 0) {
                     returnUri = CourseEntry.buildCourseUri(_id);
+                    values.put(CourseEntry.TABLE_NAME + '.' + CourseEntry._ID, _id);
+                    addCourseToParse(values);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
@@ -172,6 +180,31 @@ public class PoatProvider extends ContentProvider {
         }
         getContext().getContentResolver().notifyChange(uri, null);
         return returnUri;
+    }
+
+    public void addCourseToParse(ContentValues values){
+        ParseObject new_course =  new ParseObject("Course");
+        String id = CourseEntry.TABLE_NAME + '.' + CourseEntry._ID;
+        for(String key : Utility.COURSE_COLUMNS){
+            if(key.equals(id)){
+                new_course.put("Course_ID",values.getAsString(key) );
+                continue;
+            }
+
+            if(values.get(key) != null) {
+                new_course.put(key, values.getAsString(key));
+            } else {
+                new_course.put(key, 0);
+            }
+        }
+
+        new_course.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+            }
+        });
+
     }
 
     @Override

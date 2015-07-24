@@ -2,6 +2,9 @@ package bluescreen1.poat.utils;
 
 import java.util.Calendar;
 
+import bluescreen1.poat.Contracts.AssignmentEntry;
+import bluescreen1.poat.Contracts.CourseEntry;
+
 /**
  * Created by Dane on 7/21/2015.
  */
@@ -9,7 +12,30 @@ public class Utility {
 
 
     public static int ASSIGNMENTS_NO = 0;
+    public static String[] ASSIGNMENT_COLUMNS = new String[]{
+            AssignmentEntry.TABLE_NAME + '.' + AssignmentEntry._ID,
+            AssignmentEntry.COLUMN_COURSE_CODE,
+            AssignmentEntry.COLUMN_TITLE,
+            AssignmentEntry.COLUMN_DESC,
+            AssignmentEntry.COLUMN_GIVEN_DATE,
+            AssignmentEntry.COLUMN_DUE_DATE,
+            AssignmentEntry.COLUMN_DUE_TIME,
+            AssignmentEntry.COLUMN_IS_COMPLETE,
+            AssignmentEntry.COLUMN_IS_SUBMITTED,
+            AssignmentEntry.COLUMN_PRIORITY
+    };
 
+    public static String[] COURSE_COLUMNS = new String[]{
+            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
+            CourseEntry.COLUMN_COURSE_CODE,
+            CourseEntry.COLUMN_TITLE,
+            CourseEntry.COLUMN_DESC,
+            CourseEntry.COLUMN_START_DATE,
+            CourseEntry.COLUMN_END_DATE,
+            CourseEntry.COLUMN_IS_ACTIVE,
+            CourseEntry.COLUMN_GRADE,
+            CourseEntry.COLUMN_CREDITS
+    };
 
 
     public static Calendar getCalendar(String date_s, String time_s){
@@ -25,6 +51,8 @@ public class Utility {
         alarm =setAlarmTime(hourofday, min, alarm);
         return alarm;
     }
+
+
 
     private static Calendar setAlarmDate(int month, int day, int year, Calendar alarm){
         alarm.set(year, month, day);

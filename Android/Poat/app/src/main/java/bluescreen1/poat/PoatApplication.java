@@ -22,7 +22,6 @@ public class PoatApplication extends Application {
 
         // Add your initialization code here
         Parse.initialize(this, "HdgqPMhYszyIxpmgKpqMn7URS2kHNtgJsZdMDBZi", "3mLt36PcC0P8EZL8W6pZGynpbgf4ujLfRPEQzsTV");
-
         ParseUser.enableAutomaticUser();
 //        ParseACL defaultACL = new ParseACL();
 //        // Optionally enable public read access.
