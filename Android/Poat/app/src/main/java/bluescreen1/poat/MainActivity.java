@@ -1,17 +1,12 @@
 package bluescreen1.poat;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.NavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +14,6 @@ import android.widget.Toast;
 
 import com.parse.ParseObject;
 
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
-import bluescreen1.poat.Assignments.AssignmentMain;
-import bluescreen1.poat.Courses.CourseFragment;
 import bluescreen1.poat.utils.AlarmReceiver;
 
 
@@ -37,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private static final String NAV_ITEM_ID = "navItemId";
     private DrawerLayout drawerLayout;
     private int navItemId;
+    public static final String ITEM_POS = "item_pos";
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar mToolbar;
 
@@ -64,6 +55,29 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
         // This method will trigger on item Click of navigation menu
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
+
     }
 
     public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -116,31 +130,10 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
                 return true;
         }
-    }
 
 
-            // Initializing Drawer Layout and ActionBarToggle
-            ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close) {
 
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
-                    super.onDrawerClosed(drawerView);
-                }
-
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
-
-                    super.onDrawerOpened(drawerView);
-                }
-            };
-
-            //Setting the actionbarToggle to drawer layout
-            drawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-            //calling sync state is necessay or else your hamburger icon wont show up
-            actionBarDrawerToggle.syncState();
+        // Initializing Drawer Layout and ActionBarToggle
 
 
     }
