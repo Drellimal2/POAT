@@ -22,14 +22,22 @@
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <activity android:name=".SplashScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/App2Theme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAINACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -37,6 +45,7 @@
             android:name=".PoatProvider"
             android:authorities="bluescreen1.poat.app" >
         </provider>
+
 
         <activity
             android:name=".Courses.NewCourse"
@@ -73,7 +82,8 @@
         <activity
             android:name=".Assignments.AssignmentDetailsActivity"
             android:label="@string/title_activity_assignment_details"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/App2Theme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
