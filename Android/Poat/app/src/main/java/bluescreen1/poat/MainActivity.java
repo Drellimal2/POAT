@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drawer_item_8:
                 Toast.makeText(getApplicationContext(), "Past Selected", Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.drawer_item_9:
+                Toast.makeText(getApplicationContext(),"GPA Selected", Toast.LENGTH_SHORT).show();
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
                 return true;

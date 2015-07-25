@@ -11,5 +11,5 @@
         android:id="@+id/logo"
         android:layout_gravity="center"
         android:scaleType="fitXY"
-        android:background="@mipmap/splash_logo"/>
+        android:background="@mipmap/poat"/>
 </LinearLayout>
