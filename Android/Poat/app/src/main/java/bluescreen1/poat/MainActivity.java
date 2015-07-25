@@ -17,10 +17,7 @@ import com.parse.ParseObject;
 import bluescreen1.poat.utils.AlarmReceiver;
 
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
-//        NavigationDrawerFragment.NavigationDrawerCallbacks
-{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     AlarmReceiver alarmReceiver = new AlarmReceiver();
     private static final long DRAWER_CLOSE_DELAY_MS = 250;
@@ -30,16 +27,11 @@ public class MainActivity extends AppCompatActivity
     public static final String ITEM_POS = "item_pos";
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar mToolbar;
+    private CharSequence mTitle;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    // public static final String ITEM_POS = "POSITION";
-    // private NavigationDrawerFragment mNavigationDrawerFragment;
-
-
-    private CharSequence mTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
