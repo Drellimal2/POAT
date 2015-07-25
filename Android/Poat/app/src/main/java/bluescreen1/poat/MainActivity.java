@@ -13,8 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.parse.ParseObject;
-
 import bluescreen1.poat.Assignments.AssignmentMain;
 import bluescreen1.poat.Courses.CourseFragment;
 import bluescreen1.poat.utils.AlarmReceiver;
@@ -43,15 +41,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
+        
         // This method will trigger on item Click of navigation menu
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, mToolbar, R.string.open, R.string.close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
