@@ -5,9 +5,17 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
 
+    <string name="account">Account</string>
     <string name="course">Courses</string>
     <string name="assignments">Assignments</string>
+    <string name="tests">Tests</string>
+    <string name="today">Today</string>
+    <string name="thisweek">This Week</string>
+    <string name="thismonth">This Month</string>
+    <string name="past">Past</string>
 
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
