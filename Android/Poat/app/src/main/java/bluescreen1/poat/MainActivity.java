@@ -3,6 +3,7 @@ package bluescreen1.poat;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.parse.ParseObject;
 
+import bluescreen1.poat.Assignments.AssignmentMain;
+import bluescreen1.poat.Courses.CourseFragment;
 import bluescreen1.poat.utils.AlarmReceiver;
 
 
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity
 
         //Closing drawer on item click
         drawerLayout.closeDrawers();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Check to see which item was being clicked and perform appropriate action
         switch (menuItem.getItemId()) {
@@ -106,9 +110,13 @@ public class MainActivity extends AppCompatActivity
             // For rest of the options we just show a toast on click
 
             case R.id.drawer_item_2:
+                fragmentManager.beginTransaction().replace(R.id.container, CourseFragment.newInstance(2))
+                          .commit();
                 Toast.makeText(getApplicationContext(), "Courses Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.drawer_item_3:
+                fragmentManager.beginTransaction().replace(R.id.container, AssignmentMain.newInstance(2))
+                        .commit();
                 Toast.makeText(getApplicationContext(), "Assignments Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.drawer_item_4:

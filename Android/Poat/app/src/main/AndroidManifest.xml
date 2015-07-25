@@ -65,6 +65,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
+        <activity android:name=".Login.LoginActivity"
+            android:label="Login"
+            >
+
+        </activity>
         <activity
             android:name=".Assignments.AssignmentDetailsActivity"
             android:label="@string/title_activity_assignment_details"
@@ -88,10 +93,6 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
         </activity>
     </application>
 
