@@ -1,27 +1,21 @@
 package bluescreen1.poat;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.SaveCallback;
 
 import bluescreen1.poat.Assignments.AssignmentMain;
-import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.Courses.CourseFragment;
 import bluescreen1.poat.utils.AlarmReceiver;
-import bluescreen1.poat.utils.Utility;
 
 
 public class MainActivity extends AppCompatActivity
@@ -48,7 +42,6 @@ public class MainActivity extends AppCompatActivity
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
