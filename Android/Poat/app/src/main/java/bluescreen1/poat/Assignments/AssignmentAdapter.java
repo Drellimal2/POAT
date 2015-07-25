@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import bluescreen1.poat.utils.Utility;
 public class AssignmentAdapter extends CursorAdapter{
 
 
+    private Toolbar mToolbar;
         Context con;
         LayoutInflater mInflater;
         CountDownTimer time_remaining;

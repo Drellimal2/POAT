@@ -13,6 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.CursorLoader;
+import android.support.v7.widget.Toolbar;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;

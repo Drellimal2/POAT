@@ -3,6 +3,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="bluescreen1.poat.Assignments.AssignmentDetailsFragment">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
