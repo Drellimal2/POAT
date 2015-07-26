@@ -4,11 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -42,6 +42,7 @@ public class AssignmentAdapter extends CursorAdapter{
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+
 
 
 
