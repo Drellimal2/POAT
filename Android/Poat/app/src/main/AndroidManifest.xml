@@ -56,8 +56,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
-        <activity
-            android:name=".Courses.CourseDetailsActivity"
+        <activity  android:name=".Courses.CourseDetailsActivity"
             android:label="@string/title_activity_course_details"
             android:parentActivityName=".MainActivity"
             android:theme="@style/App2Theme">
@@ -76,6 +75,11 @@
         </activity>
         <activity android:name=".Login.LoginActivity"
             android:label="Login"
+            >
+        </activity>
+        <activity android:name=".Assignments.EditAssignment"
+            android:label="Edit Assignment"
+            android:theme="@style/App2Theme"
             >
 
         </activity>

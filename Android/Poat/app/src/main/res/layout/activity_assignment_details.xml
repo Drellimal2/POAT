@@ -1,5 +1,19 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/assignment_fragment"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:name="bluescreen1.poat.Assignments.AssignmentDetailsActivity"
+
+>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <fragment
+        android:id="@+id/assignment_fragment"
     android:name="bluescreen1.poat.Assignments.AssignmentDetailsFragment"
-    tools:layout="@layout/fragment_assignment_details" android:layout_width="match_parent"
+    tools:layout="@layout/fragment_assignment_details"
+        android:layout_width="match_parent"
     android:layout_height="match_parent" />
+</LinearLayout>

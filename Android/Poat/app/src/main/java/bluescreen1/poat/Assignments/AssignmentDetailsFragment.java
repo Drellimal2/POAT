@@ -17,7 +17,6 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +33,6 @@ import bluescreen1.poat.utils.Utility;
  */
 public class AssignmentDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private CountDownTimer till_due;
     private static int ASSIGNMENT_ITEM_LOADER = 0;
     public AssignmentDetailsFragment() {
     }
@@ -54,7 +52,7 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
 
     View view;
     TextView time_remaining;
-    Button sub, comp;
+    //Button sub, comp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,17 +64,17 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_assignment_details, container, false);
-        sub = (Button) view.findViewById(R.id.assignment_details_submit);
-        comp = (Button) view.findViewById(R.id.assignment_details_complete);
-        Button test_notif = (Button) view.findViewById(R.id.assignment_details_delete);
+//        sub = (Button) view.findViewById(R.id.assignment_details_submit);
+//        comp = (Button) view.findViewById(R.id.assignment_details_complete);
+//        Button test_notif = (Button) view.findViewById(R.id.assignment_details_delete);
         alarm = Calendar.getInstance();
         time_remaining = (TextView) view.findViewById(R.id.assignment_details_days_remaining);
-        test_notif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setnotif();
-            }
-        });
+//        test_notif.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setnotif();
+//            }
+//        });
         return view;
     }
 
@@ -119,8 +117,8 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         String given_date= data.getString(COL_GIVEN_DATE);
         String due_date= data.getString(COL__DUE_DATE);
         String due_time= data.getString(COL_DUE_TIME);
-        final int[] complete = {data.getInt(COL_IS_COMPLETE)};
-        final int[] submit = {data.getInt(COL_IS_SUBMITTED)};
+//        final int[] complete = {data.getInt(COL_IS_COMPLETE)};
+//        final int[] submit = {data.getInt(COL_IS_SUBMITTED)};
         String priority = data.getString(COL_PRIORITY);
         contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, _id);
 //        contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, course_code);
@@ -136,19 +134,20 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         final int[] minutes = new int[1];
         final int[] seconds = new int[1];
         final int[] days = new int[1];
-        till_due =  new CountDownTimer((alarm.getTimeInMillis()-Calendar.getInstance().getTimeInMillis()), 1000) {
+        CountDownTimer till_due = new CountDownTimer((alarm.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()), 1000) {
             @Override
             public void onTick(long millsUntilFinished) {
-                seconds[0] =(int) millsUntilFinished/1000;
-                minutes[0] = seconds[0] /60;
+                seconds[0] = (int) millsUntilFinished / 1000;
+                minutes[0] = seconds[0] / 60;
                 seconds[0] %= 60;
-                hours[0] = minutes[0]/60;
+                hours[0] = minutes[0] / 60;
                 minutes[0] %= 60;
-                days[0] = hours[0]/24;
+                days[0] = hours[0] / 24;
                 hours[0] %= 24;
 
-                time_remaining.setText(days[0] + " Days " +  hours[0] + " Hours " + minutes[0] + " Minutes " +  seconds[0] + " Seconds ");
+                time_remaining.setText(days[0] + " Days " + hours[0] + " Hours " + minutes[0] + " Minutes " + seconds[0] + " Seconds ");
             }
+
             @Override
             public void onFinish() {
                 time_remaining.setText("Past Due");
@@ -156,31 +155,31 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         };
         till_due.start();
         //final Intent intent = new Intent(getActivity(), MainActivity.class);
-        sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submit[0] = 1;
-                complete[0] = 1;
-                contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, submit[0]);
-                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
-                int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
-                Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
-                getActivity().finish();
-
-            }
-        });
-
-        comp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                complete[0] = 1;
-                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
-                int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
-                Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
-                getActivity().finish();
-
-            }
-        });
+//        sub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                submit[0] = 1;
+//                complete[0] = 1;
+//                contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, submit[0]);
+//                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
+//                int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
+//                Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
+//                getActivity().finish();
+//
+//            }
+//        });
+//
+//        comp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                complete[0] = 1;
+//                contentValues.put(AssignmentEntry.COLUMN_IS_COMPLETE, complete[0]);
+//                int updated = getActivity().getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
+//                Toast.makeText(getActivity(), "" + updated, Toast.LENGTH_LONG).show();
+//                getActivity().finish();
+//
+//            }
+//        });
 
         TextView update = (TextView) view.findViewById(R.id.assignment_details_title);
         update.setText(title);

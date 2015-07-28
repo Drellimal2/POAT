@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -136,18 +135,20 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         assignment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Cursor cursor = mAssignmentAdapter.getCursor();
+                Cursor cursor = mAssignmentAdapter.getCursor();
 //                if (cursor != null && cursor.moveToPosition(position)) {
 //                    intent.putExtra(AssignmentEntry._ID,cursor.getString(COL_ID) );
 //                    startActivity(intent);
 //                }
-                final LinearLayout icons = (LinearLayout) view.findViewById(R.id.assignment_list_item_icon_actions);
+//                final LinearLayout icons = (LinearLayout) view.findViewById(R.id.assignment_list_item_icon_actions);
+//
+//                if(icons.getVisibility() == View.GONE) {
+//                    icons.setVisibility(View.VISIBLE);
+//                } else {
+//                    icons.setVisibility(View.GONE);
+//                }
 
-                    if(icons.getVisibility() == View.GONE) {
-                        icons.setVisibility(View.VISIBLE);
-                    } else {
-                        icons.setVisibility(View.GONE);
-                    }
+
 
 
 

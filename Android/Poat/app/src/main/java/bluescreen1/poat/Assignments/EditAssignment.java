@@ -3,12 +3,12 @@ package bluescreen1.poat.Assignments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -33,14 +33,33 @@ import bluescreen1.poat.Contracts.CourseEntry;
 import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
-
-public class NewAssignment extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+/**
+ * Created by Dane on 7/27/2015.
+ */
+public class EditAssignment extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private final int COURSE_CODE_LOADER = 0;
+    private final int ASSIGNMENT_ID_LOADER = 1;
     private SimpleCursorAdapter mCourseAdapter;
     private Toolbar mToolbar;
-
+    private String _id;
+    EditText title;
+    EditText desc;
+    EditText given_date;
+    EditText due_date;
+    EditText due_time;
+    EditText priority;
     Spinner course_code_dropdown;
+//    public static final int COL_ID = 0;
+//    public static final int COL_COURSE_CODE = 1;
+    public static final int COL__TITLE = 2;
+    public static final int COL__DESC = 3;
+    public static final int COL_GIVEN_DATE =4;
+    public static final int COL__DUE_DATE = 5;
+    public static final int COL_DUE_TIME = 6;
+//    public static final int COL_IS_COMPLETE = 7;
+//    public static final int COL_IS_SUBMITTED = 8;
+    public static final int COL_PRIORITY = 9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,13 +69,22 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
-        final EditText title = (EditText) findViewById(R.id.new_assignment_title);
-        final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
-        final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
-        final EditText due_date = (EditText) findViewById(R.id.new_assignment_due_date);
-        final EditText due_time = (EditText) findViewById(R.id.new_assignment_due_time);
-        final EditText priority = (EditText) findViewById(R.id.new_assignment_priority);
+        title = (EditText) findViewById(R.id.new_assignment_title);
+        priority = (EditText) findViewById(R.id.new_assignment_priority);
+        desc = (EditText) findViewById(R.id.new_assignment_description);
+        given_date = (EditText) findViewById(R.id.new_assignment_given_date);
+        due_date = (EditText) findViewById(R.id.new_assignment_due_date);
+        due_time = (EditText) findViewById(R.id.new_assignment_due_time);
+//        final EditText title = (EditText) findViewById(R.id.new_assignment_title);
+//        final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
+//        final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
+//        final EditText due_date = (EditText) findViewById(R.id.new_assignment_due_date);
+//        final EditText due_time = (EditText) findViewById(R.id.new_assignment_due_time);
+//        final EditText priority = (EditText) findViewById(R.id.new_assignment_priority);
+//        course_code_dropdown = (Spinner) findViewById(R.id.new_assignment_couse_code_dropdown);
         course_code_dropdown = (Spinner) findViewById(R.id.new_assignment_couse_code_dropdown);
+
+
         mCourseAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 null,
@@ -71,7 +99,10 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
                 return true;
             }
         });
+
+
         getSupportLoaderManager().initLoader(COURSE_CODE_LOADER, null, this);
+        getSupportLoaderManager().initLoader(ASSIGNMENT_ID_LOADER, null, this);
 
         course_code_dropdown.setAdapter(mCourseAdapter);
         given_date.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +137,7 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
             @Override
             public void onClick(View v) {
-                saveAssignment(title.getText().toString(),
+                updateAssignment(title.getText().toString(),
                         desc.getText().toString(),
                         ((Cursor) course_code_dropdown.getSelectedItem()).getString(1),
                         given_date.getText().toString(),
@@ -129,31 +160,7 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
     }
 
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_new_assignment, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-    private void saveAssignment(String title, String desc, String course_code, String given_date, String due_date, String due_time, String priority){
+    private void updateAssignment(String title, String desc, String course_code, String given_date, String due_date, String due_time, String priority){
         Cursor cursor = getContentResolver().query(
                 AssignmentEntry.CONTENT_URI,
                 new String[]{AssignmentEntry._ID},
@@ -165,29 +172,56 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
             cursor.close();
         }
         ContentValues contentValues = new ContentValues();
-        contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, course_code);
         contentValues.put(AssignmentEntry.COLUMN_TITLE, title);
         contentValues.put(AssignmentEntry.COLUMN_DESC, desc);
         contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_DATE, due_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
-        contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, "0");
         contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
 
-
-        Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
+        int updated = getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
+        Toast.makeText(this, "Inserted: " + updated, Toast.LENGTH_LONG).show();
 
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this,
-                CourseEntry.CONTENT_URI,
-                new String[]{CourseEntry._ID,CourseEntry.COLUMN_COURSE_CODE},
-                null,
-                null,
-                null
-                );
+        _id = getIntent().getStringExtra(AssignmentEntry._ID);
+        switch(id){
+            case COURSE_CODE_LOADER:
+                return new CursorLoader(this,
+                        CourseEntry.CONTENT_URI,
+                        new String[]{CourseEntry._ID,CourseEntry.COLUMN_COURSE_CODE},
+                        null,
+                        null,
+                        null);
+            case ASSIGNMENT_ID_LOADER:
+                return new CursorLoader(this,
+                        AssignmentEntry.CONTENT_URI,
+                        AssignmentFragment.ASSIGNMENT_COLUMNS,
+                        AssignmentEntry._ID + " = ?",
+                        new String[]{_id},
+                        null);
+            default:
+                return new CursorLoader(this,
+                        CourseEntry.CONTENT_URI,
+                        new String[]{CourseEntry._ID,CourseEntry.COLUMN_COURSE_CODE},
+                        null,
+                        null,
+                        null);
+        }
+
+
+    }
+
+    public void setData(Cursor data){
+        title.setText(data.getString(COL__TITLE));
+        desc.setText(data.getString(COL__DESC));
+        priority.setText(data.getString(COL_PRIORITY));
+        given_date.setText(data.getString(COL_GIVEN_DATE));
+        due_date.setText(data.getString(COL__DUE_DATE));
+        due_time.setText(data.getString(COL_DUE_TIME));
+
     }
 
     @Override
@@ -204,8 +238,21 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mCourseAdapter.swapCursor(data);
-        course_code_dropdown.setAdapter(mCourseAdapter);
+        if (!data.moveToFirst()) {
+            Toast.makeText(this, "You failed", Toast.LENGTH_LONG).show();
+            return; }
+        switch(loader.getId()){
+            case COURSE_CODE_LOADER:
+                mCourseAdapter.swapCursor(data);
+                course_code_dropdown.setAdapter(mCourseAdapter);
+                break;
+            case ASSIGNMENT_ID_LOADER:
+                Toast.makeText(this,"This is " + data.getString(1),Toast.LENGTH_LONG).show();
+                setData(data);
+                break;
+
+        }
+
     }
 
     @Override
@@ -228,6 +275,7 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
         }
 
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
@@ -255,6 +303,7 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
         static EditText time;
 
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker

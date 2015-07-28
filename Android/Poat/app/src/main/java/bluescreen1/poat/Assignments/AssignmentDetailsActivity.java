@@ -1,23 +1,26 @@
 package bluescreen1.poat.Assignments;
 
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 
 import bluescreen1.poat.R;
 
 
-public class AssignmentDetailsActivity extends ActionBarActivity {
+public class AssignmentDetailsActivity extends AppCompatActivity {
 
+    private Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_details);
-
-        AssignmentDetailsFragment fragmenttab = new AssignmentDetailsFragment();
-
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
