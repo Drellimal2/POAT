@@ -28,7 +28,7 @@
 
 
     <bluescreen1.poat.utils.CustomFont
-        android:text="Title"
+        android:text="@string/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -37,7 +37,7 @@
         android:singleLine="true"
         android:id="@+id/new_assignment_title"/>
     <bluescreen1.poat.utils.CustomFont
-        android:text="Description"
+        android:text="@string/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -48,7 +48,7 @@
         android:maxLines="3"/>
 
     <bluescreen1.poat.utils.CustomFont
-        android:text="Course Code"
+        android:text="@string/course_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/new_assignment_couse_code_dropdown"/>
 
-    <TextView android:text="Given Date"
+    <TextView android:text="@string/givenDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -68,7 +68,7 @@
         android:inputType="date"
         android:id="@+id/new_assignment_given_date"/>
     <bluescreen1.poat.utils.CustomFont
-        android:text="Due Date"
+        android:text="@string/dueDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -80,7 +80,7 @@
         android:id="@+id/new_assignment_due_date"
         />
     <bluescreen1.poat.utils.CustomFont
-        android:text="Due Time"
+        android:text="@string/dueTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -93,7 +93,7 @@
         android:id="@+id/new_assignment_due_time"
         />
     <bluescreen1.poat.utils.CustomFont
-        android:text="Priority"
+        android:text="@string/priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
@@ -114,12 +114,12 @@
         <Button android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Save"
+            android:text="@string/save"
             android:id="@+id/new_assignment_save_button"/>
         <Button android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:id="@+id/new_assignment_cancel_button"/>
 
     </LinearLayout>

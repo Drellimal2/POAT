@@ -18,7 +18,7 @@
         <bluescreen1.poat.utils.CustomFont
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Test"
+            android:text="@string/newTest"
             android:textSize="25sp"
             android:gravity="center"/>
         <LinearLayout
@@ -26,10 +26,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
             <bluescreen1.poat.utils.CustomFont
-                android:text="Title"
+                android:text="@string/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <EditText
@@ -38,7 +36,7 @@
                 android:singleLine="true"
                 android:id="@+id/new_test_title"/>
             <bluescreen1.poat.utils.CustomFont
-                android:text="Description/Topics"
+                android:text="@string/descriptionTopics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <EditText
@@ -49,7 +47,7 @@
                 android:maxLines="3"/>
 
             <bluescreen1.poat.utils.CustomFont
-                android:text="Course Code"
+                android:text="@string/course_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -59,7 +57,7 @@
                 android:id="@+id/new_test_course_code_dropdown"/>
 
             <bluescreen1.poat.utils.CustomFont
-                android:text="Date"
+                android:text="@string/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -71,7 +69,7 @@
                 android:id="@+id/new_test_due_date"
                 />
             <bluescreen1.poat.utils.CustomFont
-                android:text="Time"
+                android:text="@string/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -91,12 +89,12 @@
             <Button android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Save"
+                android:text="@string/save"
                 android:id="@+id/new_test_save_button"/>
             <Button android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:id="@+id/new_test_cancel_button"/>
 
         </LinearLayout>
