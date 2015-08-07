@@ -1,12 +1,14 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Data;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import bluescreen1.poat.Contracts.AssignmentEntry;
-import bluescreen1.poat.Contracts.CourseEntry;
-import bluescreen1.poat.Contracts.SubTaskEntry;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.SubTaskEntry;
+import bluescreen1.poat.Data.Contracts.TestEntry;
 
 
 /**
@@ -28,6 +30,7 @@ public class PoatDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         final String SQL_CREATE_COURSE_TABLE = "CREATE TABLE " + CourseEntry.TABLE_NAME + " (" +
                 CourseEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CourseEntry.COLUMN_COURSE_CODE + " TEXT UNIQUE NOT NULL, " +
@@ -63,14 +66,29 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY (" + SubTaskEntry.COLUMN_ASSIGNMENT_ID + ") REFERENCES " +
                 AssignmentEntry.TABLE_NAME + " (" +AssignmentEntry._ID + "));";
 
+        final String SQL_CREATE_TEST_TABLE = "CREATE TABLE " + TestEntry.TABLE_NAME + " (" +
+                TestEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TestEntry.COLUMN_COURSE_CODE + " TEXT NOT NULL, " +
+                TestEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
+                TestEntry.COLUMN_TOPICS + " TEXT, " +
+                TestEntry.COLUMN_DATE + " TEXT, " +
+                TestEntry.COLUMN_TIME + " TEXT NOT NULL, " +
+                TestEntry.COLUMN_IS_COMPLETE + " TINYINT NOT NULL DEFAULT(0) );";
+
 
         db.execSQL(SQL_CREATE_ASSIGNMENT_TABLE);
         db.execSQL(SQL_CREATE_COURSE_TABLE);
         db.execSQL(SQL_CREATE_SUBTASK_TABLE);
+        db.execSQL(SQL_CREATE_TEST_TABLE);
 
 
 
 
+    }
+
+    public Cursor getDueAssignments(SQLiteDatabase db){
+        String COUNT_DUE = "SELECT count(*) FROM " +AssignmentEntry.TABLE_NAME + " WHERE " + AssignmentEntry.COLUMN_IS_SUBMITTED + " = 0;";
+        return db.query(AssignmentEntry.TABLE_NAME, new String[]{AssignmentEntry._ID}, AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?", new String[]{"0"},null,null, null );
     }
 
     @Override

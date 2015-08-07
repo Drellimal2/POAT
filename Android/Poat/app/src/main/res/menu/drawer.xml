@@ -4,10 +4,10 @@
     android:layout_width="match_parent">
     <!-- group with single selected item so only one item is highlighted in the nav menu -->
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/drawer_item_1"
-            android:icon="@mipmap/account"
-            android:title="@string/account"/>
+        <!--<item-->
+            <!--android:id="@+id/drawer_item_1"-->
+            <!--android:icon="@mipmap/account"-->
+            <!--android:title="@string/account"/>-->
         <item
             android:id="@+id/drawer_item_2"
             android:icon="@mipmap/course"

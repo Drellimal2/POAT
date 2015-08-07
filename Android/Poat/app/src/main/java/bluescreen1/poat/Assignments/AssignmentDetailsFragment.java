@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-import bluescreen1.poat.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
 import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 import bluescreen1.poat.utils.Utility;

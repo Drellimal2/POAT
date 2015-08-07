@@ -2,8 +2,9 @@ package bluescreen1.poat.utils;
 
 import java.util.Calendar;
 
-import bluescreen1.poat.Contracts.AssignmentEntry;
-import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.TestEntry;
 
 /**
  * Created by Dane on 7/21/2015.
@@ -35,6 +36,17 @@ public class Utility {
             CourseEntry.COLUMN_IS_ACTIVE,
             CourseEntry.COLUMN_GRADE,
             CourseEntry.COLUMN_CREDITS
+    };
+
+    public static String[] TEST_COLUMNS = new String[]{
+            TestEntry.TABLE_NAME + '.' + TestEntry._ID,
+            TestEntry.COLUMN_COURSE_CODE,
+            TestEntry.COLUMN_TITLE,
+            TestEntry.COLUMN_TOPICS,
+            TestEntry.COLUMN_DATE,
+            TestEntry.COLUMN_TIME,
+            TestEntry.COLUMN_IS_COMPLETE
+
     };
 
 

@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="bluescreen1.poat.Tests.NewTest">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <bluescreen1.poat.utils.CustomFont
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Test"
+            android:textSize="25sp"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <bluescreen1.poat.utils.CustomFont
+                android:text="Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:id="@+id/new_test_title"/>
+            <bluescreen1.poat.utils.CustomFont
+                android:text="Description/Topics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:id="@+id/new_test_description"
+                android:maxLines="3"/>
+
+            <bluescreen1.poat.utils.CustomFont
+                android:text="Course Code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_test_course_code_dropdown"/>
+
+            <bluescreen1.poat.utils.CustomFont
+                android:text="Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:focusable="false"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:id="@+id/new_test_due_date"
+                />
+            <bluescreen1.poat.utils.CustomFont
+                android:text="Time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="time"
+                android:singleLine="true"
+                android:id="@+id/new_test_due_time"
+                />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Save"
+                android:id="@+id/new_test_save_button"/>
+            <Button android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:id="@+id/new_test_cancel_button"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

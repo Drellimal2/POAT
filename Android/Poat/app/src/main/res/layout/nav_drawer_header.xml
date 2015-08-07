@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0babdd"
+    android:padding="20dp"
+    android:id="@+id/nav_drawer_header">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:tint="@color/white"
+        android:src="@mipmap/account"/>
+    <TextView
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:text="Me"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2 Assignments Due"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2 Test Coming Up"
+        android:textColor="@color/white"
+        />
+
+</LinearLayout>

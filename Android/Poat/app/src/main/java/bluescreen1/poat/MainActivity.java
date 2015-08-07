@@ -1,5 +1,6 @@
 package bluescreen1.poat;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import bluescreen1.poat.Assignments.AssignmentMain;
 import bluescreen1.poat.Courses.CourseFragment;
+import bluescreen1.poat.Tests.TestMain;
 import bluescreen1.poat.utils.AlarmReceiver;
 
 
@@ -30,9 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     private CharSequence mTitle;
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +43,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
+        final Intent account = new Intent(this, AccountActivity.class);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu menu = navigationView.getMenu();
+        menu.getItem(1).setChecked(true);
+        onNavigationItemSelected(menu.getItem(1));
+        LinearLayout test = (LinearLayout) navigationView.findViewById(R.id.nav_drawer_header);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastyToast("WELP");
+                startActivity(account);
+             }
+        });
 
         // This method will trigger on item Click of navigation menu
 
@@ -73,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    public void ToastyToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
+    }
+
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
 
@@ -89,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             //Replacing the main content with ContentFragment Which is our Inbox View;
-            case R.id.drawer_item_1:
-                Toast.makeText(getApplicationContext(), "Account Selected", Toast.LENGTH_SHORT).show();
-//                FragmentManager fragment = new FragmentManager();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.container, fragment);
-                fragmentTransaction.commit();
-                return true;
+//            case R.id.drawer_item_1:
+//                Toast.makeText(getApplicationContext(), "Account Selected", Toast.LENGTH_SHORT).show();
+////                FragmentManager fragment = new FragmentManager();
+//                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+////                fragmentTransaction.replace(R.id.container, fragment);
+//                fragmentTransaction.commit();
+//                return true;
 
             // For rest of the options we just show a toast on click
 
@@ -110,22 +132,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "Assignments Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.drawer_item_4:
+                fragmentManager.beginTransaction().replace(R.id.container, TestMain.newInstance(2))
+                        .commit();
                 Toast.makeText(getApplicationContext(), "Tests Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.drawer_item_5:
                 Toast.makeText(getApplicationContext(), "Today Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.drawer_item_6:
                 Toast.makeText(getApplicationContext(), "This Week Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.drawer_item_7:
                 Toast.makeText(getApplicationContext(), "This Month Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.drawer_item_8:
                 Toast.makeText(getApplicationContext(), "Past Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.drawer_item_9:
                 Toast.makeText(getApplicationContext(),"GPA Selected", Toast.LENGTH_SHORT).show();
+
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
                 return true;

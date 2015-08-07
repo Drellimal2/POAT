@@ -1,4 +1,4 @@
-package bluescreen1.poat.Contracts;
+package bluescreen1.poat.Data.Contracts;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

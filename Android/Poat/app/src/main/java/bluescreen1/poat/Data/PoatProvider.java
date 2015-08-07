@@ -1,4 +1,4 @@
-package bluescreen1.poat;
+package bluescreen1.poat.Data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -12,9 +12,10 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
-import bluescreen1.poat.Contracts.AssignmentEntry;
-import bluescreen1.poat.Contracts.Constants;
-import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.Constants;
+import bluescreen1.poat.Data.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.TestEntry;
 import bluescreen1.poat.utils.Utility;
 
 /**
@@ -30,6 +31,10 @@ public class PoatProvider extends ContentProvider {
     private static final int ASSIGNMENT_WITH_COURSE = 101;
     private static final int COURSE = 300;
     private static final int COURSE_ID = 301;
+    private static final int SUBTASK = 500;
+    private static final int TEST= 700;
+    private static final int TEST_ID= 701;
+
 
 
     private static UriMatcher buildUriMatcher() {
@@ -48,6 +53,10 @@ public class PoatProvider extends ContentProvider {
 
         matcher.addURI(authority, Constants.PATH_COURSE, COURSE);
         matcher.addURI(authority, Constants.PATH_COURSE + "/#", COURSE_ID);
+
+        matcher.addURI(authority, Constants.PATH_TEST, TEST);
+        matcher.addURI(authority, Constants.PATH_TEST + "/#" , TEST_ID);
+
 
         return matcher;
     }
@@ -113,6 +122,30 @@ public class PoatProvider extends ContentProvider {
                 );
                 break;
             }
+            case TEST:{
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                        TestEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            case TEST_ID:{
+                retCursor = poatDbHelper.getReadableDatabase().query(
+                        TestEntry.TABLE_NAME,
+                        projection,
+                        TestEntry._ID + " = ?",
+                        new String[]{""+ContentUris.parseId(uri)},
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown URI");
 
@@ -140,6 +173,12 @@ public class PoatProvider extends ContentProvider {
 
             case COURSE_ID:
                 return CourseEntry.CONTENT_ITEM_TYPE;
+
+            case TEST:
+                return TestEntry.CONTENT_TYPE;
+
+            case TEST_ID:
+                return TestEntry.CONTENT_ITEM_TYPE;
 
             default:
                 throw new UnsupportedOperationException("Unknown URI");
@@ -169,6 +208,16 @@ public class PoatProvider extends ContentProvider {
                 long _id = db.insert(AssignmentEntry.TABLE_NAME, null, values);
                 if (_id > 0) {
                     returnUri = AssignmentEntry.buildAssignmentUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+
+            case TEST: {
+                long _id = db.insert(TestEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    returnUri = TestEntry.buildTestUri(_id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
@@ -221,6 +270,10 @@ public class PoatProvider extends ContentProvider {
                 rowsDeleted = db.delete(
                         CourseEntry.TABLE_NAME, selection, selectionArgs);
                 break;
+            case TEST:
+                rowsDeleted = db.delete(
+                        TestEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -230,6 +283,8 @@ public class PoatProvider extends ContentProvider {
         }
         return rowsDeleted;
     }
+
+
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
@@ -246,6 +301,10 @@ public class PoatProvider extends ContentProvider {
                 rowsUpdated = db.update(CourseEntry.TABLE_NAME, values, selection,
                         selectionArgs);
                 break;
+            case TEST:
+                rowsUpdated = db.update(TestEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -254,4 +313,6 @@ public class PoatProvider extends ContentProvider {
         }
         return rowsUpdated;
     }
+
+
 }

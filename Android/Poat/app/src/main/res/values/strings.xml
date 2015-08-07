@@ -45,4 +45,6 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_new_test">NewTest</string>
+    <string name="title_activity_account">AccountActivity</string>
 </resources>

@@ -22,44 +22,45 @@
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <activity android:name=".SplashScreen"
-            android:label="@string/app_name">
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/App2Theme">
+            android:theme="@style/App2Theme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAINACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <provider
-            android:name=".PoatProvider"
+            android:name=".Data.PoatProvider"
             android:authorities="bluescreen1.poat.app" >
         </provider>
-
 
         <activity
             android:name=".Courses.NewCourse"
             android:label="@string/course"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/App2Theme">
+            android:theme="@style/App2Theme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
-        <activity  android:name=".Courses.CourseDetailsActivity"
+        <activity
+            android:name=".Courses.CourseDetailsActivity"
             android:label="@string/title_activity_course_details"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/App2Theme">
+            android:theme="@style/App2Theme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
@@ -68,26 +69,25 @@
             android:name=".Assignments.NewAssignment"
             android:label="@string/assignments"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/App2Theme">
+            android:theme="@style/App2Theme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
         </activity>
-        <activity android:name=".Login.LoginActivity"
-            android:label="Login"
-            >
+        <activity
+            android:name=".Login.LoginActivity"
+            android:label="Login" >
         </activity>
-        <activity android:name=".Assignments.EditAssignment"
+        <activity
+            android:name=".Assignments.EditAssignment"
             android:label="Edit Assignment"
-            android:theme="@style/App2Theme"
-            >
-
+            android:theme="@style/App2Theme" >
         </activity>
         <activity
             android:name=".Assignments.AssignmentDetailsActivity"
             android:label="@string/title_activity_assignment_details"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/App2Theme">
+            android:theme="@style/App2Theme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bluescreen1.poat.MainActivity" />
@@ -107,6 +107,24 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".Tests.NewTest"
+            android:label="@string/title_activity_new_test"
+            android:theme="@style/App2Theme"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bluescreen1.poat.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/App2Theme"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bluescreen1.poat.MainActivity" />
         </activity>
     </application>
 

@@ -20,8 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import bluescreen1.poat.Contracts.AssignmentEntry;
-import bluescreen1.poat.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.R;
 import bluescreen1.poat.utils.Utility;
 

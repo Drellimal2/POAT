@@ -1,4 +1,4 @@
-package bluescreen1.poat.Assignments;
+package bluescreen1.poat.Tests;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,6 +18,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,34 +33,31 @@ import java.util.Calendar;
 
 import bluescreen1.poat.Data.Contracts.AssignmentEntry;
 import bluescreen1.poat.Data.Contracts.CourseEntry;
+import bluescreen1.poat.Data.Contracts.TestEntry;
 import bluescreen1.poat.Data.PoatDbHelper;
 import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
 
-public class NewAssignment extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
-
+public class NewTest extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private Toolbar mToolbar;
     private final int COURSE_CODE_LOADER = 0;
     private SimpleCursorAdapter mCourseAdapter;
-    private Toolbar mToolbar;
-
     Spinner course_code_dropdown;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_new_assignment);
+        setContentView(R.layout.activity_new_test);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
-        final EditText title = (EditText) findViewById(R.id.new_assignment_title);
-        final EditText desc = (EditText) findViewById(R.id.new_assignment_description);
-        final EditText given_date = (EditText) findViewById(R.id.new_assignment_given_date);
-        final EditText due_date = (EditText) findViewById(R.id.new_assignment_due_date);
-        final EditText due_time = (EditText) findViewById(R.id.new_assignment_due_time);
-        final EditText priority = (EditText) findViewById(R.id.new_assignment_priority);
-        course_code_dropdown = (Spinner) findViewById(R.id.new_assignment_couse_code_dropdown);
+        final EditText title = (EditText) findViewById(R.id.new_test_title);
+        final EditText desc = (EditText) findViewById(R.id.new_test_description);
+        final EditText due_date = (EditText) findViewById(R.id.new_test_due_date);
+        final EditText due_time = (EditText) findViewById(R.id.new_test_due_time);
+        course_code_dropdown = (Spinner) findViewById(R.id.new_test_course_code_dropdown);
         mCourseAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 null,
@@ -76,13 +75,6 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
         getSupportLoaderManager().initLoader(COURSE_CODE_LOADER, null, this);
 
         course_code_dropdown.setAdapter(mCourseAdapter);
-        given_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = DatePickerFragment.DateSet(given_date);
-                newFragment.show(getSupportFragmentManager(), "datePicker");
-            }
-        });
 
         due_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +91,8 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
-        Button save = (Button) findViewById(R.id.new_assignment_save_button);
-        Button cancel = (Button) findViewById(R.id.new_assignment_cancel_button);
+        Button save = (Button) findViewById(R.id.new_test_save_button);
+        Button cancel = (Button) findViewById(R.id.new_test_cancel_button);
 
         final Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.ITEM_POS,1);
@@ -108,13 +100,11 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
 
             @Override
             public void onClick(View v) {
-                saveAssignment(title.getText().toString(),
+                saveTest(title.getText().toString(),
                         desc.getText().toString(),
                         ((Cursor) course_code_dropdown.getSelectedItem()).getString(1),
-                        given_date.getText().toString(),
                         due_date.getText().toString(),
-                        due_time.getText().toString(),
-                        priority.getText().toString()
+                        due_time.getText().toString()
                 );
                 finish();
             }
@@ -128,34 +118,9 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
         });
 
 
-
     }
 
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_new_assignment, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-    private void saveAssignment(String title, String desc, String course_code, String given_date, String due_date, String due_time, String priority){
+    private void saveTest(String title, String desc, String course_code, String due_date, String due_time){
         Cursor cursor = getContentResolver().query(
                 AssignmentEntry.CONTENT_URI,
                 new String[]{AssignmentEntry._ID},
@@ -167,14 +132,12 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
             cursor.close();
         }
         ContentValues contentValues = new ContentValues();
-        contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, course_code);
-        contentValues.put(AssignmentEntry.COLUMN_TITLE, title);
-        contentValues.put(AssignmentEntry.COLUMN_DESC, desc);
-        contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
-        contentValues.put(AssignmentEntry.COLUMN_DUE_DATE, due_date);
-        contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
-        contentValues.put(AssignmentEntry.COLUMN_IS_SUBMITTED, "0");
-        contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
+        contentValues.put(TestEntry.COLUMN_COURSE_CODE, course_code);
+        contentValues.put(TestEntry.COLUMN_TITLE, title);
+        contentValues.put(TestEntry.COLUMN_TOPICS, desc);
+        contentValues.put(TestEntry.COLUMN_DATE, due_date);
+        contentValues.put(TestEntry.COLUMN_TIME, due_time);
+        contentValues.put(TestEntry.COLUMN_IS_COMPLETE, "0");
 
 
         Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
@@ -186,6 +149,28 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_new_test, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
                 CourseEntry.CONTENT_URI,
@@ -193,8 +178,10 @@ public class NewAssignment extends AppCompatActivity implements LoaderManager.Lo
                 null,
                 null,
                 null
-                );
+        );
     }
+
+
 
     @Override
     protected void onStop() {

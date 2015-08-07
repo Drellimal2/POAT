@@ -1,4 +1,4 @@
-package bluescreen1.poat.Contracts;
+package bluescreen1.poat.Data.Contracts;
 
 import android.net.Uri;
 
@@ -12,6 +12,8 @@ public class Constants {
     public static final String PATH_COURSE = "course";
 
     public static final String PATH_ASSIGNMENT = "assignment";
+
+    public static final String PATH_TEST = "test";
 
     public static final String PATH_SUBTASK = "subtask";
 
