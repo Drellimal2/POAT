@@ -47,4 +47,23 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_new_test">NewTest</string>
     <string name="title_activity_account">AccountActivity</string>
+    <string name="newTest">New Test</string>
+    <string name="title">Title</string>
+    <string name="descriptionTopics">Description/Topics</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="login">Login</string>
+    <string name="signUp">Sign Up</string>
+    <string name="description">Description</string>
+    <string name="givenDate">Given Date</string>
+    <string name="dueDate">Due Date</string>
+    <string name="dueTime">Due Time</string>
+    <string name="priority">Priority</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="emailAddress">emailAddress</string>
+    <string name="confirmPassword">confirmPassword</string>
+    <string name="addTest">Add Test</string>
 </resources>

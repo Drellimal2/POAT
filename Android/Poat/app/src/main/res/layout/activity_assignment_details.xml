@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:name="bluescreen1.poat.Assignments.AssignmentDetailsActivity"
-
->
+    android:name="bluescreen1.poat.Assignments.AssignmentDetailsActivity">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />

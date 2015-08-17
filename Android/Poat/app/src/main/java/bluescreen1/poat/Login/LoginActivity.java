@@ -134,9 +134,8 @@ public class LoginActivity extends FragmentActivity implements bluescreen1.poat.
         this.password = Password;
     }
 
-    public void signUp(String username, String password, String ieeenum, String email){
+    public void signUp(String username, String password,  String email){
         su_email = email;
-        su_ieeenum = ieeenum;
         su_username = username;
         su_password = password;
     }

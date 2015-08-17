@@ -66,7 +66,6 @@ public class Sign_Up_Fragment extends DialogFragment {
         EditText username = (EditText) root.findViewById(R.id.su_username);
         EditText password = (EditText) root.findViewById(R.id.su_password);
         EditText confirm = (EditText) root.findViewById(R.id.su_confirm_password);
-        EditText ieeenum = (EditText) root.findViewById(R.id.su_ieee_num);
         EditText email = (EditText) root.findViewById(R.id.su_email);
         if (username.getText().toString().isEmpty() && email.getText().toString().isEmpty() && password.getText().toString().isEmpty() && confirm.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), "Fill in the empty Fields", Toast.LENGTH_SHORT).show();
@@ -85,7 +84,7 @@ public class Sign_Up_Fragment extends DialogFragment {
         }
         else {
             LoginActivity parent = (LoginActivity) getActivity();
-            parent.signUp(username.getText().toString(), password.getText().toString(), ieeenum.getText().toString(), email.getText().toString());
+            parent.signUp(username.getText().toString(), password.getText().toString(),  email.getText().toString());
         }
     }
 }
