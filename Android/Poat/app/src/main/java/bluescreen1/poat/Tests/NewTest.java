@@ -7,7 +7,6 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -34,7 +33,6 @@ import java.util.Calendar;
 import bluescreen1.poat.Data.Contracts.AssignmentEntry;
 import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.Data.Contracts.TestEntry;
-import bluescreen1.poat.Data.PoatDbHelper;
 import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
 
@@ -140,10 +138,10 @@ public class NewTest extends AppCompatActivity implements LoaderManager.LoaderCa
         contentValues.put(TestEntry.COLUMN_IS_COMPLETE, "0");
 
 
-        Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(AssignmentEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
-        PoatDbHelper poatDbHelper = new PoatDbHelper(this);
-        final SQLiteDatabase db = poatDbHelper.getReadableDatabase();
-        Toast.makeText(this, "Count: " +  poatDbHelper.getDueAssignments(db).getCount(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Inserted: " + ContentUris.parseId(getContentResolver().insert(TestEntry.CONTENT_URI, contentValues)), Toast.LENGTH_LONG).show();
+//        PoatDbHelper poatDbHelper = new PoatDbHelper(this);
+//        final SQLiteDatabase db = poatDbHelper.getReadableDatabase();
+//        Toast.makeText(this, "Count: " +  poatDbHelper.getDueAssignments(db).getCount(), Toast.LENGTH_LONG).show();
 
 
     }
@@ -200,6 +198,8 @@ public class NewTest extends AppCompatActivity implements LoaderManager.LoaderCa
         mCourseAdapter.swapCursor(data);
         course_code_dropdown.setAdapter(mCourseAdapter);
     }
+
+
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {

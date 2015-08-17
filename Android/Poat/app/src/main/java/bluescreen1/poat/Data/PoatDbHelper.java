@@ -36,8 +36,8 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 CourseEntry.COLUMN_COURSE_CODE + " TEXT UNIQUE NOT NULL, " +
                 CourseEntry.COLUMN_TITLE + " VARCHAR(50) NOT NULL, " +
                 CourseEntry.COLUMN_DESC + " TEXT, " +
-                CourseEntry.COLUMN_START_DATE + " TEXT, " +
-                CourseEntry.COLUMN_END_DATE + " TEXT, " +
+//                CourseEntry.COLUMN_START_DATE + " TEXT, " +
+//                CourseEntry.COLUMN_END_DATE + " TEXT, " +
                 CourseEntry.COLUMN_IS_ACTIVE + " TINYINT(1) NOT NULL DEFAULT 0, " +
                 CourseEntry.COLUMN_GRADE + " TEXT, " +
                 CourseEntry.COLUMN_CREDITS + " REAL );";
@@ -47,12 +47,13 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 AssignmentEntry.COLUMN_COURSE_CODE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_TITLE + " VARCHAR(50) NOT NULL, " +
                 AssignmentEntry.COLUMN_DESC + " TEXT, " +
-                AssignmentEntry.COLUMN_GIVEN_DATE + " TEXT NOT NULL, " +
+//                AssignmentEntry.COLUMN_GIVEN_DATE + " TEXT NOT NULL, " +
+                AssignmentEntry.COLUMN_DUE_DATETIME + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_DATE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_TIME + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_IS_COMPLETE + " TINYINT(1) NOT NULL DEFAULT(0), " +
-                AssignmentEntry.COLUMN_IS_SUBMITTED + " TINYINT(1) NOT NULL DEFAULT(0), " +
-                AssignmentEntry.COLUMN_PRIORITY + " INT); ";
+                AssignmentEntry.COLUMN_IS_SUBMITTED + " TINYINT(1) NOT NULL DEFAULT(0)); ";
+//                AssignmentEntry.COLUMN_PRIORITY + " INT); ";
 
         final String SQL_CREATE_SUBTASK_TABLE = "CREATE TABLE " + SubTaskEntry.TABLE_NAME + " (" +
                 SubTaskEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

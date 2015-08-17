@@ -143,10 +143,10 @@ public class AssignmentAdapter extends CursorAdapter{
                     minutes[0] %= 60;
                     days[0] = hours[0]/24;
                     hours[0] %= 24;
-                    if(days[0] > 0){
+                    if(days[0] >= 1){
                         rem.setText(days[0] + " Days Remaining");
                     } else {
-                        if(hours[0] > 0){
+                        if(hours[0] >= 0){
                             rem.setText(hours[0] + " Hours Remaining");
                         } else {
                             rem.setText(minutes[0] + " Minutes Remaining");

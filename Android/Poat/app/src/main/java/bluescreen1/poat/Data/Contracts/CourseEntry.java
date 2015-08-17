@@ -17,9 +17,9 @@ public class CourseEntry implements BaseColumns {
 
     public static final String COLUMN_DESC = "course_desc";
 
-    public static final String COLUMN_START_DATE = "course_date";
-
-    public static final String COLUMN_END_DATE = "course_end_date";
+//    public static final String COLUMN_START_DATE = "course_date";
+//
+//    public static final String COLUMN_END_DATE = "course_end_date";
 
     public static final String COLUMN_IS_ACTIVE = "course_is_active";
 

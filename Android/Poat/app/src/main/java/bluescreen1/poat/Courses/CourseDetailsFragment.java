@@ -18,6 +18,7 @@ import android.widget.Toast;
 import bluescreen1.poat.Data.Contracts.AssignmentEntry;
 import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.R;
+import bluescreen1.poat.utils.Utility;
 
 
 /**
@@ -30,17 +31,17 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
     private static final String COURSE_CODE_KEY = CourseEntry.COLUMN_COURSE_CODE;
     private static final String COURSE_ID_KEY = CourseEntry._ID;
     private View view;
-    private String[] COURSE_COLUMNS = new String[]{
-            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
-            CourseEntry.COLUMN_COURSE_CODE,
-            CourseEntry.COLUMN_TITLE,
-            CourseEntry.COLUMN_DESC,
-            CourseEntry.COLUMN_START_DATE,
-            CourseEntry.COLUMN_END_DATE,
-            CourseEntry.COLUMN_IS_ACTIVE,
-            CourseEntry.COLUMN_GRADE,
-            CourseEntry.COLUMN_CREDITS
-    };
+//    private String[] COURSE_COLUMNS = new String[]{
+//            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
+//            CourseEntry.COLUMN_COURSE_CODE,
+//            CourseEntry.COLUMN_TITLE,
+//            CourseEntry.COLUMN_DESC,
+//            CourseEntry.COLUMN_START_DATE,
+//            CourseEntry.COLUMN_END_DATE,
+//            CourseEntry.COLUMN_IS_ACTIVE,
+//            CourseEntry.COLUMN_GRADE,
+//            CourseEntry.COLUMN_CREDITS
+//    };
 
 
 //    public static final int COL_ID = 0;
@@ -53,18 +54,18 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
 //    public static final int COL_GPA = 7;
 
     private SimpleCursorAdapter mAssignmentAdapter;
-    private String[] ASSIGNMENT_COLUMNS = new String[]{
-            AssignmentEntry.TABLE_NAME + '.' + CourseEntry._ID,
-            AssignmentEntry.COLUMN_COURSE_CODE,
-            AssignmentEntry.COLUMN_TITLE,
-            AssignmentEntry.COLUMN_DESC,
-            AssignmentEntry.COLUMN_GIVEN_DATE,
-            AssignmentEntry.COLUMN_DUE_DATE,
-            AssignmentEntry.COLUMN_DUE_TIME,
-            AssignmentEntry.COLUMN_IS_COMPLETE,
-            AssignmentEntry.COLUMN_IS_SUBMITTED,
-            AssignmentEntry.COLUMN_PRIORITY
-    };
+//    private String[] ASSIGNMENT_COLUMNS = new String[]{
+//            AssignmentEntry.TABLE_NAME + '.' + CourseEntry._ID,
+//            AssignmentEntry.COLUMN_COURSE_CODE,
+//            AssignmentEntry.COLUMN_TITLE,
+//            AssignmentEntry.COLUMN_DESC,
+//            AssignmentEntry.COLUMN_GIVEN_DATE,
+//            AssignmentEntry.COLUMN_DUE_DATE,
+//            AssignmentEntry.COLUMN_DUE_TIME,
+//            AssignmentEntry.COLUMN_IS_COMPLETE,
+//            AssignmentEntry.COLUMN_IS_SUBMITTED,
+//            AssignmentEntry.COLUMN_PRIORITY
+//    };
 
     //public static final int ASSIGNMENT_COL_ID = 0;
     public static final int ASSIGNMENT_COL_COURSE_CODE = 1;
@@ -92,7 +93,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                 new String[]{
                         AssignmentEntry.COLUMN_TITLE,
                         AssignmentEntry.COLUMN_COURSE_CODE,
-                        AssignmentEntry.COLUMN_GIVEN_DATE,
+                        AssignmentEntry.COLUMN_DUE_DATETIME,
                         AssignmentEntry.COLUMN_DUE_TIME
                 },
                 new int[]{
@@ -149,7 +150,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                 CL = new CursorLoader(
                         getActivity(),
                         AssignmentEntry.CONTENT_URI,
-                        ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         AssignmentEntry.COLUMN_COURSE_CODE + " = ?",
                         new String[]{ courseCode },
                         null
@@ -159,7 +160,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                 CL = new CursorLoader(
                         getActivity(),
                         CourseEntry.CONTENT_URI,
-                        COURSE_COLUMNS,
+                        Utility.COURSE_COLUMNS,
                         COURSE_ID_KEY + " = ?",
                         new String[]{ _id },
                         null
@@ -170,7 +171,7 @@ public class CourseDetailsFragment extends Fragment implements LoaderManager.Loa
                 CL = new CursorLoader(
                         getActivity(),
                         CourseEntry.CONTENT_URI,
-                        COURSE_COLUMNS,
+                        Utility.COURSE_COLUMNS,
                         COURSE_ID_KEY + " = ?",
                         new String[]{ _id },
                         null

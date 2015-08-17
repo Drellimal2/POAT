@@ -41,12 +41,12 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
     public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
     public static final int COL__DESC = 3;
-    public static final int COL_GIVEN_DATE =4;
+    public static final int COL_DUE_DATETIME =4;
     public static final int COL__DUE_DATE = 5;
     public static final int COL_DUE_TIME = 6;
     public static final int COL_IS_COMPLETE = 7;
     public static final int COL_IS_SUBMITTED = 8;
-    public static final int COL_PRIORITY = 9;
+//    public static final int COL_PRIORITY = 9;
 
     private static Calendar alarm;
 
@@ -98,7 +98,7 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         String _id = intent.getStringExtra(AssignmentEntry._ID);
         return new CursorLoader(getActivity(),
                 AssignmentEntry.CONTENT_URI,
-                AssignmentFragment.ASSIGNMENT_COLUMNS,
+                Utility.ASSIGNMENT_COLUMNS,
                 AssignmentEntry._ID + " = ?",
                 new String[]{_id},
                 null);
@@ -114,12 +114,12 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         String course_code= data.getString(COL_COURSE_CODE);
         String title= data.getString(COL__TITLE);
         String desc = data.getString(COL__DESC);
-        String given_date= data.getString(COL_GIVEN_DATE);
+        String given_date= data.getString(COL_DUE_DATETIME);
         String due_date= data.getString(COL__DUE_DATE);
         String due_time= data.getString(COL_DUE_TIME);
 //        final int[] complete = {data.getInt(COL_IS_COMPLETE)};
 //        final int[] submit = {data.getInt(COL_IS_SUBMITTED)};
-        String priority = data.getString(COL_PRIORITY);
+//        String priority = data.getString(COL_PRIORITY);
         contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, _id);
 //        contentValues.put(AssignmentEntry.COLUMN_COURSE_CODE, course_code);
 //        contentValues.put(AssignmentEntry.COLUMN_TITLE, title);

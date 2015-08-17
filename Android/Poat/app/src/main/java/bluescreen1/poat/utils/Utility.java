@@ -18,12 +18,13 @@ public class Utility {
             AssignmentEntry.COLUMN_COURSE_CODE,
             AssignmentEntry.COLUMN_TITLE,
             AssignmentEntry.COLUMN_DESC,
-            AssignmentEntry.COLUMN_GIVEN_DATE,
+//            AssignmentEntry.COLUMN_GIVEN_DATE,
+            AssignmentEntry.COLUMN_DUE_DATETIME,
             AssignmentEntry.COLUMN_DUE_DATE,
             AssignmentEntry.COLUMN_DUE_TIME,
             AssignmentEntry.COLUMN_IS_COMPLETE,
-            AssignmentEntry.COLUMN_IS_SUBMITTED,
-            AssignmentEntry.COLUMN_PRIORITY
+            AssignmentEntry.COLUMN_IS_SUBMITTED
+//            AssignmentEntry.COLUMN_PRIORITY
     };
 
     public static String[] COURSE_COLUMNS = new String[]{
@@ -31,8 +32,8 @@ public class Utility {
             CourseEntry.COLUMN_COURSE_CODE,
             CourseEntry.COLUMN_TITLE,
             CourseEntry.COLUMN_DESC,
-            CourseEntry.COLUMN_START_DATE,
-            CourseEntry.COLUMN_END_DATE,
+//            CourseEntry.COLUMN_START_DATE,
+//            CourseEntry.COLUMN_END_DATE,
             CourseEntry.COLUMN_IS_ACTIVE,
             CourseEntry.COLUMN_GRADE,
             CourseEntry.COLUMN_CREDITS

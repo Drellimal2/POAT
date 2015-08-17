@@ -139,18 +139,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.drawer_item_5:
                 Toast.makeText(getApplicationContext(), "Today Selected", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.container, TimeMain.newInstance(10))
+                        .commit();
                 return true;
 
             case R.id.drawer_item_6:
                 Toast.makeText(getApplicationContext(), "This Week Selected", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.container, TimeMain.newInstance(11))
+                        .commit();
                 return true;
 
             case R.id.drawer_item_7:
                 Toast.makeText(getApplicationContext(), "This Month Selected", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.container, TimeMain.newInstance(12))
+                        .commit();
                 return true;
 
             case R.id.drawer_item_8:
                 Toast.makeText(getApplicationContext(), "Past Selected", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.container, TimeMain.newInstance(13))
+                        .commit();
                 return true;
 
             case R.id.drawer_item_9:

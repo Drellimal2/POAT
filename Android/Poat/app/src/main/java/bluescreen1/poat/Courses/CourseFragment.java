@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.R;
+import bluescreen1.poat.utils.Utility;
 
 /**
  * Created by Dane on 7/14/2015.
@@ -33,17 +34,17 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
     private SimpleCursorAdapter mCourseAdapter;
     private static final int COURSE_LOADER = 0;
     ListView courseList;
-    private String[] COURSE_COLUMNS = new String[]{
-            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
-            CourseEntry.COLUMN_COURSE_CODE,
-            CourseEntry.COLUMN_TITLE,
-            CourseEntry.COLUMN_DESC,
-            CourseEntry.COLUMN_START_DATE,
-            CourseEntry.COLUMN_END_DATE,
-            CourseEntry.COLUMN_IS_ACTIVE,
-            CourseEntry.COLUMN_GRADE,
-            CourseEntry.COLUMN_CREDITS
-    };
+//    private String[] COURSE_COLUMNS = new String[]{
+//            CourseEntry.TABLE_NAME + '.' + CourseEntry._ID,
+//            CourseEntry.COLUMN_COURSE_CODE,
+//            CourseEntry.COLUMN_TITLE,
+//            CourseEntry.COLUMN_DESC,
+//            CourseEntry.COLUMN_START_DATE,
+//            CourseEntry.COLUMN_END_DATE,
+//            CourseEntry.COLUMN_IS_ACTIVE,
+//            CourseEntry.COLUMN_GRADE,
+//            CourseEntry.COLUMN_CREDITS
+//    };
 
     public static final int COL_ID = 0;
     public static final int COL_COURSE_CODE = 1;
@@ -148,7 +149,7 @@ public class CourseFragment extends Fragment implements LoaderManager.LoaderCall
         return new CursorLoader(
                 getActivity(),
                 CourseEntry.CONTENT_URI,
-                COURSE_COLUMNS,
+                Utility.COURSE_COLUMNS,
                 null,
                 null,
                 null

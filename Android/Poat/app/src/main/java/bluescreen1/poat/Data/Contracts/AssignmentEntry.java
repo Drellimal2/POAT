@@ -17,13 +17,15 @@ public class AssignmentEntry implements BaseColumns {
 
     public static final String COLUMN_DESC = "assignment_desc";
 
-    public static final String COLUMN_GIVEN_DATE = "assignment_given_date";
+//    public static final String COLUMN_GIVEN_DATE = "assignment_given_date";
 
     public static final String COLUMN_DUE_DATE = "assignment_due_date";
 
     public static final String COLUMN_DUE_TIME = "assignment_due_time";
 
-    public static final String COLUMN_PRIORITY = "assignemnt_priority";
+    public static final String COLUMN_DUE_DATETIME = "assignment_due_datetime";
+
+//    public static final String COLUMN_PRIORITY = "assignemnt_priority";
 
     public static final String COLUMN_IS_COMPLETE = "assignment_is_complete";
 

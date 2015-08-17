@@ -32,6 +32,7 @@ import bluescreen1.poat.Data.Contracts.AssignmentEntry;
 import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.MainActivity;
 import bluescreen1.poat.R;
+import bluescreen1.poat.utils.Utility;
 
 /**
  * Created by Dane on 7/27/2015.
@@ -41,38 +42,38 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
     private final int COURSE_CODE_LOADER = 0;
     private final int ASSIGNMENT_ID_LOADER = 1;
     private SimpleCursorAdapter mCourseAdapter;
-    private Toolbar mToolbar;
     private String _id;
     EditText title;
     EditText desc;
-    EditText given_date;
+//    EditText given_date;
     EditText due_date;
     EditText due_time;
-    EditText priority;
+//    EditText priority;
     Spinner course_code_dropdown;
 //    public static final int COL_ID = 0;
 //    public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
     public static final int COL__DESC = 3;
-    public static final int COL_GIVEN_DATE =4;
+//    public static final int COL_GIVEN_DATE =4;
     public static final int COL__DUE_DATE = 5;
     public static final int COL_DUE_TIME = 6;
+//    public static final int COL_DUE_DATETIME = 4;
 //    public static final int COL_IS_COMPLETE = 7;
 //    public static final int COL_IS_SUBMITTED = 8;
-    public static final int COL_PRIORITY = 9;
+//    public static final int COL_PRIORITY = 9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_new_assignment);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
         title = (EditText) findViewById(R.id.new_assignment_title);
-        priority = (EditText) findViewById(R.id.new_assignment_priority);
+//        priority = (EditText) findViewById(R.id.new_assignment_priority);
         desc = (EditText) findViewById(R.id.new_assignment_description);
-        given_date = (EditText) findViewById(R.id.new_assignment_given_date);
+//        given_date = (EditText) findViewById(R.id.new_assignment_given_date);
         due_date = (EditText) findViewById(R.id.new_assignment_due_date);
         due_time = (EditText) findViewById(R.id.new_assignment_due_time);
 //        final EditText title = (EditText) findViewById(R.id.new_assignment_title);
@@ -105,13 +106,13 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
         getSupportLoaderManager().initLoader(ASSIGNMENT_ID_LOADER, null, this);
 
         course_code_dropdown.setAdapter(mCourseAdapter);
-        given_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = DatePickerFragment.DateSet(given_date);
-                newFragment.show(getSupportFragmentManager(), "datePicker");
-            }
-        });
+//        given_date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DialogFragment newFragment = DatePickerFragment.DateSet(given_date);
+//                newFragment.show(getSupportFragmentManager(), "datePicker");
+//            }
+//        });
 
         due_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,10 +141,9 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
                 updateAssignment(title.getText().toString(),
                         desc.getText().toString(),
                         ((Cursor) course_code_dropdown.getSelectedItem()).getString(1),
-                        given_date.getText().toString(),
                         due_date.getText().toString(),
-                        due_time.getText().toString(),
-                        priority.getText().toString()
+                        due_time.getText().toString()
+
                 );
                 finish();
             }
@@ -160,7 +160,7 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
 
     }
 
-    private void updateAssignment(String title, String desc, String course_code, String given_date, String due_date, String due_time, String priority){
+    private void updateAssignment(String title, String desc, String course_code, String due_date, String due_time){
         Cursor cursor = getContentResolver().query(
                 AssignmentEntry.CONTENT_URI,
                 new String[]{AssignmentEntry._ID},
@@ -174,10 +174,10 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
         ContentValues contentValues = new ContentValues();
         contentValues.put(AssignmentEntry.COLUMN_TITLE, title);
         contentValues.put(AssignmentEntry.COLUMN_DESC, desc);
-        contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
+//        contentValues.put(AssignmentEntry.COLUMN_GIVEN_DATE, given_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_DATE, due_date);
         contentValues.put(AssignmentEntry.COLUMN_DUE_TIME, due_time);
-        contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
+//        contentValues.put(AssignmentEntry.COLUMN_PRIORITY, priority);
 
         int updated = getContentResolver().update(AssignmentEntry.CONTENT_URI, contentValues, AssignmentEntry._ID + " = ?", new String[]{_id});
         Toast.makeText(this, "Inserted: " + updated, Toast.LENGTH_LONG).show();
@@ -198,7 +198,7 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
             case ASSIGNMENT_ID_LOADER:
                 return new CursorLoader(this,
                         AssignmentEntry.CONTENT_URI,
-                        AssignmentFragment.ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         AssignmentEntry._ID + " = ?",
                         new String[]{_id},
                         null);
@@ -217,8 +217,8 @@ public class EditAssignment extends AppCompatActivity implements LoaderManager.L
     public void setData(Cursor data){
         title.setText(data.getString(COL__TITLE));
         desc.setText(data.getString(COL__DESC));
-        priority.setText(data.getString(COL_PRIORITY));
-        given_date.setText(data.getString(COL_GIVEN_DATE));
+//        priority.setText(data.getString(COL_PRIORITY));
+//        given_date.setText(data.getString(COL_GIVEN_DATE));
         due_date.setText(data.getString(COL__DUE_DATE));
         due_time.setText(data.getString(COL_DUE_TIME));
 

@@ -57,16 +57,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/new_assignment_couse_code_dropdown"/>
 
-    <TextView android:text="Given Date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:focusable="false"
-        android:inputType="date"
-        android:id="@+id/new_assignment_given_date"/>
+    <!--<TextView android:text="Given Date"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:singleLine="true"-->
+        <!--android:focusable="false"-->
+        <!--android:inputType="date"-->
+        <!--android:id="@+id/new_assignment_given_date"/>-->
     <bluescreen1.poat.utils.CustomFont
         android:text="Due Date"
         android:layout_width="match_parent"
@@ -92,21 +92,21 @@
         android:singleLine="true"
         android:id="@+id/new_assignment_due_time"
         />
-    <bluescreen1.poat.utils.CustomFont
-        android:text="Priority"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:singleLine="true"
-        android:id="@+id/new_assignment_priority"/>
+    <!--<bluescreen1.poat.utils.CustomFont-->
+        <!--android:text="Priority"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="number"-->
+        <!--android:singleLine="true"-->
+        <!--android:id="@+id/new_assignment_priority"/>-->
 
-        <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar" />
+        <!--<SeekBar-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/seekBar" />-->
     </LinearLayout>
  <LinearLayout
         android:layout_width="match_parent"

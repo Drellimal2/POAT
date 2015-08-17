@@ -9,19 +9,20 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import bluescreen1.poat.Data.Contracts.AssignmentEntry;
-import bluescreen1.poat.Data.Contracts.CourseEntry;
 import bluescreen1.poat.R;
 import bluescreen1.poat.utils.Utility;
 
@@ -38,29 +39,30 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
      * number.
      */
     private SimpleCursorAdapter mAssignmentAdapter;
-    public static String[] ASSIGNMENT_COLUMNS = new String[]{
-            AssignmentEntry.TABLE_NAME + '.' + CourseEntry._ID,
-            AssignmentEntry.COLUMN_COURSE_CODE,
-            AssignmentEntry.COLUMN_TITLE,
-            AssignmentEntry.COLUMN_DESC,
-            AssignmentEntry.COLUMN_GIVEN_DATE,
-            AssignmentEntry.COLUMN_DUE_DATE,
-            AssignmentEntry.COLUMN_DUE_TIME,
-            AssignmentEntry.COLUMN_IS_COMPLETE,
-            AssignmentEntry.COLUMN_IS_SUBMITTED,
-            AssignmentEntry.COLUMN_PRIORITY
-    };
+//    public static String[] ASSIGNMENT_COLUMNS = new String[]{
+//            AssignmentEntry.TABLE_NAME + '.' + CourseEntry._ID,
+//            AssignmentEntry.COLUMN_COURSE_CODE,
+//            AssignmentEntry.COLUMN_TITLE,
+//            AssignmentEntry.COLUMN_DESC,
+//            AssignmentEntry.COLUMN_GIVEN_DATE,
+//            AssignmentEntry.COLUMN_DUE_DATE,
+//            AssignmentEntry.COLUMN_DUE_TIME,
+//            AssignmentEntry.COLUMN_IS_COMPLETE,
+//            AssignmentEntry.COLUMN_IS_SUBMITTED,
+//            AssignmentEntry.COLUMN_PRIORITY
+//    };
 
     public static final int COL_ID = 0;
     public static final int COL_COURSE_CODE = 1;
     public static final int COL__TITLE = 2;
     //public static final int COL__DESC = 3;
-    public static final int COL_GIVEN_DATE =4;
+//    public static final int COL_GIVEN_DATE =4;
     public static final int COL__DUE_DATE = 5;
     public static final int COL_DUE_TIME = 6;
+    public static final int COL_DUE_DATETIME = 4;
     public static final int COL_IS_COMPLETE = 7;
     public static final int COL_IS_SUBMITTED = 8;
-    public static final int COL_PRIORITY = 9;
+//    public static final int COL_PRIORITY = 9;
     private Bundle filter;
 
     private AssignmentAdapter adap;
@@ -91,7 +93,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                 new String[]{
                         AssignmentEntry.COLUMN_TITLE,
                         AssignmentEntry.COLUMN_COURSE_CODE,
-                        AssignmentEntry.COLUMN_GIVEN_DATE,
+                        AssignmentEntry.COLUMN_DUE_DATETIME,
                         AssignmentEntry.COLUMN_DUE_DATE
                 },
                 new int[]{
@@ -112,7 +114,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                     case COL_COURSE_CODE:
                         ((TextView) view).setText(cursor.getString(columnIndex));
                         return true;
-                    case COL_GIVEN_DATE:
+                    case COL_DUE_DATETIME:
                         ((TextView) view).setText("2 days");
                         return true;
 
@@ -130,30 +132,30 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
         assignment_list.setAdapter(adap);
 
 
-        final Intent intent = new Intent(getActivity(), AssignmentDetailsActivity.class);
-
-        assignment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor cursor = mAssignmentAdapter.getCursor();
-//                if (cursor != null && cursor.moveToPosition(position)) {
-//                    intent.putExtra(AssignmentEntry._ID,cursor.getString(COL_ID) );
-//                    startActivity(intent);
-//                }
-//                final LinearLayout icons = (LinearLayout) view.findViewById(R.id.assignment_list_item_icon_actions);
+//        final Intent intent = new Intent(getActivity(), AssignmentDetailsActivity.class);
 //
-//                if(icons.getVisibility() == View.GONE) {
-//                    icons.setVisibility(View.VISIBLE);
-//                } else {
-//                    icons.setVisibility(View.GONE);
-//                }
-
-
-
-
-
-            }
-        });
+//        assignment_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Cursor cursor = mAssignmentAdapter.getCursor();
+////                if (cursor != null && cursor.moveToPosition(position)) {
+////                    intent.putExtra(AssignmentEntry._ID,cursor.getString(COL_ID) );
+////                    startActivity(intent);
+////                }
+////                final LinearLayout icons = (LinearLayout) view.findViewById(R.id.assignment_list_item_icon_actions);
+////
+////                if(icons.getVisibility() == View.GONE) {
+////                    icons.setVisibility(View.VISIBLE);
+////                } else {
+////                    icons.setVisibility(View.GONE);
+////                }
+//
+//
+//
+//
+//
+//            }
+//        });
         return rootView;
     }
 
@@ -173,7 +175,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             case 0:
                 CursorLoader CL = new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
-                        ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         null,
                         null,
                         null);
@@ -182,7 +184,7 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             case 1:
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
-                        ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?",
                         new String[]{"0"},
                         null);
@@ -190,14 +192,37 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
             case 2:
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
-                        ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?",
                         new String[]{"1"},
                         null);
+
+            case 10:
+                Toast.makeText(getActivity(),"You Know 10 10 10", Toast.LENGTH_LONG).show();
+                Calendar start = Calendar.getInstance();
+                start.set(Calendar.HOUR_OF_DAY, 0);
+                start.set(Calendar.MINUTE, 00);
+                start.set(Calendar.SECOND, 0);
+                start.set(Calendar.MILLISECOND, 0);
+                Calendar end = Calendar.getInstance();
+                end.set(Calendar.HOUR_OF_DAY, 23);
+                end.set(Calendar.MINUTE, 59);
+                end.set(Calendar.SECOND, 59);
+                end.set(Calendar.MILLISECOND,0);
+                Log.w("start", "" + start.getTimeInMillis());
+                Log.w("end", ""+end.getTimeInMillis());
+
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        Utility.ASSIGNMENT_COLUMNS,
+                        "cast( " + AssignmentEntry.COLUMN_DUE_DATETIME + " as INTEGER) > ? AND cast( " + AssignmentEntry.COLUMN_DUE_DATETIME + " as INTEGER) < ?",
+                        new String[]{"'"+ (start.getTimeInMillis()/1000) + "'", "'"+(end.getTimeInMillis()/1000)+"'"},
+                        null);
+
             default:
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
-                        ASSIGNMENT_COLUMNS,
+                        Utility.ASSIGNMENT_COLUMNS,
                         null,
                         null,
                         null);
