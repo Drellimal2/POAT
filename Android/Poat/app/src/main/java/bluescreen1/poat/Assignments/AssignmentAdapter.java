@@ -129,24 +129,24 @@ public class AssignmentAdapter extends CursorAdapter{
             String due_time = cursor.getString(AssignmentFragment.COL_DUE_TIME);
             final TextView rem = (TextView) view.findViewById(R.id.assignment_list_item_days_remaining);
             Calendar dueDate = Utility.getCalendar(due_date, due_time);
-            final int[] hours = new int[1];
-            final int[] minutes = new int[1];
-            final int[] seconds = new int[1];
-            final int[] days = new int[1];
+            final long[] hours = new long[1];
+            final long[] minutes = new long[1];
+            final long[] seconds = new long[1];
+            final long[] days = new long[1];
             time_remaining = new CountDownTimer((dueDate.getTimeInMillis()-Calendar.getInstance().getTimeInMillis()), 1000) {
                 @Override
                 public void onTick(long millsUntilFinished) {
-                    seconds[0] =(int) millsUntilFinished/1000;
+                    seconds[0] = millsUntilFinished/1000;
                     minutes[0] = seconds[0] /60;
                     seconds[0] %= 60;
                     hours[0] = minutes[0]/60;
                     minutes[0] %= 60;
                     days[0] = hours[0]/24;
                     hours[0] %= 24;
-                    if(days[0] >= 1){
+                    if(days[0] > 1){
                         rem.setText(days[0] + " Days Remaining");
                     } else {
-                        if(hours[0] >= 0){
+                        if(hours[0] > 1){
                             rem.setText(hours[0] + " Hours Remaining");
                         } else {
                             rem.setText(minutes[0] + " Minutes Remaining");

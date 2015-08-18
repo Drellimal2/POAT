@@ -114,7 +114,7 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
         String course_code= data.getString(COL_COURSE_CODE);
         String title= data.getString(COL__TITLE);
         String desc = data.getString(COL__DESC);
-        String given_date= data.getString(COL_DUE_DATETIME);
+        String datetime = data.getString(COL_DUE_DATETIME);
         String due_date= data.getString(COL__DUE_DATE);
         String due_time= data.getString(COL_DUE_TIME);
 //        final int[] complete = {data.getInt(COL_IS_COMPLETE)};

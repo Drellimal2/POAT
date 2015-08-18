@@ -208,17 +208,65 @@ public class AssignmentFragment extends Fragment implements LoaderManager.Loader
                 end.set(Calendar.HOUR_OF_DAY, 23);
                 end.set(Calendar.MINUTE, 59);
                 end.set(Calendar.SECOND, 59);
-                end.set(Calendar.MILLISECOND,0);
-                Log.w("start", "" + start.getTimeInMillis());
-                Log.w("end", ""+end.getTimeInMillis());
+                end.set(Calendar.MILLISECOND, 0);
+                long start_q = start.getTimeInMillis()/1000;
+                long end_q = end.getTimeInMillis()/1000;
+                Log.w("start", "" + start_q);
+                Log.w("end", ""+ end_q);
 
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,
                         Utility.ASSIGNMENT_COLUMNS,
-                        "cast( " + AssignmentEntry.COLUMN_DUE_DATETIME + " as INTEGER) > ? AND cast( " + AssignmentEntry.COLUMN_DUE_DATETIME + " as INTEGER) < ?",
-                        new String[]{"'"+ (start.getTimeInMillis()/1000) + "'", "'"+(end.getTimeInMillis()/1000)+"'"},
+                        AssignmentEntry.COLUMN_DUE_DATETIME + " > ? AND " + AssignmentEntry.COLUMN_DUE_DATETIME + " < ?" ,
+                        new String[]{ Long.toString(start_q), Long.toString(end_q)},
                         null);
 
+            case 11:
+                Toast.makeText(getActivity(),"You Know 10 10 10", Toast.LENGTH_LONG).show();
+                Calendar week_start = Calendar.getInstance();
+                week_start.set(Calendar.HOUR_OF_DAY, 0);
+                week_start.set(Calendar.MINUTE, 00);
+                week_start.set(Calendar.SECOND, 0);
+                week_start.set(Calendar.MILLISECOND, 0);
+                Calendar week_end = Calendar.getInstance();
+                week_end.set(Calendar.HOUR_OF_DAY, 23);
+                week_end.set(Calendar.MINUTE, 59);
+                week_end.set(Calendar.SECOND, 59);
+
+                week_end.set(Calendar.MILLISECOND, 0);
+                week_end.add(Calendar.DATE, 7);
+                long week_start_q = week_start.getTimeInMillis()/1000;
+                long week_end_q = week_end.getTimeInMillis()/1000;
+
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        Utility.ASSIGNMENT_COLUMNS,
+                        AssignmentEntry.COLUMN_DUE_DATETIME + " > ? AND " + AssignmentEntry.COLUMN_DUE_DATETIME + " < ?" ,
+                        new String[]{ Long.toString(week_start_q), Long.toString(week_end_q)},
+                        null);
+            case 12:
+                Toast.makeText(getActivity(),"You Know 10 10 10", Toast.LENGTH_LONG).show();
+                Calendar month_start = Calendar.getInstance();
+                month_start.set(Calendar.HOUR_OF_DAY, 0);
+                month_start.set(Calendar.MINUTE, 00);
+                month_start.set(Calendar.SECOND, 0);
+                month_start.set(Calendar.MILLISECOND, 0);
+                Calendar month_end = Calendar.getInstance();
+                month_end.set(Calendar.HOUR_OF_DAY, 23);
+                month_end.set(Calendar.MINUTE, 59);
+                month_end.set(Calendar.SECOND, 59);
+
+                month_end.set(Calendar.MILLISECOND, 0);
+                month_end.add(Calendar.DATE, 30);
+                long month_start_q = month_start.getTimeInMillis()/1000;
+                long month_end_q = month_end.getTimeInMillis()/1000;
+
+                return new CursorLoader(getActivity(),
+                        AssignmentEntry.CONTENT_URI,
+                        Utility.ASSIGNMENT_COLUMNS,
+                        AssignmentEntry.COLUMN_DUE_DATETIME + " > ? AND " + AssignmentEntry.COLUMN_DUE_DATETIME + " < ?" ,
+                        new String[]{ Long.toString(month_start_q), Long.toString(month_end_q)},
+                        null);
             default:
                 return new CursorLoader(getActivity(),
                         AssignmentEntry.CONTENT_URI,

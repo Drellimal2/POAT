@@ -48,7 +48,7 @@ public class PoatDbHelper extends SQLiteOpenHelper {
                 AssignmentEntry.COLUMN_TITLE + " VARCHAR(50) NOT NULL, " +
                 AssignmentEntry.COLUMN_DESC + " TEXT, " +
 //                AssignmentEntry.COLUMN_GIVEN_DATE + " TEXT NOT NULL, " +
-                AssignmentEntry.COLUMN_DUE_DATETIME + " TEXT NOT NULL, " +
+                AssignmentEntry.COLUMN_DUE_DATETIME + " INTEGER NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_DATE + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_DUE_TIME + " TEXT NOT NULL, " +
                 AssignmentEntry.COLUMN_IS_COMPLETE + " TINYINT(1) NOT NULL DEFAULT(0), " +
