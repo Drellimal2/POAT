@@ -22,12 +22,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/nav_drawer_header_no_assignments"
         android:text="2 Assignments Due"
         android:textColor="@color/white"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/nav_drawer_header_no_tests"
         android:text="2 Test Coming Up"
         android:textColor="@color/white"
         />

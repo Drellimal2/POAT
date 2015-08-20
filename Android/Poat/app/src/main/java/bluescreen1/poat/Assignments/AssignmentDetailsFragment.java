@@ -181,8 +181,12 @@ public class AssignmentDetailsFragment extends Fragment implements LoaderManager
 //            }
 //        });
 
-        TextView update = (TextView) view.findViewById(R.id.assignment_details_title);
-        update.setText(title);
+        TextView name = (TextView) view.findViewById(R.id.assignment_details_title);
+        TextView course_code_t = (TextView) view.findViewById(R.id.assignment_details_course_code);
+        TextView details_t = (TextView) view.findViewById(R.id.assignment_details_details);
+        details_t.setText(desc);
+        course_code_t.setText(course_code);
+        name.setText(title);
 
     }
 

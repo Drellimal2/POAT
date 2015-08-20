@@ -1,8 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:orientation="vertical"
-    tools:context="bluescreen1.poat.Assignments.AssignmentDetailsFragment">
+    tools:context="bluescreen1.poat.Assignments.AssignmentDetailsFragment"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +14,7 @@
             android:layout_width="0dp"
             android:layout_weight="4"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:textColor="@color/primary"
             android:text="@string/app_name"
@@ -90,6 +92,32 @@
 
         </FrameLayout>
     </LinearLayout>
+    <bluescreen1.poat.utils.CustomFont
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="25sp"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <bluescreen1.poat.utils.CustomFont
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/assignment_details_details"
+            />
+    </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#FF5959"
+        android:textSize="40sp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="ADS"
+        android:textColor="#ffffff"/>
 
 </LinearLayout>

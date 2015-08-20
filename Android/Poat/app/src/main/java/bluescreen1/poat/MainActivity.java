@@ -1,10 +1,14 @@
 package bluescreen1.poat;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,21 +17,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import bluescreen1.poat.Assignments.AssignmentMain;
 import bluescreen1.poat.Courses.CourseFragment;
+import bluescreen1.poat.Data.Contracts.AssignmentEntry;
+import bluescreen1.poat.Data.Contracts.TestEntry;
 import bluescreen1.poat.Tests.TestMain;
 import bluescreen1.poat.utils.AlarmReceiver;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor>{
 
+    private static final int TEST_LOADER = 1;
+    private static final int ASSIGNMENT_LOADER = 0;
     AlarmReceiver alarmReceiver = new AlarmReceiver();
     private static final long DRAWER_CLOSE_DELAY_MS = 250;
     private static final String NAV_ITEM_ID = "navItemId";
     private DrawerLayout drawerLayout;
     private int navItemId;
+    private LinearLayout test;
     public static final String ITEM_POS = "item_pos";
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar mToolbar;
@@ -42,14 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToolbar.setBackgroundColor(Color.parseColor("#0babdd"));
         setSupportActionBar(mToolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        getSupportLoaderManager().initLoader(ASSIGNMENT_LOADER, null, this);
+        getSupportLoaderManager().initLoader(TEST_LOADER, null, this);
         final Intent account = new Intent(this, AccountActivity.class);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
         Menu menu = navigationView.getMenu();
         menu.getItem(1).setChecked(true);
         onNavigationItemSelected(menu.getItem(1));
-        LinearLayout test = (LinearLayout) navigationView.findViewById(R.id.nav_drawer_header);
+        test = (LinearLayout) navigationView.findViewById(R.id.nav_drawer_header);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
         alarmReceiver.setAlarm(this);
+
+
 
     }
 
@@ -196,6 +211,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch(id){
+            case TEST_LOADER:
+                return new CursorLoader(
+                        this,
+                        TestEntry.CONTENT_URI,
+                        new String[]{"count(" + TestEntry._ID + ")"},
+                        TestEntry.COLUMN_IS_COMPLETE + " = ?",
+                        new String[]{ "0"},
+                        null
+                );
+            case ASSIGNMENT_LOADER:
+                return new CursorLoader(this,
+                        AssignmentEntry.CONTENT_URI,
+                        new String[]{"count(" + AssignmentEntry._ID + ")"},
+                        AssignmentEntry.COLUMN_DUE_DATETIME + " > ? AND " + AssignmentEntry.COLUMN_IS_SUBMITTED + " = ?" ,
+                        new String[]{ Long.toString(Calendar.getInstance().getTimeInMillis()/1000), "0"},
+                        null);
+
+
+        }
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        data.moveToFirst();
+        TextView assignments = (TextView) test.findViewById(R.id.nav_drawer_header_no_assignments);
+        TextView tests = (TextView) test.findViewById(R.id.nav_drawer_header_no_tests);
+        switch(loader.getId()){
+            case ASSIGNMENT_LOADER:
+                Toast.makeText(this, "Assignments :" + data.getInt(0), Toast.LENGTH_LONG).show();
+                assignments.setText(data.getInt(0) + " Assignments Due");
+                break;
+            case TEST_LOADER:
+                Toast.makeText(this, "Tests :" + data.getInt(0), Toast.LENGTH_LONG).show();
+                tests.setText(data.getInt(0) + " Tests Coming Up");
+                break;
+
+        }
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
 //
